@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-content-sidebar',
+  standalone: false,
   templateUrl: './content-sidebar.component.html',
   styleUrls: ['./content-sidebar.component.scss']
 })

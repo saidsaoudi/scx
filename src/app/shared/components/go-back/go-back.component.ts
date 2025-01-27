@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'go-back',
+  standalone : false,
   templateUrl: './go-back.component.html',
   styleUrls: ['./go-back.component.scss']
 })

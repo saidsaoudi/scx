@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'image-with-preview',
+  standalone : false,
   templateUrl: './image-with-preview.component.html',
   styleUrls: ['./image-with-preview.component.scss']
 })

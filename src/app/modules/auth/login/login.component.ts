@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { flatMap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
+  standalone : false,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -20,7 +21,6 @@ export class LoginComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private authService: AuthService
   ) {
     this.loginForm = new FormGroup({
       // login: new FormControl("IUM0114542", [Validators.required]),
@@ -37,14 +37,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.isLoading = true;
     let data = { centerId: 46, stationId: 92, ...this.loginForm.value}
-    this.authService.login(data).subscribe(
-      data => {
-        this.isLoading = false;
-        // this.authService.me().subscribe(user => {
-        //   console.log('ME', user)
-        // });
-      }
-    );
+    // this.authService.login(data).subscribe(
+    //   data => {
+    //     this.isLoading = false;
+    //   }
+    // );
   }
   
 }

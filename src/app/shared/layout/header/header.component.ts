@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
+  standalone: false,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   currentDate!: Date;
   currentTime!: String;
 
-  constructor(private authSerivce: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
     
@@ -25,10 +25,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.authSerivce.logout()
+    // this.authSerivce.logout()
   }
   goToPatientsList(){
-    window.location.href = '/patients'
+    window.location.href = '/dashbord'
   }
   goToRendezVous(){
     window.location.href = '/rendez-vous'

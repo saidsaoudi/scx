@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 import {MENU} from './sidebar-items'
 
 @Component({
   selector: 'app-sidebar',
+  standalone: false,
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
@@ -11,13 +11,13 @@ export class SidebarComponent implements OnInit {
   menu = MENU;
   opened = true;
   @Output() toggle = new EventEmitter<any>();
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   logout(){
-    this.authService.logout()
+    // this.authService.logout()
   }
 
   toggleSideBar(){

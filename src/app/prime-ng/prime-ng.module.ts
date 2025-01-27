@@ -18,7 +18,7 @@ import { StepsModule } from 'primeng/steps';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { KeyFilterModule } from 'primeng/keyfilter';
-import { ChipsModule } from 'primeng/chips';
+import { ChipModule } from 'primeng/chip';
 
 const MODULES = [
     SkeletonModule,
@@ -37,7 +37,7 @@ const MODULES = [
     DropdownModule,
     CalendarModule,
     KeyFilterModule,
-    ChipsModule,
+    ChipModule,
     PaginatorModule,
     RippleModule
 ]

@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 
 @Component({
   selector: 'star',
+  standalone : false,
   templateUrl: './star.component.html',
   styleUrls: ['./star.component.scss']
 })

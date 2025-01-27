@@ -9,11 +9,11 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { AuthService } from '../../services/auth/auth.service';
+// import { AuthService } from '../../services/auth/auth.service';
 
 @Injectable()
 export class AuthErrorInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService){}
+  constructor(){}
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -22,9 +22,9 @@ export class AuthErrorInterceptor implements HttpInterceptor {
       tap({
         next: () => null,
         error: (error: HttpErrorResponse) => {
-          if(error.status == 401){
-            this.authService.logout()
-          }
+          // if(error.status == 401){
+          //   this.authService.logout()
+          // }
         },
       })
     );
