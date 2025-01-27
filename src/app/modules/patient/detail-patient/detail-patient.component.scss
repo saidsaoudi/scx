@@ -1,0 +1,60 @@
+.header{
+    background-color: #20a8d31c;
+    border: 1px solid #20A8D3;
+}
+::ng-deep .p-tabview .p-tabview-nav li {
+    width: 30%;
+    margin-right: 10px;
+}
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #1aa5c0;
+    border-color: #1aa5c0;
+    color: #ffffff;
+}
+::ng-deep .p-tabview .p-tabview-nav .p-tabview-ink-bar{
+    background-color: #1aa5c0;
+    height: 0;
+}
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    background-color: #e8f6f9;
+    justify-content: center;
+    color: #1aa5c0;
+}
+::ng-deep .p-tabview .p-tabview-nav {
+    background: #e8f6f9;
+    border: 0px solid #dee2e6;
+    border-width: 0 0 0px 0;
+}
+.text-color-default{
+    color: #1aa5c0;
+}
+::ng-deep .bg-locale-pause{
+    background: linear-gradient(#FF6B17,#FF9F0A,#FFC700) !important;
+    border-color: #fcc573 !important;
+    float: right;
+}
+::ng-deep .bg-locale-play{
+    background: #50799E !important;
+    border-color: #50799E !important;
+    float: right;
+}
+.p-jc-end{
+    float: right;
+}
+::ng-deep .fichepatient .p-tabview-panels{
+ padding-left:  0px;
+ padding-right: 0px;
+}
+.peciledit{
+    left: 40px;
+    top: -8px;
+    background-color: #958e8e;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    i{
+        font-size: 11px;
+        padding-left: 7px;
+    }
+}

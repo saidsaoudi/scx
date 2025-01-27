@@ -1,0 +1,48 @@
+::ng-deep .avance .p-button{
+    background: transparent !important;
+    color: #3B82F6;
+    border: 1px solid;
+    width: 100%;
+    padding: 20px;
+}
+::ng-deep .avance  .p-button:enabled:hover {
+    color: #3B82F6;
+}
+.active {
+    border-radius: 6px;
+    border: 2px solid #F8809D;
+}
+::ng-deep .btn-capture .p-button{
+    color: #3B82F6;
+    border: 1px solid;
+    border-color:#FFF ;
+    border-radius: 33.5px;
+    background: #FFF;
+    box-shadow: 0px 1.672px 3.344px 0px rgba(0, 0, 0, 0.25);
+}
+::ng-deep .p-overlaypanel-flipped,
+::ng-deep .p-overlaypanel {
+    width: 700px ;
+    right: 80px ;
+    left: auto !important;
+    z-index: 0 !important;
+}
+::ng-deep .img-gallery img{
+    width: 100%;
+    border-radius: 13px;
+}
+::ng-deep .btn-ecran .p-button{
+    position: relative;
+    width: 100%;
+    border-radius: 7px;
+    border: 2px solid #1AA5C0;
+    background: #1AA5C0;
+    box-shadow: 0px 4px 4px 0px rgba(80, 121, 158, 0.33);
+}
+::ng-deep .btn-ecran .p-button .p-button-icon-left {
+    left: 36%;
+    position: absolute;
+}
+.activedialog{
+    background: #E9F8F9;
+}

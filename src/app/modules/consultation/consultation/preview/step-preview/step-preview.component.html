@@ -1,0 +1,38 @@
+<ng-stepper #cdkStepper [linear]="true">
+    <cdk-step>
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">1</div>
+        <div class="step-title">Relevé de prestation</div>
+      </ng-template>
+      <div class="col-12">
+            <label class="mb-3 block">Liste des actes</label>
+            <p-autoComplete  field="name" [minLength]="1" class="w-full autoComplete"></p-autoComplete>
+            <div class="mt-3">
+                <span class="selected">Choix 1 <span class="delete" >X</span></span>
+            </div>
+        </div>
+        <div class="flex justify-content-between md:mt-6">
+            <button    pRipple type="button"  label="Annuler"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border md:w-2">Annuler</button>
+            <button cdkStepperNext pRipple pButton type="button" label="Suivante"   class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer md:w-2"></button>
+        </div>
+    </cdk-step>
+
+    <cdk-step>
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">2</div>
+        <div class="step-title">Mode de sortie</div>
+      </ng-template>
+      <div class="col-12">
+        <label class="mb-3 block">Mode de sortie</label>
+        <p-autoComplete  field="name" [minLength]="1" class="w-full autoComplete"></p-autoComplete>
+        <div class="mt-3">
+            <span class="selected">Choix 1 <span class="delete" >X</span></span>
+        </div>
+    </div>
+    <div class="flex justify-content-between md:mt-6">
+        <button    pRipple type="button"  label="Annuler"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border md:w-2">Annuler</button>
+        <button cdkStepperNext pRipple pButton type="button" label="Suivante"   class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer md:w-2"></button>
+    </div>
+    </cdk-step>
+</ng-stepper>
+

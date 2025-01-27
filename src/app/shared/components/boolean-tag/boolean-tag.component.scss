@@ -1,0 +1,20 @@
+span{
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 11px;
+    max-width: 60px;
+    min-width: 60px;
+    display: block;
+    text-align: center;
+    .pi{
+        font-size: 7px;
+    }
+}
+.actif{
+    color: #049c04;
+    background: #08bb0845;
+}
+.inactif{
+    color: red;
+    background: #ff000017;
+}

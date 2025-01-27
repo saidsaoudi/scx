@@ -1,0 +1,25 @@
+::ng-deep .e-dlg-center-center,
+::ng-deep .e-cell-popup{
+    display: none !important;
+}
+::ng-deep .e-schedule .e-vertical-view .e-alternate-cells {
+    border-bottom-style: none;
+}
+::ng-deep .p-selectbutton .p-button.p-highlight{
+    background: #335D84;
+}
+::ng-deep  .p-selectbutton .p-button.p-highlight:hover {
+    background: #335D84;
+    border-color: #335D84;
+}
+::ng-deep .btn-rdv .p-button,
+::ng-deep .btn-rdv .p-button:enabled:hover{
+    background: #335D84;
+    border: 1px solid #335D84;
+}
+::ng-deep .btn-danger .p-button,
+::ng-deep .btn-danger .p-button:enabled:hover{
+    background-color: transparent;
+    color: #EF4444;
+    border-color: transparent;
+}

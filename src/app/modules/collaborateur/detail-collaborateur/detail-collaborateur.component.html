@@ -1,0 +1,141 @@
+<p-breadcrumb [model]="breadcrumb" [home]="home"></p-breadcrumb>
+<app-detail-collaborateur-loader *ngIf="(isLoading$ | async)"></app-detail-collaborateur-loader>
+<div class="grid h-full" *ngIf="!(isLoading$ | async)">
+    <div class="col-4">
+        <div class="info-content bordered h-full">
+            <span class="matricule font-bold text-xl" pTooltip="Matricule" tooltipPosition="top" >{{collaborateur.matricule}}</span>
+            <div class="profil-img flex justify-content-center">
+                <p-avatar *ngIf="collaborateur.photo" 
+                    shape="circle" 
+                    [image]="storage_path+''+collaborateur.photo" 
+                    size="xlarge" 
+                ></p-avatar>
+            </div>
+            <div class="fonction mb-4">
+                <h4 class="text-primary text-center font-normal mt-1">{{collaborateur.nom}} {{collaborateur.prenom}}</h4>
+                <h5 class="text-600 text-center font-normal mt-1">{{collaborateur.fonction}}</h5>
+            </div>
+            <div class="text-right pb-3 border-bottom-1 border-300">
+                <button pButton pRipple type="button" label="Envoyer un mail" class="p-button-xs" icon="pi pi-envelope" iconPos="left"></button>
+            </div>
+            <div class="competences my-3">
+                <h5 class="text-normal mb-2"><i class="pi pi-bolt text-primary text-sm mr-1"></i>Compétences</h5>
+                <div class="tags flex flex-wrap flex-row gap-2">
+                    <tag *ngFor="let competence of collaborateur.competences" class="mb-2" [class]="'primary'" [data]="competence"></tag>
+                </div>
+            </div>
+            <div class="langes my-3">
+                <h5 class="text-normal mb-2"><i class="pi pi-language text-primary text-sm mr-1"></i>Langues</h5>
+                <div class="tags flex flex-wrap flex-column">
+                    <ng-container *ngFor="let langue of collaborateur.langues">
+                        <div class="flex flex-row justify-content-between">
+                            <span class="text-sm mr-2">{{langue.titre}}</span>
+                            <star class="mb-2" [size]="'xs'" [level]="10" [numberOfStars]="15"></star>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="certifications my-3">
+                <h5 class="text-normal mb-2"><i class="pi pi-shield text-primary text-sm mr-1"></i>Certifications</h5>
+                <ng-container *ngIf="collaborateur.certifications?.length; else noCertification">
+                    <div class="tags flex flex-wrap flex-row gap-2">
+                        <tag *ngFor="let competence of collaborateur.competences" class="mb-2" [class]="'primary'" [data]="competence"></tag>
+                    </div>
+                </ng-container>
+                <ng-template #noCertification>
+                    <div class="text-xs flex flex-wrap flex-row gap-2">
+                        <span>Pas de certification</span>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="grid">
+            <div class="col-12">
+                <div class="info-content bordered">
+                    <h4 class="mb-3">Informations personnelles</h4>
+                    <div class="grid">
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-calendar text-primary text-sm mr-1"></i>Date de naissance</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.date_naissance}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-users text-primary text-sm mr-1"></i>Situation familliale</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.situation}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-flag text-primary text-sm mr-1"></i>Nationalité</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.nationalite}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-phone text-primary text-sm mr-1"></i>Téléphone</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.telephone}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-id-card text-primary text-sm mr-1"></i>Identification nationale</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.identification_nationale}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-map-marker text-primary text-sm mr-1"></i>Adresse</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.adresse_personnelle}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="info-content bordered">
+                    <h4 class="mb-3">Informations professionnelles</h4>
+                    <div class="grid">
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-bookmark text-primary text-sm mr-1"></i>Groupe</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.groupe.nom}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-building text-primary text-sm mr-1"></i>Departement</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.departement.nom}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-book text-primary text-sm mr-1"></i>Type du contrat</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">CDI</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-id-card text-primary text-sm mr-1"></i>N° sécurité sociale</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.numero_securite_sociale}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-at text-primary text-sm mr-1"></i>E-mail</span>
+                            <span class="text-xs font-semibold ml-3 pl-1">{{collaborateur.email}}</span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-briefcase text-primary text-sm mr-1"></i>Niveau d'étude</span>
+                            <span class="text-xs font-semibold ml-3 pl-1 uppercase">{{collaborateur.niveau_etudes}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <div class="info-content bordered" *ngIf="collaborateur.commentaire">
+                    <h5 class="text-normal mb-2"><i class="pi pi-comment text-primary text-sm mr-1"></i>Note</h5>
+                    <p class="font-light">{{collaborateur.commentaire}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <p-accordion>
+                    <p-accordionTab header="Diplômes" [selected]="true">
+                        <ul class="diplomes">
+                            <li class="capitalize" *ngFor="let diplome of collaborateur.diplomes">{{diplome}}</li>
+                        </ul>
+                    </p-accordionTab>
+                    <p-accordionTab header="Expérience">
+                        {{collaborateur.experiences_antierieurs.join(', ')}}
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+    </div>
+</div>

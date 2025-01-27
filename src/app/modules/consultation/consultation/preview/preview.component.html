@@ -1,0 +1,481 @@
+<div class="col-12 preview">
+    <h2><i class="pi pi-list text-3xl"></i> Preview</h2>
+</div>
+<div class="flex align-items-center gap-4 pl-1 mt-3 mb-3">
+    <p class="text-500">Motif de consultation</p>
+    <p class="p-preview">Lorem ipsum</p>
+</div>
+<div class="col-12 antecedents">
+    <div class="grid">
+        <div class="col-10 h-antecedent">
+            <p class="pl-2">Antécédents</p>
+        </div>
+        <div class="col-2 btn-antecedent pt-0">
+            <p-button class="btn-add" pRipple label="Modifier" icon="pi pi-pencil"></p-button>
+        </div>  
+    </div>
+    <div class="grid">
+        <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+            <div class="grid">
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                    <div class="table-container pt-2">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="p-2 text-left">Antécédents Médicaux</th>
+                                        <th class="p-2 text-left">Année</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let surgical of [0,1]">
+                                        <td class="text-left text-lg p-2">Diabétique sous insuline depuis </td>
+                                        <td class="text-left text-lg p-2">2015</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                    <div class="table-container pt-2">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="p-2 text-left">Antécédents chirurgicaux</th>
+                                        <th class="p-2 text-left">Année</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let chirurgicaux of [0,1]">
+                                        <td class="text-left text-lg p-2">Diabétique sous insuline depuis </td>
+                                        <td class="text-left text-lg p-2">2015</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+            <div class="table-container pt-2">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="p-2 text-left">Antécédents Familiaux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let chirurgicaux of [0,1]">
+                                <td class="text-left text-lg p-2">Diabétique sous insuline depuis </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-bottom-2 border-200 pt-2 pb-2"></div>
+    <div class="grid">
+        <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+            <div class="grid">
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="table-container pt-2">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="p-2 text-left">Tabac</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left text-lg p-2">Oui
+                                            Sevré 12 cigarettes/jour
+                                            Pendant 5 ans
+                                            273 Paquet/an</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="table-container pt-2">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="p-2 text-left">Alcool</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left text-lg p-2">Non</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="table-container pt-2">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="p-2 text-left">Autres substances</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left text-lg p-2">Non </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+            <div class="table-container pt-2">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="p-2 text-left">Allergies</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Autres of [0,1]">
+                                <td class="text-left text-lg p-2">Diabétique sous insuline depuis </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 antecedents mt-4">
+    <div class="grid">
+        <div class="col-10 h-antecedent">
+            <p class="pl-2">Traitements en cours</p>
+        </div>
+        <div class="col-2 btn-antecedent pt-0">
+            <p-button class="btn-add" pRipple label="Modifier" icon="pi pi-pencil"></p-button>
+        </div>  
+    </div>
+    <div class="col-12">
+        <div class="table-container pt-2">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="p-2 text-left">Médicament</th>
+                            <th class="p-2 text-left">Date de début</th>
+                            <th class="p-2 text-left">Date de fin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Medicament of [0,1]">
+                            <td class="text-left text-lg p-2">Paroxetine GT 20mg comprime 20 pellicules</td>
+                            <td class="text-left text-lg p-2">01/01/2023</td>
+                            <td class="text-left text-lg p-2">23/02/2023</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 antecedents mt-4">
+    <div class="grid">
+        <div class="col-10 h-antecedent">
+            <p class="pl-2">Examens clinique</p>
+        </div>
+        <div class="col-2 btn-antecedent pt-0">
+            <p-button class="btn-add" pRipple label="Modifier" icon="pi pi-pencil"></p-button>
+        </div>  
+    </div>
+    <div class="grid mt-2">
+        <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+            <div class="card p-3">
+                <div class="carousel">
+                    <button class="carousel-control pre" (click)="pre()"><i class="pi pi-angle-left"></i></button>
+                        <div class="carousel-container">
+                            <div class="carousel-item" [class.active]="isActive == 1">
+                                <div class="grid">
+                                    <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                                        <div class="flex align-items-center">
+                                            <img src="../../../../../../assets/img/icons/temp1.png" class="w-1">                              
+                                            <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Température</h4>
+                                        </div>
+                                        <div class="border-bottom-2 border-300 pt-2 w-8"></div>
+                                        <p class="pt-2">35 C</p>
+                                    </div>
+                                    <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                                        <div class="flex align-items-center">
+                                            <img src="../../../../../../assets/img/icons/Layer_2.png" class="w-1">                              
+                                            <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Saturation O2</h4>
+                                        </div>
+                                        <div class="border-bottom-2 border-300 pt-2 w-8"></div>
+                                        <p class="pt-2">98 %</p>
+                                    </div>
+                                    <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                                        <div class="flex align-items-center">
+                                            <img src="../../../../../../assets/img/icons/Layer_1.png" class="w-1">                              
+                                            <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Glycémie</h4>
+                                        </div>
+                                        <div class="border-bottom-2 border-300 pt-2 w-8"></div>
+                                        <p class="pt-2">35 %</p>
+                                    </div>   
+                                </div>
+                                <div class="grid mt-6">
+                                    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                                        <div class="flex align-items-center">
+                                            <img src="../../../../../../assets/img/icons/Group.png" class="w-1">                              
+                                            <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Tension artérielle</h4>
+                                        </div>
+                                        <div class="border-bottom-2 border-300 pt-2"></div>
+                                        <div class="grid">
+                                            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                                                <p class="text-400 pb-2 pt-1">Systolique</p>
+                                                <p>40 mmHg</p>
+                                            </div>
+                                            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                                                <p class="text-400 pb-2 pt-1">Diastolique</p>
+                                                <p>40 mmHg</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                                        <div class="flex align-items-center">
+                                            <img src="../../../../../../assets/img/icons/Layer_3.png" class="w-1">                              
+                                            <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Poids et taille</h4>
+                                        </div>
+                                        <div class="border-bottom-2 border-300 pt-2"></div>
+                                        <div class="grid">
+                                            <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                                                <p class="text-400 pb-2 pt-1">Poids</p>
+                                                <p>40 Kg</p>
+                                            </div>
+                                            <div class="col-12 sm:col-12 md:col-6 lg:col-4">
+                                                <p class="text-400 pb-2 pt-1">Taille</p>
+                                                <p>174 CM</p>
+                                            </div> 
+                                            <div class="col-12 sm:col-12 md:col-6 lg:col-4">
+                                                <p class="text-400 pb-2 pt-1">IMC</p>
+                                                <p>72 Kg</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" [class.active]="isActive == 2">
+                                hello 2
+                            </div>
+                            <div class="carousel-item" [class.active]="isActive == 3">
+                                hello 3
+                            </div>
+                        </div>
+                    <button class="carousel-control next" (click)="next()"><i class="pi pi-angle-right"></i></button>
+                  </div>
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+            <div class="card p-3 h-full">
+                <div class="grid">
+                    <div class="col-12 flex justify-content-between border-bottom-2 border-300">
+                         <div class="avance mb-2 flex justify-content-center" [ngClass]="stepdialog == 1  ? 'activedialog' : ''" (click)="setStepdialog(1)">
+                             <p-button>
+                                 <img alt="logo" src="../../../../../../assets/img/ecg.svg" style="width: 2rem" />
+                             </p-button> 
+                         </div>
+                         <div class="avance mb-2 flex justify-content-center" [ngClass]="stepdialog == 2  ? 'activedialog' : ''" (click)="setStepdialog(2)">
+                             <p-button>
+                                 <img alt="logo" src="../../../../../../assets/img/dermat.svg" style="width: 2rem" />
+                             </p-button> 
+                         </div>
+                         <div class="avance mb-2 flex justify-content-center" [ngClass]="stepdialog == 3  ? 'activedialog' : ''" (click)="setStepdialog(3)">
+                             <p-button>
+                                 <img alt="logo" src="../../../../../../assets/img/otoscope.svg" style="width: 2rem" />
+                             </p-button> 
+                         </div>
+                         <div class="avance mb-2 flex justify-content-center" [ngClass]="stepdialog == 4  ? 'activedialog' : ''" (click)="setStepdialog(4)">
+                             <p-button>
+                                 <img alt="logo" src="../../../../../../assets/img/echgraphe.svg" style="width: 2rem" />
+                             </p-button> 
+                         </div>
+                         <div class="avance mb-2 flex justify-content-center" [ngClass]="stepdialog == 5  ? 'activedialog' : ''" (click)="setStepdialog(5)">
+                             <p-button>
+                                 <img alt="logo" src="../../../../../../assets/img/Layer.svg" style="width: 2rem" />
+                             </p-button> 
+                         </div>
+                         <div class="avance mb-2 flex justify-content-center" [ngClass]="stepdialog == 6  ? 'activedialog' : ''" (click)="setStepdialog(6)">
+                             <p-button>
+                                 <img alt="logo" src="../../../../../../assets/img/cam.svg" style="width: 2rem" />
+                             </p-button> 
+                         </div>  
+                    </div>
+                    <div class="col-12" *ngIf="stepdialog === 1">
+                         <div class="h-full pt-2">
+                            <div class="grid">
+                                <div class="col-12 sm:col-12 md:col-4 lg:col-4" *ngFor="let img of [0,1,2]">
+                                    <p-image class="w-img" src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"></p-image>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="col-12" *ngIf="stepdialog === 2">
+                         <div class="h-full  pt-2">
+                             dermatoscope
+                         </div>
+                     </div>
+                     <div class="col-12" *ngIf="stepdialog === 3">
+                         <div class="h-full pt-2">
+                             otoscope 
+                         </div>
+                     </div>
+                     <div class="col-12" *ngIf="stepdialog === 4">
+                         <div class="h-full pt-2">
+                             echographie  
+                         </div>
+                     </div>
+                     <div class="col-12" *ngIf="stepdialog === 5">
+                         <div class="h-full pt-2">
+                             iriscope   
+                         </div>
+                     </div>
+                     <div class="col-12" *ngIf="stepdialog === 6">
+                         <div class="h-full pt-2">
+                             camera-mobile   
+                         </div>
+                     </div>  
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="grid mt-4">
+    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+        <div class="antecedents">
+            <div class="grid">
+                <div class="col-9 h-antecedent">
+                    <p class="pl-2">Assistant AI</p>
+                </div>
+                <div class="col-2 btn-antecedent pt-0">
+                    <p-button class="btn-add" pRipple label="Modifier" icon="pi pi-pencil"></p-button>
+                </div>  
+            </div>
+            <div class="grid mb-2 mt-2" *ngFor="let n of [0,1,2,4]">
+                <div class="col-12 sm:col-12 lg:col-10">
+                    <div class="list-res">
+                        <p><i class="pi pi-circle-fill text-xs	pr-2"></i>Fibromyalgie </p>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 lg:col-2">
+                    <div class="list-nmb">
+                        <p class="text-white text-center">80%</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+        <div class="antecedents">
+            <div class="grid">
+                <div class="col-9 h-antecedent">
+                    <p class="pl-2">Compte rendu</p>
+                </div>
+                <div class="col-2 btn-antecedent pt-0">
+                    <p-button class="btn-add" pRipple label="Modifier" icon="pi pi-pencil"></p-button>
+                </div>  
+            </div>
+            <div class="grid">
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                    <h4 class="title-compte">Diagnostic principale </h4>
+                    <div class="flex justify-content-between choix">
+                        <p>Choix 1</p>
+                        <p><i class="pi pi-times"></i></p>
+                    </div>
+                    <h4 class="title-compte mt-4">Diagnostic Associé </h4>
+                    <div class="flex justify-content-between choix mb-3">
+                        <p>Choix 1</p>
+                        <p><i class="pi pi-times"></i></p>
+                    </div>
+                    <div class="flex justify-content-between choix mb-3">
+                        <p>Choix 2</p>
+                        <p><i class="pi pi-times"></i></p>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                    <h4 class="title-compte">Compte rendu</h4>
+                    <p class="text-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga non, nemo natus recusandae saepe atque optio iure culpa maiores, reiciendis ratione. At porro veritatis, quaerat odio aliquam adipisci eligendi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 mt-4 antecedents">
+    <div class="grid">
+        <div class="col-10 h-antecedent">
+            <p class="pl-2">Prescription</p>
+        </div>
+        <div class="col-2 btn-antecedent pt-0">
+            <p-button class="btn-add" pRipple label="Modifier" icon="pi pi-pencil"></p-button>
+        </div>  
+    </div>
+    <div class="grid">
+        <div class="col-12 sm:col-12 md:col-4 lg:col-4 title-compte">
+            <h4>Médicaments</h4>
+            <h5>Diagnostic lorem ipsum</h5>
+            <div class="flex justify-content-between">
+                <div>0,5  Matin</div>
+                <div>1  Midi</div>
+                <div>2  Soir</div>
+                <div>10  jours</div>
+            </div>
+            <p class="mt-2 mb-2">Voie orale</p>
+            <div class="border-bottom-2 border-200 pt-2 pb-2"></div>
+            <h5>Diagnostic lorem ipsum</h5>
+            <div class="flex justify-content-between">
+                <div>0,5  Matin</div>
+                <div>1  Midi</div>
+                <div>2  Soir</div>
+                <div>10  jours</div>
+            </div>
+            <p class="mt-2 mb-2">Voie orale</p>
+        </div>
+        <div class="col-12 sm:col-12 md:col-4 lg:col-4 title-compte">
+            <h4>Analyses biologiques</h4>
+            <h5>Diagnostic lorem ipsum</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+            <div class="border-bottom-2 border-200 pt-2 pb-2"></div>
+            <h5>Diagnostic lorem ipsum</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+            <div class="border-bottom-2 border-200 pt-2 pb-2"></div>
+            <h5>Diagnostic lorem ipsum</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+        <div class="col-12 sm:col-12 md:col-4 lg:col-4 title-compte">
+            <h4>Examens radiologiques</h4>
+            <h5>Diagnostic lorem ipsum</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+            <div class="border-bottom-2 border-200 pt-2 pb-2"></div>
+            <h5>Diagnostic lorem ipsum</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+            <div class="border-bottom-2 border-200 pt-2 pb-2"></div>
+            <h5>Diagnostic lorem ipsum</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+    </div>
+</div>
+<div class="flex justify-content-between md:mt-6">
+    <button  pRipple type="button"  label="Retour"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border md:w-2">Retour</button>
+    <button (click)="StepPreview()" pRipple pButton type="button" label="Confirmer"  class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer md:w-2"></button>
+</div>

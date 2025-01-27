@@ -1,0 +1,79 @@
+.card-filter{
+  border: 1px solid #DADADA;
+    border-radius:  10px;
+    height: 35.5rem;
+    overflow: auto;
+    .filter{
+      border-radius: 2.092px;
+      background: #F5F5F5;
+      padding: 0px 20px 0px 18px;
+      height: 65px;
+      margin-bottom: 15px;
+    }
+    .active{
+      background: #50799E;
+      p{
+        color: #FFF;
+      }
+    }
+}
+.table-container{
+    border: 1px solid #DADADA;
+    border-radius:  10px;
+    .table-responsive {
+        overflow-x: auto;
+        white-space: nowrap;
+        .table{
+            border-collapse: collapse;
+            width: 100%;
+            padding: 10px;
+            overflow-x: auto;
+            display: block;
+            tbody {
+                tr:nth-child(odd) {
+                    background-color: rgb(239, 239, 239); /* Background color for odd rows */
+                }
+                tr:nth-child(even) {
+                    background-color: #ffffff; /* Background color for even rows */
+                }
+                td{
+                    color: rgb(133, 133, 133);
+                }
+            }
+            
+        }
+      }
+}
+  /* Sticky header */
+  thead th {
+    // position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white; /* Ensure the header is not transparent */
+  }
+  
+  /* If you want a sticky vertical header (optional) */
+  tbody td.vertical-header {
+    position: sticky;
+    left: -12px;
+    z-index: 1;
+    background-color: white; /* Ensure the header is not transparent */
+  }
+.espace-th{
+  position: sticky;
+  left: -12px;
+  z-index: 1;
+  background-color: white;
+  text-align: left; 
+}
+  @media only screen and (max-width: 700px) {
+    tbody td.vertical-header {
+        position: unset;
+    }
+    thead th {
+        position: unset;
+    }
+  }
+
+
+  

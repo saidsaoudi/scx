@@ -1,0 +1,11 @@
+.selected{
+    border-radius: 3px;
+    padding: 6px 9px;
+    margin-right: 5px;
+    background-color: #ccc;
+    .delete{
+        color: red;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}

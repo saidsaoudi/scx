@@ -1,0 +1,37 @@
+<div class="grid mt-2 serach">
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+        <label class="text-cyan-500 font-medium pb-2 block">Station</label>
+        <select class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+            <option *ngFor="let station of [0,1,2]">station</option>
+        </select>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+        <label class="text-cyan-500 font-medium pb-2 block">Spécialité médicale</label>
+        <p-autoComplete  field="name" [minLength]="1" class="w-full"></p-autoComplete>
+    </div>
+    <div class="col-10 md:mb-2">
+        <label class="text-cyan-500 font-medium pb-2 block">Correspondance médicale </label>
+        <textarea rows="5" class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary" pInputTextarea placeholder="Saisissez votre message au medecin spécialiste"></textarea>
+    </div>
+</div>
+<h4 class="mb-2 text-cyan-500 ">Créneaux</h4>
+<div class="grid">
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+        <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true"></p-calendar>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+        <h4 class="mb-2 text-cyan-500 ">Selectionner l’horaire</h4>
+        <input type="time"  min="09:00" max="18:00" class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary"/>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+        <h4 class="mb-2 text-cyan-500 ">Médecins disponibles</h4>
+        <select class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+            <option *ngFor="let medecin of [0,1,2]">Médecins</option>
+        </select>
+    </div>
+</div>
+<div class="flex justify-content-between md:mt-6">
+    <button pRipple type="button"  label="Annuler" class="text-white surface-500 surface-border  py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border md:w-1 md:ml-5">Annuler</button>
+    <button pRipple pButton label="Valider" class="text-white bg-primary-500 border-primary-500  py-2 text-base border-1 border-solid border-round cursor-pointer md:w-1 md:mr-5"></button>
+
+</div>

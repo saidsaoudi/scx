@@ -1,0 +1,49 @@
+::ng-deep .p-datepicker table td {
+    padding: 0px;
+}
+::ng-deep .p-datepicker table td > span {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+::ng-deep .p-autocomplete,
+::ng-deep .p-inputtext{
+width: 100% !important;
+}
+.recap{
+    background: #1aa5c0;
+    color: white;
+    border-radius: 5px;
+}
+.slots{
+    height: 250px;
+    overflow-y: auto;
+    .slots-btn, .doctor-btn{
+        width: 100%;
+        display: flex;
+        justify-items: center;
+        justify-content: space-around;
+        background: rgba(135, 158, 235, 0.1);
+        border: 0.951807px dashed rgb(135, 158, 235);
+        border-radius: 3.80723px;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-box-align: center;
+        align-items: center;
+        font-weight: 600;
+        font-size: 14.3943px;
+        line-height: 21px;
+        color: rgb(15, 37, 82);
+        cursor: pointer;
+    }
+    .slots-btn:hover, .doctor-btn:hover{
+        box-shadow: -1px 2px 8px #0000007d;
+    }
+    .slots-btn.selected, .doctor-btn.selected{
+        background: rgb(26, 165, 192);
+        font-weight: 600;
+        font-size: 14.3943px;
+        line-height: 21px;
+        letter-spacing: 0.01em;
+        color: rgb(255, 255, 255);
+    }
+}

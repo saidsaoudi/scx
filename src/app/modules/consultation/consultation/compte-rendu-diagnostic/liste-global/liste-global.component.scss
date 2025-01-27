@@ -1,0 +1,20 @@
+.icon-tele {
+    background-color: #47b7d038;
+    padding: 4px;
+}
+.card{
+    border-radius: 5.809px;
+    background: #F4F4F4;
+    padding: 10px;
+    p{
+        color: #818181;
+    }
+}
+.card.active{
+    border-radius: 5.809px;
+    background: #335D84;
+    padding: 10px;
+    p{
+        color: #fff;
+    }
+}

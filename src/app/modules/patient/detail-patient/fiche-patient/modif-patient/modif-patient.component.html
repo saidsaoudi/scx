@@ -1,0 +1,96 @@
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+<div class="grid  mt-3 md:mb-3 ">
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Nº CINE*</label>
+            <input formControlName="cine" type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Nom*</label>
+            <input formControlName="lastName"  type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Prénom*</label>
+            <input formControlName="firstName"  type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Sexe*</label>
+            <select formControlName="gender" class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option value="male">Masculin</option>
+                <option value="female">Féminin</option>
+            </select>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Date de naissance*</label>
+            <div class="flex gap-2">
+                <input formControlName="birthDate" type="date" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-9">
+                <div class="cal-date">{{ patientForm.get('birthDate')?.value | age }}</div>
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Couverture*</label>
+            <select formControlName="medicalCover" class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option>CNSS PIPC</option>
+                <option>EXONÉRÉ</option>
+                <option>CNSS</option>
+                <option>CNOPS</option>
+                <option>FAR</option>
+            </select>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Region*</label>
+            <select class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option>Casablanca</option>
+            </select>
+        </div>
+        <!-- <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+            <label class="font-medium">N adhérent</label>
+            <input formControlName="affiliationNumber" type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div> -->
+        <!-- <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+            <label class="text-cyan-500 font-medium">Pays</label>
+            <select class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option>Maroc</option>
+                <option>Tunis</option>
+            </select>
+        </div> -->
+        <!-- <div class="col-12 sm:col-12 md:col-12 lg:col-4 md:mb-2">
+            <label class="text-cyan-500 font-medium">Province</label>
+            <select *ngIf="showCities" formControlName="province" (change)="provinceChange($event)" class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option *ngFor="let province of provinces" [value]="province.id">{{province.name}}</option>
+            </select>
+        </div> -->
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Ville*</label>
+            <select *ngIf="showCities" formControlName="city" class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option *ngFor="let city of filtredCities" [value]="city.id">{{city.name}}</option>
+            </select>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="text-cyan-500 font-medium">Commune*</label>
+            <select  class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                <option>Ain sebaa</option>
+            </select>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Téléphone mobile</label>
+            <input formControlName="phoneNumber" type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">E-mail</label>
+            <input type="email" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3 md:mb-2">
+            <label class="font-medium">Adresse</label>
+            <input formControlName="address" type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-12 md:mb-2">
+            <label class="font-medium">Complément d’adresse</label>
+            <input formControlName="address2" type="text" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+    </div>
+    <div class="flex justify-content-between md:mt-6">
+        <button   pRipple type="button"  label="Annuler" class="btn-annuler px-3 py-2 text-base border-1 border-solid cursor-pointer transition-all transition-duration-200  md:w-2">Annuler</button>
+        <button pRipple pButton label="Modifier" class="btn-terminer text-white px-3 py-2 text-base border-1 border-solid cursor-pointer md:w-2"></button>
+
+    </div>
+</form>

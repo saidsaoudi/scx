@@ -1,0 +1,10 @@
+::ng-deep .avance .p-button{
+    background: transparent !important;
+    color: #3B82F6;
+    border: 1px solid;
+    width: 100%;
+    padding: 20px;
+}
+::ng-deep .avance  .p-button:enabled:hover {
+    color: #3B82F6;
+}

@@ -1,0 +1,31 @@
+<div class="col-12 text-right mb-3">
+    <p-button  pRipple label="Ajouter" icon="pi pi-plus-circle" ></p-button>
+</div>
+<div class="grid mb-3">
+    <div class="col-12 sm:col-12 md:col-4 lg:col-4 p-fluid">
+        <label class="mb-3 block">Rechercher</label>
+        <p-autoComplete [suggestions]="filtredMaladie" (onSelect)="onSelectMaladie($event)"  (completeMethod)="searchMaladie($event)"  field="name" [minLength]="1" class="w-full"></p-autoComplete>
+        <div>
+            <span class="selected" *ngFor="let maladie of selectedMaladie; let i = index">{{maladie}} <span class="delete" (click)="deleteMaladie(i)">X</span></span>
+        </div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-2 lg:col-2 p-fluid">
+        <label class="mb-3 block">Autres</label>
+        <p-dropdown [options]="familiaux" [(ngModel)]="selectedFamiliaux" optionLabel="name"></p-dropdown>
+    </div>
+    <div class="col-12 sm:col-12 md:col-2 lg:col-2 p-fluid">
+        <label class="mb-3 block">Année</label>
+        <p-dropdown  [options]="anne" optionLabel="name" ></p-dropdown>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <label class="mb-3 block">Commentaire</label>
+        <textarea rows="1" class="w-full" pInputTextarea placeholder="Commentaire"></textarea>
+    </div>
+    <div class="col-12 sm:col-12 md:col-1 lg:col-1 mt-6">
+        <i class="pi pi-trash cursor-pointer text-red-600"></i>
+    </div>
+</div>
+<div class="flex justify-content-between md:mt-6">
+    <button   pRipple type="button"  label="Annuler"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border">Annuler</button>
+    <button  (click)="save()" pRipple pButton type="button" label="Valider" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer"></button>
+</div>

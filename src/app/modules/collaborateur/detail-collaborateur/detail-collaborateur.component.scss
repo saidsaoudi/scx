@@ -1,0 +1,13 @@
+.info-content{
+    padding: 1rem 1.5rem;
+    ::ng-deep .p-avatar.p-avatar-xl {
+        width: 10rem;
+        height: 10rem;
+    }
+    .matricule{
+        cursor: help;
+    }
+}
+.diplomes{
+    list-style-type: "- "; 
+}

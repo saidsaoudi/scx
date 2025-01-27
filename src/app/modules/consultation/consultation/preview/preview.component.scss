@@ -1,0 +1,153 @@
+.preview {
+    i{
+        color: #1AA5C0;
+    }
+    h2{
+        color: #50799E;
+    }
+}
+.p-preview{
+    border-radius: 18px;
+    background: rgba(26, 165, 192, 0.10);
+    padding: 10px;
+}
+.antecedents{
+    border-radius: 18.061px;
+    border: 1.72px solid #D7D7D7;
+    padding: 15px;
+    .card{
+        border-radius: 15px;
+        background: #FFF;
+        box-shadow: 0px 1px 7.4px 0px rgba(0, 0, 0, 0.25);
+    }
+}
+.h-antecedent{
+    border-radius: 7px;
+    background: #335D84;
+    height: 40px;
+    p{
+        color: #fff;
+    }
+}
+::ng-deep .btn-antecedent .p-button,
+::ng-deep  .btn-antecedent .p-button:hover {
+    border-radius: 3px;
+    background: rgba(26, 165, 192, 0.16) !important;
+    box-shadow: 0px 4px 4px 0px rgba(80, 121, 158, 0.35);
+    color: #1AA5C0;
+    border-color: rgba(26, 165, 192, 0.16);
+}
+.table-container th{
+    color: #50799E;
+}
+.table-container{
+    .table-responsive {
+        .table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+      }
+}
+
+.carousel{
+    position: relative;
+    &-container{
+      width: 600px;
+      min-height: 300px;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    &-item{
+      width: 100%;
+      position: absolute;
+      left: -100%;
+      box-sizing: border-box;
+      transition: left 0.3s;
+      background: #fff;
+      &.active{
+        left: 0;
+        &+.carousel-item{
+          left: 100%;
+        }
+      }
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}){
+          z-index: 4 - $i + 1;
+        }
+      }
+    }
+    &-control{
+      position: absolute;
+      top: calc(50% - 15px);
+      left: -14px;
+      &.next{
+        left: auto;
+        right:-14px;
+      }
+    }
+  }
+.carousel-control{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: rgba(26, 165, 192, 0.16) !important;
+    box-shadow: 0px 4px 4px 0px rgba(80, 121, 158, 0.35);
+    color: #1AA5C0;
+    border-color: rgba(26, 165, 192, 0.16);
+    cursor: pointer;
+}
+.activedialog{
+    background: #E9F8F9;
+}
+::ng-deep .avance .p-button{
+    color: #3B82F6;
+    border: 1px solid;
+    border-color:#FFF ;
+    background: #FFF;
+    box-shadow: 0px 1.672px 3.344px 0px rgba(0, 0, 0, 0.25);
+    height: 45px;
+}
+::ng-deep .activedialog .p-button{
+    background: #E9F8F9;
+}
+::ng-deep .w-img img{
+  width: 100%;
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 1px 7.4px 0px rgba(0, 0, 0, 0.25);
+}
+.list-res{
+  border-radius: 6.266px;
+  border: 1.283px solid #698DA9;
+  background: rgba(255, 255, 255, 0.69);
+  box-shadow: 0px 1.283px 5.13px 0px rgba(54, 94, 125, 0.37);
+  padding: 10px;  
+}
+.list-nmb{
+  border-radius: 6.266px;
+  background: #698DA9;
+  box-shadow: 0px 1.283px 5.13px 0px rgba(54, 94, 125, 0.37);
+  padding: 10px;
+}
+.choix{
+  border-radius: 4.33px;
+  background: #DAE7ED;
+  padding: 10px;
+}
+.title-compte{
+  color: #1AA5C0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.title-compte h4{
+  color: #1AA5C0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.title-compte h5{
+  color: #335D84;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

@@ -1,0 +1,28 @@
+::ng-deep app-collaborateur{
+    display: contents;
+}
+p-avatar{
+    display: inherit;
+    cursor: pointer;
+}
+small{
+    background: #cccccc38;
+    text-align: center;
+    white-space: nowrap;
+    padding: 4px 9px;
+    border-radius: 4px;
+}
+.actions{
+    list-style: none;
+    li {
+        padding: 10px 20px;
+        cursor: pointer;
+        width: 100;
+    }
+    li:hover{
+        background-color: #edeaea;
+    }
+}
+::ng-deep .p-overlaypanel-content{
+    padding: 0 !important;
+}

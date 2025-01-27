@@ -1,0 +1,20 @@
+<ul class="list-items">
+<ng-container *ngFor="let item of menu">
+    <li class="item relative" *ngIf="!item.children" pRipple [routerLink]="item.routerLink">
+        <a class="flex align-items-center no-underline text-color">
+            <i class="text-primary" [ngClass]="item.icon"></i>
+            <span>{{item.label}}</span>
+        </a>
+    </li>
+    <li class="item relative" *ngIf="item.children" pRipple (click)="toggleSubMenu($event, item)">
+        <a class="flex align-items-center no-underline text-color">
+            <i class="pi text-primary" [ngClass]="item.icon"></i>
+            <span>{{item.label}}</span>
+        </a>
+        <i class="pi pi-angle-right absolute"></i>
+        <!-- <i class="pi absolute" [ngClass]="showSubMenu ? 'pi-angle-down': 'pi-angle-right'"></i> -->
+        <app-content-sidebar #child [menu]="item.children" *ngIf="item.showSubMenu"></app-content-sidebar>
+    </li>
+</ng-container>
+
+</ul>

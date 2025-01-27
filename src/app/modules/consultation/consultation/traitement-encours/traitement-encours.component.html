@@ -1,0 +1,78 @@
+<div class="grid">
+    <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+        <div class="grid">
+            <div class="col-12 sm:col-12 md:col-10 lg:col-10">
+                <!-- <label class="font-medium">Medicament</label> -->
+                <div class="relative">
+                    <p-autoComplete class="" [(ngModel)]="selectedMedicament" [suggestions]="filtredMedicament" (completeMethod)="searchMedicament($event)"
+                        field="name" [minLength]="1" placeholder="Choisir un médicament"></p-autoComplete>
+                    <div class="absolute top-0 right-0 selectbases">
+                        <p-dropdown formControlName="selectedBases" [options]="bases" optionLabel="name"></p-dropdown>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 sm:col-12 md:col- lg:col-2 flex lg:justify-content-center">
+                <label class="custom-checkbox-container">
+                    <input (click)="switchChecked()" type="checkbox" class="custom-checkbox-input" [(ngModel)]="isChecked" name="traitement" id="traitement">
+                    <div class="custom-checkbox"></div>
+                    <span class="custom-checkbox-label" for="traitement">à vie</span>
+                </label>
+            </div>
+            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                <label class="font-medium">Date de début</label>
+                <div class="flex gap-2">
+                    <input [(ngModel)]="date_debut" type="date" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                </div>
+            </div>
+            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                <label class="font-medium">Date de fin</label>
+                <div class="flex gap-2">
+                    <input [disabled]="isChecked" [(ngModel)]="date_fin" type="date" class="text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                </div>  
+            </div>
+            <div class="col-12">
+                <textarea pInputTextarea rows="4" class="w-full" [(ngModel)]="traitement" placeholder="Ex : Prendre 1 comprimé par voie orale toutes les 8 heures pendant 7 jours"></textarea>
+            </div>
+            <div class="col-12">
+                <p-button class="btn-terminer w-full" (click)="addTraitement()" pRipple label="Enregistrer" icon="pi pi-check"></p-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+        <div class="table-container p-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="p-3 text-left">TRAITEMENT</th>
+                            <th class="p-3">DATE DE DÉBUT</th>
+                            <th class="p-3">DATE DE FIN</th>
+                            <th class="p-3">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let traitement of listTraitements; let i = index">
+                            <td class="p-3">
+                                <p>{{traitement.medicament}}</p>
+                                <span>{{traitement.note}}</span>
+                            </td>
+                            <td class="text-center text-lg p-3">
+                                {{traitement.startTime | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td class="text-center text-lg p-3" *ngIf="traitement.endTime">{{traitement.endTime | date:'dd/MM/yyyy'}}</td>
+                            <td class="text-center text-lg p-3" *ngIf="!traitement.endTime">à vie</td>
+                            <td class="text-center text-lg p-3"><i (click)="deleteTraitement(i)" class="pi pi-trash text-red-600 cursor-pointer" [pTooltip]="'Supprimer'"
+                                tooltipPosition="left" ></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flex justify-content-between md:mt-6">
+    <button  (click)="Previous()" pRipple type="button"  pButton label="Retour"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border md:w-2"></button>
+    <button (click)="save()" pRipple pButton type="button" label="Étape suivante"  class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer md:w-2"></button>
+</div>

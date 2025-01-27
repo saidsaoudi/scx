@@ -1,0 +1,134 @@
+<div class="grid h-full">
+    <div class="col-4">
+        <div class="info-content bordered h-full">
+            <span class="matricule font-bold text-xl" pTooltip="Matricule" tooltipPosition="top" ><p-skeleton width="5rem" styleClass="mb-2"></p-skeleton></span>
+            <div class="profil-img flex justify-content-center">
+                <!-- <p-avatar *ngIf="collaborateur.photo" 
+                    shape="circle" 
+                    [image]="storage_path+''+collaborateur.photo" 
+                    size="xlarge" 
+                ></p-avatar> -->
+                <p-skeleton shape="circle" size="10rem"></p-skeleton>
+            </div>
+            <div class="fonction mb-4">
+                <h4 class="text-primary text-center font-normal mt-1"><p-skeleton width="6rem" styleClass="mt-1 inline-block"></p-skeleton></h4>
+                <h5 class="text-600 text-center font-normal mt-1"><p-skeleton width="5rem" styleClass="inline-block"></p-skeleton></h5>
+            </div>
+            <div class="text-right pb-3 border-bottom-1 border-300">
+                <button pButton pRipple type="button" disabled label="Envoyer un mail" class="p-button-xs" icon="pi pi-envelope" iconPos="left"></button>
+            </div>
+            <div class="competences my-3">
+                <h5 class="text-normal mb-2"><i class="pi pi-bolt text-primary text-sm mr-1"></i>Compétences</h5>
+                <div class="tags flex flex-wrap flex-row gap-2">
+                    <p-skeleton *ngFor="let item of [].constructor(8)" width="2.5rem" height="1.5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+            </div>
+            <div class="langes my-3">
+                <h5 class="text-normal mb-2"><i class="pi pi-language text-primary text-sm mr-1"></i>Langues</h5>
+                <div class="tags flex flex-wrap flex-column">
+                    <div  *ngFor="let item of [].constructor(2)" class="flex flex-row justify-content-between">
+                        <p-skeleton width="3.5rem" height="0.7rem" styleClass="mb-2"></p-skeleton>
+                        <p-skeleton width="5rem" height="0.7rem" styleClass="mb-2"></p-skeleton>
+                    </div>
+                </div>
+            </div>
+            <div class="certifications my-3">
+                <h5 class="text-normal mb-2"><i class="pi pi-shield text-primary text-sm mr-1"></i>Certifications</h5>
+                <div class="tags flex flex-wrap flex-row gap-2">
+                    <p-skeleton *ngFor="let item of [].constructor(5)" width="2.5rem" height="1.5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="grid">
+            <div class="col-12">
+                <div class="info-content bordered">
+                    <h4 class="mb-3">Informations personnelles</h4>
+                    <div class="grid">
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-calendar text-primary text-sm mr-1"></i>Date de naissance</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="3.5rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-users text-primary text-sm mr-1"></i>Situation familliale</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="2rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-flag text-primary text-sm mr-1"></i>Nationalité</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="2.5rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-phone text-primary text-sm mr-1"></i>Téléphone</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="4.7rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-id-card text-primary text-sm mr-1"></i>Identification nationale</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="3.5rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-map-marker text-primary text-sm mr-1"></i>Adresse</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="10rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="info-content bordered">
+                    <h4 class="mb-3">Informations professionnelles</h4>
+                    <div class="grid">
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-bookmark text-primary text-sm mr-1"></i>Groupe</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="4rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-building text-primary text-sm mr-1"></i>Departement</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="4.5rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-book text-primary text-sm mr-1"></i>Type du contrat</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="2.3rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-id-card text-primary text-sm mr-1"></i>N° sécurité sociale</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="6rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-at text-primary text-sm mr-1"></i>E-mail</span>
+                            <span class="text-xs font-semibold ml-3 pl-1"><p-skeleton width="8rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                        <div class="col-4 flex flex-column">
+                            <span class="uppercase text-xs text-500 font-semibold"><i class="pi pi-briefcase text-primary text-sm mr-1"></i>Niveau d'étude</span>
+                            <span class="text-xs font-semibold ml-3 pl-1 uppercase"><p-skeleton width="5rem" height="0.5rem" styleClass="mt-2"></p-skeleton></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <div class="info-content bordered">
+                    <h5 class="text-normal mb-2"><i class="pi pi-comment text-primary text-sm mr-1"></i>Note</h5>
+                    <p class="font-light">
+                        <p-skeleton height="0.5rem" styleClass="mt-2"></p-skeleton>
+                        <p-skeleton height="0.5rem" styleClass="mt-2"></p-skeleton>
+                        <p-skeleton width="50%" height="0.5rem" styleClass="mt-2"></p-skeleton>
+                        <p-skeleton width="33%"  height="0.5rem" styleClass="mt-2"></p-skeleton>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <p-accordion >
+                    <p-accordionTab [disabled]="true" header="Diplômes" [selected]="true">
+                        <p-skeleton width="50%" height="0.5rem" styleClass="mt-2"></p-skeleton>
+                        <p-skeleton width="50%" height="0.5rem" styleClass="mt-2"></p-skeleton>
+                    </p-accordionTab>
+                    <p-accordionTab [disabled]="true" header="Expérience">
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+    </div>
+</div>

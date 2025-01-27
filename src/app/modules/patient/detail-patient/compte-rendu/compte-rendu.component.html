@@ -1,0 +1,241 @@
+<div  class="flex align-items-center cursor-pointer" *ngIf="isDetailOpend" (click)="closeDetailConsultation()">
+    <i class="pi pi-arrow-circle-left"></i>
+    <h4 class="text-gray-600 font-semibold pl-2">Retour</h4>
+</div>
+<div class="mt-2" *ngIf="!isDetailOpend">
+    <div class="grid mt-3" *ngIf="!isDetailOpend">
+        <div class="col-12 sm:col-12 md:col-12 lg:col-8">
+            <div
+                class="flex flex-row justify-between pl-3 pr-3 bg-white mb-4 constante  align-items-center"
+                *ngFor="let consultation of patient.consultations"
+                >
+                <div class="width-content">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-calendar-minus"></i>
+                        </div>
+                        <div class="pl-3">
+                            <p class="text-gray-600 font-medium">Date / Heure :</p>
+                            <div class="flex" >
+                            <p class="text-sm">
+                                {{consultation.createdAt | date:'dd/MM/yyyy hh:mm'}}
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-auto border-vertical"></div>
+                <div class="width-content">
+                    <div class="flex align-items-center">
+                        <div class="icon ml-1">
+                            <i class="pi pi-user"></i>
+                        </div>
+                        <div class="pl-3">
+                            <p class="text-gray-600	font-medium">{{consultation.doctor.speciality.name}} :</p>
+                            <p class="text-sm">{{consultation.doctor.user.firstName}} {{consultation.doctor.user.lastName}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-auto border-vertical"></div>
+                <div class="width-content" >
+                    <div class="flex align-items-center">
+                        <div class="icon ml-1">
+                            <i class="pi pi-file-edit"></i>
+                        </div>
+                        <div class="pl-3">
+                            <p class="text-gray-600 font-medium">Compte-rendu :</p>
+                            <p class="text-sm cursor-pointer" *ngIf="consultation.conclusion" (click)="compteRendu.toggle($event)">{{consultation.conclusion | truncateText: 25}}</p>
+                            <p class="text-sm" *ngIf="!consultation.conclusion">--</p>
+                            <p-overlayPanel #compteRendu>
+                                <ng-template pTemplate>
+                                    <div style="width: 600px;">
+                                        <h4 class="mb-1">Compte-rendu :</h4>
+                                        <p>{{consultation.conclusion}}</p>
+                                    </div>
+                                </ng-template>
+                            </p-overlayPanel>
+                        </div>
+                    </div>
+                </div>
+                <div  class="mx-auto border-vertical"></div>
+                <div class="width-content">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-folder"></i>
+                        </div>
+                        <div class="pl-3">
+                            <p class="text-gray-600 font-medium">Documents :</p>
+                            <div class="flex" >
+                                <p class="text-sm">
+                                    Aucune pièce jointe
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                <div class="flex align-items-center justify-content-end">
+                    <i class="pi pi-chevron-circle-right cursor-pointe" (click)="openDetailConsultation(consultation)"></i>
+                </div>
+                </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+            <div class="flex justify-content-end">
+                <div class="col-12 flex align-items-center md:mb-2 p-0">
+                    <i class="pi pi-filter text-lg"></i>
+                    <select   class="w-full ml-2 text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                        <option *ngFor="let Compte-rendu of [0,1,2]">Compte</option>
+                    </select>
+                </div>
+            </div>
+            <div class="traitement h-22rem overflow-scroll">
+                <h4 class="text-left mb-2 mt-2 pl-2">Traitements en cours</h4>
+            <div class="rendu-rigth p-3 mb-2 " *ngFor="let historique of patient.medicationHistory">
+            <h5 class="text-center pb-2 pt-0">{{historique.medication.name}}</h5>
+            <div class="grid mt-3">
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-calendar-minus"></i>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-gray-600 font-medium">Date de debut</p>
+                            <div class="flex" >
+                                <p class="text-sm" *ngIf="historique.medication.startTime">
+                                    {{historique.medication.startTime | date:'dd/MM/yyy'}}
+                                </p>
+                                <p class="text-sm" *ngIf="!historique.medication.startTime">
+                                    ---
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-calendar-minus"></i>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-gray-600 font-medium">Date de fin</p>
+                            <div class="flex" >
+                                <p class="text-sm">
+                                    10/02/2024
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-history"></i>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-gray-600 font-medium">Statut</p>
+                            <div class="flex" >
+                                <p class="text-sm">
+                                    {{!historique.medication.endTime ? 'En cours' : 'Terminé'}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-comment"></i>
+                        </div>
+                        <div class="pl-3">
+                            <p class="text-black-alpha-90 font-normal cursor-pointer" *ngIf="historique.note" (click)="note.toggle($event)">{{historique.note | truncateText: 132}}</p>
+                            <p class="text-black-alpha-90 font-normal" *ngIf="!historique.note">--</p>
+                            <p-overlayPanel #note>
+                                <ng-template pTemplate>
+                                    <div style="width: 600px;">
+                                        <h4 class="mb-1">Note :</h4>
+                                        <p>{{historique.note}}</p>
+                                    </div>
+                                </ng-template>
+                            </p-overlayPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="rendu-rigth p-3 mb-2" *ngFor="let historique of patient.actualPrescription">
+            <h5 class="text-center pb-2 pt-0">{{historique.medication.name}}</h5>
+            <div class="grid mt-3">
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-calendar-minus"></i>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-gray-600 font-medium">Date de debut</p>
+                            <div class="flex" >
+                                <p class="text-sm" *ngIf="historique.medication.startTime">
+                                    {{historique.medication.startTime | date:'dd/MM/yyy'}}
+                                </p>
+                                <p class="text-sm" *ngIf="!historique.medication.startTime">
+                                    ---
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-calendar-minus"></i>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-gray-600 font-medium">Date de fin</p>
+                            <div class="flex" >
+                                <p class="text-sm">
+                                    10/02/2024
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-history"></i>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-gray-600 font-medium">Statut</p>
+                            <div class="flex" >
+                                <p class="text-sm">
+                                    {{!historique.medication.endTime ? 'En cours' : 'Terminé'}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex align-items-center" >
+                        <div class="icon ml-1">
+                            <i class="pi pi-comment"></i>
+                        </div>
+                        <div class="pl-3">
+                            <p class="text-black-alpha-90 font-normal cursor-pointer" *ngIf="historique.note" (click)="note.toggle($event)">{{historique.note | truncateText: 132}}</p>
+                            <p class="text-black-alpha-90 font-normal" *ngIf="!historique.note">--</p>
+                            <p-overlayPanel #note>
+                                <ng-template pTemplate>
+                                    <div style="width: 600px;">
+                                        <h4 class="mb-1">Note :</h4>
+                                        <p>{{historique.note}}</p>
+                                    </div>
+                                </ng-template>
+                            </p-overlayPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<app-detail [consultation]="selectedConsultation" *ngIf="isDetailOpend"></app-detail>

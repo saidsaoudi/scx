@@ -1,0 +1,297 @@
+<div class="grid">
+    <div class="col-12 sm:col-12 md:col-12 lg:col-2">
+        <p-overlayPanel #op>
+            <ng-template pTemplate="content">
+                <div class="lg:w-11rem">
+                    <div class="flex align-items-center justify-content-between mb-2">
+                        <button  pRipple pButton class="pl-3 w-10 pr-2 py-2 active btn-prise">
+                            1er prise
+                        </button>
+                        <i class=" pi pi-trash cursor-pointer text-red-600"></i>
+                    </div>
+                    <div class="flex align-items-center justify-content-between mb-2">
+                        <button  pRipple pButton class="pl-3 w-10 pr-2 py-2 inactive btn-prise">
+                            2er prise
+                        </button>
+                        <i class=" pi pi-trash cursor-pointer text-red-600"></i>
+                    </div>
+                    <div class="flex align-items-center justify-content-between mb-2">
+                        <button  pRipple pButton class="pl-3 w-10 pr-2 py-2 inactive btn-prise">
+                            3er prise
+                        </button>
+                        <i class=" pi pi-trash cursor-pointer text-red-600"></i>
+                    </div>
+                </div>
+            </ng-template>
+        </p-overlayPanel>
+        <div class="flex relative  p-2 border-2 border-round-sm align-items-center surface-border" (click)="op.toggle($event)" >
+            <span class="pl-1 text-primary"> 1er prise</span>
+            <p class="absolute right-0"><i class="pi pi-chevron-down mr-2 cursor-pointer"></i></p>
+        </div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-2 text-center">
+        <p-button class="bg-historique border-round-2xl" label="Historique"  pRipple  icon="pi pi-plus-circle"></p-button>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-2">
+        <p-button class="primary border-round-2xl" label="Nouvelle prise"  pRipple  icon="pi pi-plus-circle"></p-button>
+    </div>
+</div>
+<div class="grid  mt-4" *ngIf="stepIndex == 0">
+    <div class="col-12">
+        <div class="grid">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-3">
+                <div class="border-1 surface-border border-round-sm p-4 blockrem">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center">
+                                <img src="../../../../../../assets/img/icons/temp1.png" class="w-3">                              
+                                <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Température</h4>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center lg:justify-content-end">
+                                <span class="font-semibold text-600 mr-2">M</span><p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><span class="font-semibold text-600 ml-2">A</span>
+                            </div>
+                            <p class="font-semibold text-500 size-auto text-right">Passer en automatique</p>
+                        </div>
+                    </div>
+                    <div class="surface-200 border-round-sm p-3 h-6rem flex justify-content-center align-items-center mt-2">
+                        <div class="flex align-items-end">
+                            <div class="value text-5xl mb-0 font-medium text-600">{{temperature}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">℃</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-between align-items-center gap-4">
+                        <div class="w-8">
+                            <input type="range" min="30.01" class="rangeplus" [(ngModel)]="temperature">
+                        </div>
+                        <div class="p-3 w-4 flex gap-2 justify-content-end">
+                            <svg class="cursor-pointer" (click)="changeTemperature('minus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16418)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><rect x="10" y="22" width="29" height="5" rx="2.5" fill="white"></rect></g><defs><clipPath id="clip0_647_16418"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                            <svg class="cursor-pointer" (click)="changeTemperature('plus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16424)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M27 12.5C27 11.1193 25.8807 10 24.5 10C23.1193 10 22 11.1193 22 12.5V22H12.5C11.1193 22 10 23.1193 10 24.5C10 25.8807 11.1193 27 12.5 27H22V36.5C22 37.8807 23.1193 39 24.5 39C25.8807 39 27 37.8807 27 36.5V27H36.5C37.8807 27 39 25.8807 39 24.5C39 23.1193 37.8807 22 36.5 22H27V12.5Z" fill="white"></path></g><defs><clipPath id="clip0_647_16424"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                <div class="border-1 surface-border border-round-sm p-4 blockrem">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center">
+                                <img src="../../../../../../assets/img/icons/Group.png" class="w-2">                              
+                                <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Pression artérielle</h4>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center lg:justify-content-end">
+                                <span class="font-semibold text-600 mr-2">M</span><p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><span class="font-semibold text-600 ml-2">A</span>
+                            </div>
+                            <p class="font-semibold text-500 size-auto text-right">Passer en automatique</p>
+                        </div>
+                    </div>
+                    <div class="surface-200 border-round-sm p-3 h-6rem flex justify-content-center align-items-center mt-2">
+                        <div class="flex  justify-content-end align-items-end relative h-4rem">
+                            <div class="value text-sm mb-0 font-semibold text-600 flex align-items-start  h-full mr-1">
+                                Systolique
+                            </div>
+                            <div class="value text-5xl mb-0 font-medium text-600">
+                                {{systolique}}
+                            </div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">
+                                mmHg
+                            </div>
+                        </div>
+                        <div class="flex justify-end items-end align-items-end relative h-4rem">
+                            <div class="value text-sm mb-0 font-semibold text-600 flex align-items-start  h-full mr-1">
+                                Diastolique
+                            </div>
+                            <div class="value text-5xl mb-0 font-medium text-600">{{diastolique}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">mmHg</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                        <div class="w-8">
+                            <input *ngIf="typeTension == 'Systolique'" type="range" min="50" class="rangeplus" [(ngModel)]="systolique">
+                            <input *ngIf="typeTension == 'Diastolique'" type="range" min="30" class="rangeplus" [(ngModel)]="diastolique">
+                        </div>
+                        <div class="flex text-600 align-items-center">
+                            <svg (click)="changeTypeTension()" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer"><path d="M23.4961 9.39788L14.0998 18.7942L23.4961 28.1904" stroke="#1AA5C0" stroke-width="3.13209" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            {{typeTension}}
+                            <svg (click)="changeTypeTension()" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer rotate-180"><path d="M23.4961 9.39788L14.0998 18.7942L23.4961 28.1904" stroke="#1AA5C0" stroke-width="3.13209" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                        <div class="p-3 w-4 flex gap-2 justify-content-end">
+                            <svg class="cursor-pointer" (click)="changeTension('minus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16418)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><rect x="10" y="22" width="29" height="5" rx="2.5" fill="white"></rect></g><defs><clipPath id="clip0_647_16418"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                            <svg class="cursor-pointer" (click)="changeTension('plus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16424)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M27 12.5C27 11.1193 25.8807 10 24.5 10C23.1193 10 22 11.1193 22 12.5V22H12.5C11.1193 22 10 23.1193 10 24.5C10 25.8807 11.1193 27 12.5 27H22V36.5C22 37.8807 23.1193 39 24.5 39C25.8807 39 27 37.8807 27 36.5V27H36.5C37.8807 27 39 25.8807 39 24.5C39 23.1193 37.8807 22 36.5 22H27V12.5Z" fill="white"></path></g><defs><clipPath id="clip0_647_16424"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-3">
+                <div class="border-1 surface-border border-round-sm p-4 blockrem">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center">
+                                <img src="../../../../../../assets/img/icons/Layer_1.png" class="w-3">                              
+                                <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Glycémie</h4>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center lg:justify-content-end">
+                                <span class="font-semibold text-600 mr-2">M</span><p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><span class="font-semibold text-600 ml-2">A</span>
+                            </div>
+                            <p class="font-semibold text-500 size-auto text-right">Passer en automatique</p>
+                        </div>
+                    </div>
+                    <div class="surface-200 border-round-sm p-3 h-6rem flex justify-content-center align-items-center mt-2">
+                        <div class="flex align-items-end">
+                            <div class="value text-5xl mb-0 font-medium text-600">{{saturation}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">g/dl</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-between align-items-center gap-4">
+                        <div class="w-8">
+                            <input type="range" min="50" class="rangeplus" [(ngModel)]="saturation">
+                        </div>
+                        <div class="p-3 w-4 flex gap-2 justify-content-end">
+                            <svg class="cursor-pointer" (click)="changeSaturation('minus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16418)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><rect x="10" y="22" width="29" height="5" rx="2.5" fill="white"></rect></g><defs><clipPath id="clip0_647_16418"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                            <svg class="cursor-pointer" (click)="changeSaturation('plus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16424)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M27 12.5C27 11.1193 25.8807 10 24.5 10C23.1193 10 22 11.1193 22 12.5V22H12.5C11.1193 22 10 23.1193 10 24.5C10 25.8807 11.1193 27 12.5 27H22V36.5C22 37.8807 23.1193 39 24.5 39C25.8807 39 27 37.8807 27 36.5V27H36.5C37.8807 27 39 25.8807 39 24.5C39 23.1193 37.8807 22 36.5 22H27V12.5Z" fill="white"></path></g><defs><clipPath id="clip0_647_16424"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-3">
+                <div class="border-1 surface-border border-round-sm p-4 blockrem">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center">
+                                <img src="../../../../../../assets/img/icons/Layer_2.png" class="w-3">                              
+                                <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Oxymètre</h4>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center lg:justify-content-end">
+                                <span class="font-semibold text-600 mr-2">M</span><p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><span class="font-semibold text-600 ml-2">A</span>
+                            </div>
+                            <p class="font-semibold text-500 size-auto text-right">Passer en automatique</p>
+                        </div>
+                    </div>
+                    <div class="surface-200 border-round-sm p-3 h-6rem flex justify-content-center align-items-center mt-2">
+                        <div class="flex align-items-end">
+                            <div class="value text-5xl mb-0 font-medium text-600">{{glycemie}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">%</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-between align-items-center gap-4">
+                        <div class="w-8">
+                            <input type="range" min="0.5" class="rangeplus" [(ngModel)]="glycemie">
+                        </div>
+                        <div class="p-3 w-4 flex gap-2 justify-content-end">
+                            <svg class="cursor-pointer" (click)="changeGlycemie('minus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16418)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><rect x="10" y="22" width="29" height="5" rx="2.5" fill="white"></rect></g><defs><clipPath id="clip0_647_16418"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                            <svg class="cursor-pointer" (click)="changeGlycemie('plus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16424)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M27 12.5C27 11.1193 25.8807 10 24.5 10C23.1193 10 22 11.1193 22 12.5V22H12.5C11.1193 22 10 23.1193 10 24.5C10 25.8807 11.1193 27 12.5 27H22V36.5C22 37.8807 23.1193 39 24.5 39C25.8807 39 27 37.8807 27 36.5V27H36.5C37.8807 27 39 25.8807 39 24.5C39 23.1193 37.8807 22 36.5 22H27V12.5Z" fill="white"></path></g><defs><clipPath id="clip0_647_16424"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                <div class="border-1 surface-border border-round-sm p-4 blockrem">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center">
+                                <img src="../../../../../../assets/img/icons/Layer_3.png" class="w-2">                              
+                                <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Poids et taille</h4>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center lg:justify-content-end">
+                                <span class="font-semibold text-600 mr-2">M</span><p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><span class="font-semibold text-600 ml-2">A</span>
+                            </div>
+                            <p class="font-semibold text-500 size-auto text-right">Passer en automatique</p>
+                        </div>
+                    </div>
+                    <div class="surface-200 border-round-sm p-3 h-6rem flex justify-content-center align-items-center mt-2">
+                        <div class="flex  justify-content-end align-items-end relative h-4rem">
+                            <div class="value text-sm mb-0 font-semibold text-600 flex align-items-start  h-full mr-1">
+                                Poids
+                            </div>
+                            <div class="value text-5xl mb-0 font-medium text-600">
+                                {{poids}}
+                            </div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">
+                                Kg
+                            </div>
+                        </div>
+                        <div class="flex justify-end items-end align-items-end relative h-4rem">
+                            <div class="value text-sm mb-0 font-semibold text-600 flex align-items-start  h-full mr-1">
+                                Taille
+                            </div>
+                            <div class="value text-5xl mb-0 font-medium text-600">{{taille}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">Cm</div>
+                        </div>
+                        <div class="flex justify-end items-end align-items-end relative h-4rem">
+                            <div class="value text-sm mb-0 font-semibold text-600 flex align-items-start  h-full mr-1">
+                                IMC
+                            </div>
+                            <div class="value text-5xl mb-0 font-medium text-600">{{imc}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">Kg/m²</div>
+                        </div>
+                        <div class="flex justify-end items-end align-items-end relative h-4rem">
+                            <div class="value text-sm mb-0 font-semibold text-600 flex align-items-start  h-full mr-1">
+                                <div style="width: 30px; height: 30px; border-radius: 50%;" [ngStyle]="{'background': couleurPoids}"></div>
+                                <div>{{categoriePoids}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                        <div class="w-8">
+                            <input *ngIf="typeTaillePoids == 'Poids'" (change)="calculateBMI()" type="range" min="2" class="rangeplus" [(ngModel)]="poids">
+                            <input *ngIf="typeTaillePoids == 'Taille'" (change)="calculateBMI()" type="range" min="40" class="rangeplus" [(ngModel)]="taille">
+                        </div>
+                        <div class="flex text-600 align-items-center">
+                            <svg (click)="changeTypeTaillePoids()" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer"><path d="M23.4961 9.39788L14.0998 18.7942L23.4961 28.1904" stroke="#1AA5C0" stroke-width="3.13209" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            {{typeTaillePoids}}
+                            <svg (click)="changeTypeTaillePoids()" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer rotate-180"><path d="M23.4961 9.39788L14.0998 18.7942L23.4961 28.1904" stroke="#1AA5C0" stroke-width="3.13209" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                        <div class="p-3 w-4 flex gap-2 justify-content-end">
+                            <svg class="cursor-pointer" (click)="changeTaillePoids('minus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16418)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><rect x="10" y="22" width="29" height="5" rx="2.5" fill="white"></rect></g><defs><clipPath id="clip0_647_16418"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                            <svg class="cursor-pointer" (click)="changeTaillePoids('plus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16424)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M27 12.5C27 11.1193 25.8807 10 24.5 10C23.1193 10 22 11.1193 22 12.5V22H12.5C11.1193 22 10 23.1193 10 24.5C10 25.8807 11.1193 27 12.5 27H22V36.5C22 37.8807 23.1193 39 24.5 39C25.8807 39 27 37.8807 27 36.5V27H36.5C37.8807 27 39 25.8807 39 24.5C39 23.1193 37.8807 22 36.5 22H27V12.5Z" fill="white"></path></g><defs><clipPath id="clip0_647_16424"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-3">
+                <div class="border-1 surface-border border-round-sm p-4 blockrem">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center">
+                                <img src="../../../../../../assets/img/icons/Frame.png" class="w-3">                              
+                                <h4 class="text-black-alpha-70 text-sm font-bold pl-2">Fréquence respiratoire</h4>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+                            <div class="flex align-items-center lg:justify-content-end">
+                                <span class="font-semibold text-600 mr-2">M</span><p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><span class="font-semibold text-600 ml-2">A</span>
+                            </div>
+                            <p class="font-semibold text-500 size-auto text-right">Passer en automatique</p>
+                        </div>
+                    </div>
+                    <div class="surface-200 border-round-sm p-3 h-6rem flex justify-content-center align-items-center mt-2">
+                        <div class="flex align-items-end">
+                            <div class="value text-5xl mb-0 font-medium text-600">{{rythmeCardiaque}}</div>
+                            <div class="unit text-lg text-black-alpha-90 font-bold">Cpm</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-between align-items-center gap-4">
+                        <div class="w-8">
+                            <input type="range" min="28" class="rangeplus" [(ngModel)]="rythmeCardiaque">
+                        </div>
+                        <div class="p-3 w-4 flex gap-2 justify-content-end">
+                            <svg class="cursor-pointer" (click)="changeRythmeCardiaque('minus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16418)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><rect x="10" y="22" width="29" height="5" rx="2.5" fill="white"></rect></g><defs><clipPath id="clip0_647_16418"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                            <svg class="cursor-pointer" (click)="changeRythmeCardiaque('plus')" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_647_16424)"><path d="M33.9375 0H14.0625C6.296 0 0 6.296 0 14.0625V33.9375C0 41.704 6.296 48 14.0625 48H33.9375C41.704 48 48 41.704 48 33.9375V14.0625C48 6.296 41.704 0 33.9375 0Z" fill="#1AA5C0"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M27 12.5C27 11.1193 25.8807 10 24.5 10C23.1193 10 22 11.1193 22 12.5V22H12.5C11.1193 22 10 23.1193 10 24.5C10 25.8807 11.1193 27 12.5 27H22V36.5C22 37.8807 23.1193 39 24.5 39C25.8807 39 27 37.8807 27 36.5V27H36.5C37.8807 27 39 25.8807 39 24.5C39 23.1193 37.8807 22 36.5 22H27V12.5Z" fill="white"></path></g><defs><clipPath id="clip0_647_16424"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

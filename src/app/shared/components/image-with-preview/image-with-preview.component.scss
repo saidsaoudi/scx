@@ -1,0 +1,20 @@
+.drag-over {
+    background-color: #eee;
+}
+#preview{
+    .delete-image{
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 24px;
+        background: #fff;
+        color: red;
+        padding: 5px;
+        border: 0.5px solid #eee;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
+#preview:hover .delete-image{
+    display: block;
+}

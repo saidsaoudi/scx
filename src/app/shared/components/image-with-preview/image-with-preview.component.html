@@ -1,0 +1,16 @@
+<div *ngIf="!imagePreview; else preview"
+    (dragover)="onDragOver($event)"
+    (drop)="onDrop($event)"
+    (dragleave)="onDragLeave($event)">
+    <input type="file" id="photo" class="hidden" (change)="onFileSelected($event)">
+    <label for="photo" [ngClass]="{'drag-over': isDragging}" [class]="'w-' + width + ' h-' + height" class="flex flex-column justify-content-center align-items-center border-2 border-blue-100 border-circle border-dashed cursor-pointer">
+        <i class="pi pi-image text-primary text-4xl"></i>
+        <strong class="text-center text-xs mt-1">{{imgText}} <i class="text-primary">{{browseText}}</i></strong>
+    </label>
+</div>
+<ng-template #preview>
+    <div id="preview" class="relative" *ngIf="imagePreview">
+        <i class="pi pi-trash delete-image" (click)="onDeleteImage()"></i>
+        <img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" [class]="'w-' + width + ' h-' + height" class="border-circle">
+    </div>
+</ng-template>

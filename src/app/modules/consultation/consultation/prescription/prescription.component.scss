@@ -1,0 +1,101 @@
+::ng-deep .duration-input .p-inputnumber-buttons-stacked .p-inputnumber-input{
+    width: 58px;
+}
+.top-margin{
+    margin-top: 27px;
+}
+.table-container{
+    border: 1px solid #DADADA;
+    border-radius:  10px;
+    .table-responsive {
+        overflow-x: auto;
+        white-space: nowrap;
+        .table{
+            border-collapse: collapse;
+            width: 100%;
+            padding: 10px;
+            tbody {
+                tr:nth-child(odd) {
+                    border-radius: 3px;
+                    background: #E5F4F7;/* Background color for odd rows */
+                }
+                tr:nth-child(even) {
+                    background-color: #ffffff; /* Background color for even rows */
+                }
+                td{
+                    p{
+                        color: #335D84;
+                    }
+                    span{
+                        color: #5E5E5E;
+                    }
+                }
+            }
+            
+        }
+      }
+}
+.tab-peripheriques{
+    border-radius: 17px;
+    background: #F1F8F9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    .title{
+        color: #50799E;
+        font-size: 23px;
+        font-weight: 500;
+        line-height: 18px;
+        margin-bottom: 20px;
+        padding-left: 5px;
+    }
+}
+::ng-deep .tab-peripheriques .p-tabview .p-tabview-panels{
+    background: #F1F8F9;  
+}
+::ng-deep .tab-peripheriques .p-tabview-nav-content{
+    border-radius: 33.5px;
+    background: #E1F5F9;
+    box-shadow: 0px 1.672px 3.344px 0px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+}
+::ng-deep .tab-peripheriques .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    padding: 0.8rem;
+    border: none;
+}
+// ::ng-deep .tab-peripheriques .p-tabview-nav-link{
+//     border-radius: 33.5px;
+// }
+::ng-deep .tab-peripheriques .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+    border-radius: 33.5px;
+    font-size: 14px;
+    border: none;
+}
+@media only screen and (min-width: 700px) {
+    ::ng-deep .tab-peripheriques .p-tabview-nav-content{
+        width: 45%;
+    } 
+}
+@media only screen and (max-width: 700px) {
+    ::ng-deep .tab-peripheriques .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+        font-size: 12px;
+    }
+    ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+        font-size: 12px; 
+    }
+}
+.selectbases{
+    top: 8px;
+    right: 7px
+}
+::ng-deep .selectbases .p-dropdown{
+    background: #20A8D3;
+    .p-dropdown-label,
+    .pi{
+        color: #fff;
+    }
+}
+.p-commentaire{
+    text-align: left;
+    padding-top: 5px;
+    font-size: 14px;
+    color: #5E5E5E;
+}

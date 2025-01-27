@@ -1,0 +1,110 @@
+::ng-deep p-autocomplete{
+    display: block;
+    width: 100%;
+    .p-autocomplete{
+        width: 100% !important;
+        .p-inputtext{
+            width: 100% !important;
+        }
+    }
+}
+.table-container{
+    border: 1px solid #DADADA;
+    border-radius:  10px;
+    .table-responsive {
+        overflow-x: auto;
+        white-space: nowrap;
+        .table{
+            border-collapse: collapse;
+            width: 100%;
+            padding: 10px;
+            tbody {
+                tr:nth-child(odd) {
+                    border-radius: 3px;
+                    background: #E5F4F7;/* Background color for odd rows */
+                }
+                tr:nth-child(even) {
+                    background-color: #ffffff; /* Background color for even rows */
+                }
+                td{
+                    p{
+                        color: #335D84;
+                    }
+                    span{
+                        color: #5E5E5E;
+                    }
+                }
+            }
+            
+        }
+      }
+}
+/* Custom checkbox container */
+.custom-checkbox-container {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    }
+
+    /* Hidden default checkbox input */
+    .custom-checkbox-input {
+    display: none;
+    }
+
+    /* Custom checkbox design */
+    .custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1aa5c0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border 0.2s;
+    position: relative;
+    }
+
+    /* Checkmark symbol */
+    .custom-checkbox::before {
+    content: '\2713'; /* Unicode checkmark symbol */
+    font-size: 16px;
+    color: white;
+    display: none;
+    }
+
+    /* Custom checkbox checked style */
+    .custom-checkbox-input:checked + .custom-checkbox {
+    background: linear-gradient(108.18deg, #1aa5c0 4.63%, #0ea1aa 122.22%);
+    border: 2px solid #1aa5c0;
+    }
+
+    /* Show checkmark when checked */
+    .custom-checkbox-input:checked + .custom-checkbox::before {
+    display: block;
+    }
+
+    /* Custom checkbox label */
+    .custom-checkbox-label {
+    margin-left: 10px;
+    font-weight: bold;
+    color: rgb(32, 168, 211);
+    }
+::ng-deep .btn-terminer .p-button{
+    border-radius: 13px;
+    height: 45px;
+    background: #335D84;
+    width: 100%;
+    position: relative;
+    .pi-check{
+        position: absolute;
+        left: 35%;
+    }
+}
+::ng-deep .selectbases .p-dropdown{
+    background: #20A8D3;
+    .p-dropdown-label,
+    .pi{
+        color: #fff;
+    }
+}

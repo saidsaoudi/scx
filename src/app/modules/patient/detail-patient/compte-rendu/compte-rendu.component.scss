@@ -1,0 +1,48 @@
+::ng-deep .border-vertical {
+    height: 70%;
+    margin: auto !important;
+    border-top: 0;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgba(0, 0, 0, 0.12);
+}
+.btn-filter{
+    padding: 10px !important;
+}
+.width-check {
+    width: 3%;
+    text-align: center;
+}
+
+.width-content {
+    width: 25%
+}
+.constante{
+    box-shadow: 0 0 5px #00000029;
+    border-radius: 3px;
+    height: 55px;
+}
+.cursor-pointe{
+    cursor: pointer;
+}
+.rendu-rigth{
+    box-shadow: 0 0 5px #00000029;
+    border-radius: 3px;
+}
+.traitement{
+    border: 1px solid #eee;
+    margin-top: 8px;
+    h4{
+        color: #858585;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .width-content {
+        width: 100%
+    }
+    .constante{
+        display: inline-block !important;
+        width: 100%;
+        padding-top: 5px;
+    }
+  }

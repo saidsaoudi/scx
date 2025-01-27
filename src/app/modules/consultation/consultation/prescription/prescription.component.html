@@ -1,0 +1,181 @@
+<div class="mt-4 tab-peripheriques p-3">
+    <h4 class="title">Prescription</h4>
+    <p-tabView>
+        <p-tabPanel header="Médicaments">
+            <form [formGroup]="medicamentForm"  class="mt-3">
+                <div formArrayName="medicaments">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                            <div class="col-12 relative">
+                                <p-autoComplete   [suggestions]="filtredMedicament" (completeMethod)="searchMedicament($event)"
+                                    field="name" [minLength]="1" placeholder="Choisir un médicament"></p-autoComplete>
+                                <div class="absolute selectbases">
+                                    <p-dropdown formControlName="selectedBases" [options]="bases" optionLabel="name"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="grid card duration-input w-full">
+                                <div class="col-12 sm:col-12 md:col-3 lg:col-3 flex align-items-center mt-3">
+                                    <label>Quantité</label>
+                                </div>
+                                <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+                                    <label class="mb-2 block">Matin</label>
+                                    <p-inputNumber  [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                                </div>
+                                <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+                                    <label class="mb-2 block">Midi</label>
+                                    <p-inputNumber   [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                                </div>
+                                <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+                                    <label class="mb-2 block">Soir</label>
+                                    <p-inputNumber   [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                                </div>
+                            </div>
+                            <div class="grid card duration-input w-full mt-3">
+                                <div class="col-12 sm:col-12 md:col-3 lg:col-3 flex align-items-center">
+                                    <label>Durée</label>
+                                </div>
+                                <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+                                    <p-inputNumber  [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                                </div>
+                                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                                    <select  class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                                        <option value="jour">Jour</option>
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="col-12">
+                                <textarea  rows="2" class="w-full" pInputTextarea placeholder="Commentaire"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <p-button class="btn-terminer w-full" pRipple label="Enregistrer" icon="pi pi-check"></p-button>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+                            <div class="table-container p-3">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="p-3 text-left">Médicaments</th>
+                                                <th class="p-3">Quantité</th>
+                                                <th class="p-3">Durée</th>
+                                                <th class="p-3">ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of [0,1,2,3]">
+                                                <td class="p-3">
+                                                    <p>DOLIPRANE | comprime sécable à 500 mg</p>
+                                                    <span>1 boite 20 comprime</span>
+                                                </td>
+                                                <td class="text-center text-lg p-3">
+                                                    <div class="flex justify-content-between">
+                                                        <p>0,5  Matin</p>
+                                                        <p>1  Midi</p>
+                                                        <p>2  Soir</p>
+                                                    </div>
+                                                    <p class="p-commentaire">Lorem ipsum dolor sit amet</p>
+                                                </td>
+                                                <td class="text-center text-lg p-3" >10  jours</td>
+                                                <td class="text-center text-lg p-3"><i class="pi pi-trash text-red-600 cursor-pointer" [pTooltip]="'Supprimer'"
+                                                    tooltipPosition="left" ></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </p-tabPanel>
+        <p-tabPanel header="Analyses biologiques">
+            <form [formGroup]="biologiqueForm"  class="mt-3">
+                <div formArrayName="biologiques">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                            <div class="col-12">
+                                <label class="mb-2 block">Analyses biologiques</label>
+                                <p-autoComplete formControlName="analyse" [suggestions]="filtredMedicament " (completeMethod)="searchMedicament($event)"  field="name" [minLength]="1" class="w-full"></p-autoComplete>
+                            </div>
+                            <div class="col-12">
+                                <textarea formControlName="comment" rows="2" class="w-full" pInputTextarea  placeholder="Commentaire"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <p-button class="btn-terminer w-full" pRipple label="Enregistrer" icon="pi pi-check"></p-button>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+                            <div class="table-container p-3">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="p-3 text-left">Diagnostics</th>
+                                                <th class="p-3">Commentaire</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of [0,1]">
+                                                <td class="p-3">Diagnostic lorem ipsum</td>
+                                                <td class="text-center text-lg p-3" >Lorem ipsum dolor</td>
+                                                <td class="text-center text-lg p-3"><i class="pi pi-trash text-red-600 cursor-pointer" [pTooltip]="'Supprimer'"
+                                                    tooltipPosition="left" ></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </p-tabPanel>
+        <p-tabPanel header="Examens radiologiques">
+            <form [formGroup]="biologiqueForm"  class="mt-3">
+                <div formArrayName="biologiques">
+                    <div class="grid">
+                        <div class="col-12 sm:col-12 md:col-4 lg:col-4">
+                            <div class="col-12">
+                                <label class="mb-2 block">Examens radiologiques</label>
+                                <p-autoComplete formControlName="imagerie" [suggestions]="filtredMedicament " (completeMethod)="searchMedicament($event)"  field="name" [minLength]="1" class="w-full"></p-autoComplete>
+                            </div>
+                            <div class="col-12">
+                                <textarea formControlName="comment" rows="2" class="w-full" pInputTextarea  placeholder="Commentaire"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <p-button class="btn-terminer w-full" pRipple label="Enregistrer" icon="pi pi-check"></p-button>
+                            </div>
+                        </div>
+                        <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+                            <div class="table-container p-3">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="p-3 text-left">Diagnostics</th>
+                                                <th class="p-3">Commentaire</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of [0,1]">
+                                                <td class="p-3">Diagnostic lorem ipsum</td>
+                                                <td class="text-center text-lg p-3" >Lorem ipsum dolor</td>
+                                                <td class="text-center text-lg p-3"><i class="pi pi-trash text-red-600 cursor-pointer" [pTooltip]="'Supprimer'"
+                                                    tooltipPosition="left" ></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label class="block mb-2">Commentaire général</label>
+                        <textarea rows="2" class="w-full" pInputTextarea  placeholder="Commentaire"></textarea>
+                    </div>
+                </div>
+            </form>
+        </p-tabPanel>
+    </p-tabView>
+</div>

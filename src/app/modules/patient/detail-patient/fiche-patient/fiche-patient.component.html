@@ -1,0 +1,75 @@
+
+<div class="grid mt-2">
+    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+        <h2 class="text-lg">Patient</h2>
+    </div>
+    <div class="col-12 sm:col-12 md:col-6 lg:col-6 text-right">
+        <p-button  pRipple label="Modifier la fiche" icon="pi pi-pencil" (click)="ModifDialog()"></p-button>
+    </div>
+</div>
+<div class="grid mt-3 ml-2 mr-2 border-bottom-2 border-gray-400 py-4">
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-id-card mr-1 text-gray-600"></i> N°CINE</p>
+        <p class="text-gray-600 pl-4">{{patient.cine}}</p>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-user mr-1 text-gray-600"></i>Nom</p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.lastName}}</p>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-user mr-1 text-gray-600"></i> Prénom</p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.firstName}}</p>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-users mr-1 text-gray-600"></i> Sexe</p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.gender == 'male' ? 'Homme' : 'Femme'}}</p>
+    </div>
+</div>
+<div class="grid ml-2 mr-2 border-bottom-2 border-gray-400 py-4">
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-calendar mr-1 text-gray-600"></i>Date de naissance </p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.birthDate | date:'dd/MM/yyyy'}} </p>
+    </div>
+    <!-- <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-flag mr-1 text-gray-600"></i>Couverture</p>
+        <p class="text-gray-600 pl-4">{{patient.medicalCover}}</p>
+    </div> -->
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-building mr-1 text-gray-600"></i>Région</p>
+        <p class="text-gray-600 pl-4">Casablanca</p>
+    </div>
+    <!-- <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-hashtag mr-1 text-gray-600"></i> Nº adhérent</p>
+        <p class="text-gray-600 pl-4">{{patient.affiliationNumber}}</p>
+    </div> -->
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-building mr-1 text-gray-600"></i> Ville</p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.city">{{patient.city.name}}</p>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-building mr-1 text-gray-600"></i> Commune</p>
+        <p class="text-gray-600 pl-4">Anfa</p>
+    </div>
+</div>
+<div class="grid ml-2 mr-2  py-4 border-bottom-2 border-gray-400">
+    <!-- <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-home mr-1 text-gray-600"></i> Province</p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.city">{{patient.city.province.name}}</p>
+    </div> -->
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-phone mr-1 text-gray-600"></i> Téléphone mobile  </p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.phoneNumber}}</p>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-envelope mr-1 text-gray-600"></i> E-mail</p>
+        <p class="text-gray-600 pl-4">said@gmail.com</p>
+    </div>
+    <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+        <p class="text-lg mb-3"><i class="pi pi-map-marker mr-1 text-gray-600"></i> Adresse</p>
+        <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.address}}</p>
+    </div>
+</div>
+<div class="col-12 sm:col-12 md:col-3 lg:col-12 ml-2 mr-2  py-4">
+    <p class="text-lg mb-3"><i class="pi pi-map-marker mr-1 text-gray-600"></i> Complément d’adresse</p>
+    <p class="text-gray-600 pl-4" *ngIf="patient?.user">{{patient.user.address2}}</p>
+</div>

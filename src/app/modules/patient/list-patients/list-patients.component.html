@@ -1,0 +1,53 @@
+<h2><i class="pi pi-users text-3xl"></i> Liste des patients ({{totalResults}})</h2>
+<div class="grid mt-3">
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+        <span class="p-input-icon-left w-full">
+            <i class="pi pi-search"></i>
+            <input (keyup)="search($event)" type="text" pInputText  class="p-inputtext-lg w-full search-input" placeholder="Recherche multiple...">         
+        </span>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+        <span class="p-float-label">
+            <p-dropdown placeholder="Tous les patients" class="w-full" optionLabel="name" inputId="float-label"></p-dropdown>
+            <!-- <label for="float-label">Tous les patients</label> -->
+        </span>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+        <button routerLink="ajout-patient" pButton pRipple label="Nouveau dossier patient" icon="pi pi-user-plus" class="w-full text-lg add-button"></button>
+    </div>
+</div>
+<div class="grid mt-2">
+    <div class="col-12">
+        <div class="table-container p-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="p-3">N°CINE <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Prénom <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Nom <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Sexe <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Date de naissance <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Couverture <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Adhérant <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                            <th class="p-3">Dérnière MAJ <i class="mb-3 pi pi-filter-fill text-base text-color-secondary ml-2"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [routerLink]="['detail', patient.id]" class="cursor-pointer" *ngFor="let patient of patients">
+                            <td class="text-center text-lg p-3">{{patient.cine}}</td>
+                            <td class="text-center text-lg p-3">{{patient.user ? patient.user.firstName : '--'}}</td>
+                            <td class="text-center text-lg p-3">{{patient.user ? patient.user.lastName : '--'}}</td>
+                            <td class="text-center text-lg p-3">{{patient.user.gender == 'male' ? 'Homme' : 'Femme'}}</td>
+                            <td class="text-center text-lg p-3">{{patient.user.birthDate | date: 'dd/MM/yyyy hh:mm'}}</td>
+                            <td class="text-center text-lg p-3">{{patient.medicalCover}}</td>
+                            <td class="text-center text-lg p-3">Oui</td>
+                            <td class="text-center text-lg p-3">{{patient.updatedAt | date: 'dd/MM/yyyy hh:mm'}} (2 jours)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p-paginator [rows]="pagination?.pageSize ?? 1" [totalRecords]="totalResults" (onPageChange)="paginate($event)"></p-paginator>
+            </div>
+        </div>
+    </div>
+</div>

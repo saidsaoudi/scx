@@ -1,0 +1,23 @@
+<div class="mb-4 text-black-alpha-90 font-medium">
+    <p class="text-text-black-alpha-90 font-medium text-xl ">Date / Horaire</p>
+    <p class="text-primary flex gap-4 font-medium ">
+        <span>{{ data.startTime | date: 'dd/MM/yyyy' }}</span>
+        <span class="flex gap-1  font-medium">{{ data.startTime | date: 'HH:mm' }}-{{ data.endTime | date: 'HH:mm' }}</span>
+    </p>
+</div>
+<div class="mb-4 text-black-alpha-90 font-medium">
+    <p class="text-text-black-alpha-90 font-medium text-xl ">Docteur spécialiste </p>
+    <p class="text-primary flex gap-4 font-medium ">
+        <span>{{data.doctor.speciality.name}} </span>
+    </p>
+</div>
+<div class="mb-4 text-black-alpha-90 font-medium">
+    <p class="text-text-black-alpha-90 font-medium text-xl ">Patient </p>
+    <p class="text-primary flex gap-4 font-medium ">
+        <span>{{data.patient.user.firstName}} {{data.patient.user.lastName}}  </span>
+    </p>
+</div>
+<div class="flex justify-content-between md:mt-6">
+    <button (click)="goToPatientDetail()" pRipple pButton label="Accéder au dossier patient" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer "></button>
+    <button pRipple type="button"  label="Notifier le médecin" class="text-white bg-red-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200">Notifier le médecin</button>
+</div>

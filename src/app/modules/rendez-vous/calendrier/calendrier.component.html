@@ -1,0 +1,101 @@
+<div class="grid mb-3">
+    <div class="col-12 sm:col-12 md:col-12 lg:col-8">
+        <h2><i class="pi pi-calendar text-3xl"></i>Calendrier de rendez vous</h2>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+        <div class="grid pt-2 justify-content-center">
+            <p-selectButton [options]="stateOptions" [(ngModel)]="typeCalendar" optionLabel="label" optionValue="value">
+
+            </p-selectButton>
+        </div> 
+    </div>
+</div>
+<div class="grid mb-3">
+    <div class="flex align-items-center col-12 sm:col-12 md:col-12 lg:col-6" *ngIf="typeCalendar == 'RDV'">
+        <div class="mr-2"><i class="pi pi-circle-fill text-primary"></i> Honoré</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-red-600"></i> Non honoré</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-orange-600"></i> Planifié</div>
+    </div>
+    <div class="flex align-items-center col-12 sm:col-12 md:col-12 lg:col-6" *ngIf="typeCalendar == 'SPECIALITY'">
+        <div class="mr-2"><i class="pi pi-circle-fill text-red-600"></i> Cardiologie</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-orange-600"></i> Dermatologie</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-pink-200"></i> ORL</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-pink-400"></i> Gynecologie</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-pink-700"></i> Pneumologie</div>
+        <div class="mr-2"><i class="pi pi-circle-fill text-primary-600"></i> Ophtalmologie</div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+        <p-overlayPanel #op>
+            <ng-template pTemplate="content">
+                <div class="lg:w-27rem">
+                    <div class="mb-3">
+                        <label class="font-medium mb-2">Unité</label>
+                        <select  class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                            <option>UM Amezmiz</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="font-medium mb-2">Box</label>
+                        <select  class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                            <option>Box 1</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="font-medium mb-2">Spécialité</label>
+                        <select  class="w-full text-base text-color surface-overlay p-2 border-2 border-solid surface-border border-round outline-none focus:border-primary">
+                            <option>Box 1</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <p-button  pRipple label="Appliquer les filtres"></p-button>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <p-button label="Annuler les filtres" class="btn-danger"></p-button>
+                    </div>
+                </div>
+            </ng-template>
+        </p-overlayPanel>
+        <!-- <p-button (click)="op.toggle($event)" icon="pi pi-image" label="Show"></p-button> -->
+        <div class="flex relative  p-2 border-2 border-round-sm align-items-center surface-border" (click)="op.toggle($event)" >
+            <i class="pi pi-filter text-primary"></i><span class="pl-1 text-primary"> Filtrer par</span>
+            <p class="absolute right-0"><i class="pi pi-chevron-down mr-2 cursor-pointer"></i></p>
+        </div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-12 lg:col-2 text-right btn-rdv pr-0" *ngIf="typeCalendar == 'RDV'">
+        <p-button  pRipple label="Nouveau RDV" icon="pi pi-plus-circle" (click)="Rendevous()"></p-button>
+    </div>
+</div>
+<!-- <ejs-schedule (popupOpen)="onPopupOpen($event)" width='100%' height='550px' [selectedDate]="selectedDate" [eventSettings]="eventSettings" [timeScale]="timeScale"> -->
+<div *ngIf="typeCalendar == 'RDV'">
+    <ejs-schedule *ngIf="rendezVous.length > 0" width='100%' height='550px' (popupOpen)="onPopupOpen($event)" [startHour]="startHour" [endHour]="endHour" [timeFormat]="timeFormat" [selectedDate]="selectedDate" [eventSettings]="eventSettings" [timeScale]="timeScale">
+        <ng-template #timeScaleMajorSlotTemplate let-data>
+            <div class="majorTime">{{getMajorTime(data.date)}}</div>
+        </ng-template>
+        <ng-template #timeScaleMinorSlotTemplate let-data>
+            <div class="minorTime">{{getMinorTime(data.date)}}</div>
+        </ng-template>
+    </ejs-schedule>
+</div>
+<div *ngIf="typeCalendar == 'SPECIALITY'">
+    <ejs-schedule *ngIf="rendezVous.length > 0" width='100%' height='550px' [startHour]="startHour" [endHour]="endHour" [timeFormat]="timeFormat" [selectedDate]="selectedDate" [eventSettings]="eventSettings" [timeScale]="timeScale">
+        <ng-template #timeScaleMajorSlotTemplate let-data>
+            <div class="majorTime">{{getMajorTime(data.date)}}</div>
+        </ng-template>
+        <ng-template #timeScaleMinorSlotTemplate let-data>
+            <div class="minorTime">{{getMinorTime(data.date)}}</div>
+        </ng-template>
+        <e-views>
+            <e-view option="Week">
+                <ng-template #eventTemplate let-data>
+                    <div class='app-template-wrap' [style.background]="data.SecondaryColor">
+                        <div class="doctor">
+                            Dr Chraibi JAMAL
+                        </div>
+                    </div>
+                </ng-template>
+            </e-view>
+            <e-view option="Month"></e-view>
+            <e-view option="TimelineMonth"></e-view>
+        </e-views>
+    </ejs-schedule>
+</div>

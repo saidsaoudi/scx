@@ -1,0 +1,48 @@
+<div class="grid">
+    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+        <div class="grid">
+            <div class="col-12 sm:col-12 md:col-6 lg:col-6 flex align-items-center">
+                <h4>Enregistrer la photo </h4>
+            </div>
+            <div class="col-12 sm:col-12 md:col-6 lg:col-6 text-right">
+                <p-button class="btn-capture" (click)="onclick()">
+                    <img alt="logo" src="../../../../../../../../assets/img/analyse.svg" style="width: 2rem" />
+                    <span class="ml-2 font-bold">Analyse AI</span>
+                </p-button>
+            </div>
+        </div>
+        <div class="mt-3">
+            <img src="../../../../../../../../assets/img/bg.jpg" class="w-full border-round-lg"/>
+        </div>
+        <div class="col-12 mt-3">
+            <label class="mb-2 block">Description</label>
+            <textarea rows="2" class="w-full" pInputTextarea placeholder="Description"></textarea>
+        </div>
+    </div>
+    <div class="col-12 sm:col-12 md:col-6 lg:col-6 mt-7" *ngIf="visible">
+        <div class="grid">
+            <div class="col-12 sm:col-12 md:col-6 lg:col-6 flex align-items-center">
+                <h4>Résultats d’assistant AI </h4>
+            </div>
+            <div class="col-12 sm:col-12 md:col-6 lg:col-6 text-right">
+                <p-button icon="pi pi-trash" class="btn-delete" severity="danger"></p-button>
+            </div>
+        </div>
+        <div class="grid mb-2" *ngFor="let n of [0,1,2,4]">
+            <div class="col-12 sm:col-12 lg:col-10">
+                <div class="list-res">
+                    <p><i class="pi pi-circle-fill text-xs	pr-2"></i>Fibromyalgie </p>
+                </div>
+            </div>
+            <div class="col-12 sm:col-12 lg:col-2">
+                <div class="list-nmb">
+                    <p class="text-white text-center">80%</p>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<div class="flex justify-content-between md:mt-6">
+    <button   pRipple type="button"  label="Annuler"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border">Annuler</button>
+    <button   pRipple pButton type="button" label="Confirmer" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer"></button>
+</div>

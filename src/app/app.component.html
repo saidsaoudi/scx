@@ -1,0 +1,13 @@
+
+
+<div id="layout" *ngIf="loggedIn()">
+    <app-header></app-header>
+    <div class="w-auto mx-4">
+        <p-card styleClass="h-full border-round-lg">
+            <router-outlet></router-outlet>
+        </p-card>
+    </div>
+</div>
+<div id="login" *ngIf="!loggedIn()">
+    <router-outlet></router-outlet>
+</div>

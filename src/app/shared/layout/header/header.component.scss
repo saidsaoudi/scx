@@ -1,0 +1,55 @@
+.menu-details{
+    width: 350px;
+    .name{
+        color: rgb(80, 121, 158);
+        font-feature-settings: "clig" 0, "liga" 0;
+        font-family: Ubuntu;
+        font-size: 18.052px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 12.703px;
+    }
+    .role{
+        color: rgb(26 165 192/var(--tw-text-opacity));
+    }
+    .separate{
+        padding: 17px 0;
+        color: rgba(80, 121, 158, 0.61);
+        font-feature-settings: "clig" 0, "liga" 0;
+        font-family: Ubuntu;
+        font-size: 16.68px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 12.703px;
+    }
+}
+.top{
+    img{
+        width: 12%;
+    }
+    .img-visio{
+        width: 13%;
+    }
+    .pi{
+        color: #20a8d3;
+    }
+    h4, h5{
+        color: #20a8d3;
+    }
+    
+    .menu{
+        // background-color: #20a8d333;
+        // padding: 8px;
+        // border-radius: 8px;
+    }
+    .pi-upload{
+        rotate: 90deg;
+        color: #ec9090;
+        // background-color: #f4eded;
+        // padding: 8px;
+        // border-radius: 8px;
+    }
+}
+::ng-deep .p-overlaypanel{
+    z-index: 9999 !important;
+}

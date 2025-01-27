@@ -1,0 +1,205 @@
+// /* You can add global styles to this file, and also import other style files */
+// input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+//     border: 1px solid #DBDBDB;
+//     border-radius: 3px;
+//     outline: none;
+//     padding: 5px;
+//     display: block;
+// }
+// ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+//     color: #DBDBDB;
+//     opacity: 1; /* Firefox */
+// }
+
+// :-ms-input-placeholder { /* Internet Explorer 10-11 */
+//     color: #DBDBDB;
+// }
+
+// ::-ms-input-placeholder { /* Microsoft Edge */
+//     color: #DBDBDB;
+// }
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+body, html{
+    background-image: url('assets/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.uppercase-text {
+  text-transform: uppercase;
+}
+// .p-button{
+//   background: linear-gradient(108.18deg, rgb(26, 165, 192) 4.63%, rgb(14, 161, 170) 122.22%) !important;
+// }
+.p-button{
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.p-autocomplete .p-autocomplete-panel{
+  width: 100% !important;
+}
+h2{
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 27.0939px;
+  line-height: 32px;
+  color: rgb(32, 168, 211);
+}
+h4,
+h5,
+span,
+button{
+  font-family: Ubuntu;
+}
+p{
+  font-family: Ubuntu;
+  color: rgb(32, 168, 211);
+}
+label{
+  font-family: Ubuntu;
+  color: rgb(32, 168, 211);
+}
+.text-primary{
+  color: #335D84 !important;
+}
+/* Set the width and height of the scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Style the track (the background of the scrollbar) */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Style the thumb (the moving part of the scrollbar) */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  
+  /* Style the thumb when the user hovers over it */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+.input-errors{
+    color: red;
+}
+.bordered{
+  border: 1px solid #cccccc6f;
+  border-radius: 5px;
+}
+.p-button:focus{
+    box-shadow: none;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
+    box-shadow : 0 0 0 0.2rem #bfdbfe;
+}
+.p-accordion-header-link:focus{
+  box-shadow: none !important;
+}
+.p-accordion-header-link{
+  padding: 0.5rem !important;
+  .p-accordion-header-text{
+    font-size: 0.9rem;
+  }
+  .p-accordion-toggle-icon{
+    font-size: 0.8rem;
+  }
+}
+
+.p-breadcrumb{
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    .p-breadcrumb-chevron{
+      font-size: 0.7rem;
+    }
+    span{
+      font-size: 0.9rem;
+      color: #eee;
+    }
+}
+.p-breadcrumb ul li .p-menuitem-link .p-menuitem-text{
+  color: #aba9a9;
+}
+.p-breadcrumb ul li:last-child .p-menuitem-text{
+  color: #000;
+}
+.p-breadcrumb ul li .p-menuitem-link:focus{
+  box-shadow: none;
+}
+.p-breadcrumb ul li .p-menuitem-link[target="undefined"]{
+  cursor: initial;
+}
+
+
+// CUSTOME CLASSES
+.p-button.p-button-xs{
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    .pi{
+      font-size: 0.75rem;
+    }
+}
+.p-calendar-sm .p-inputtext{
+  width: 10.1rem !important;
+  height: 2.2rem;
+}
+.p-calendar-sm .p-inputtext + button{
+  height: 2.2rem;
+}
+.p-inputtext-xs{
+  width: 9rem !important;
+  height: 2.2rem;
+}
+.p-inputtext-xs + label{
+  font-size: 0.8rem;
+}
+.p-inputtext-s{
+  width: 11.4rem !important;
+  height: 2.2rem;
+}
+.p-inputtext-s + label{
+  font-size: 0.8rem;
+}
+.p-dropdown-sm .p-dropdown{
+  min-width: 12.5rem;
+  height: 2.2rem;
+}
+.p-dialog-mask{
+  fill: rgba(31, 131, 131, 0.10) ;
+  backdrop-filter: blur(3.9600000381469727px) ;
+  background: transparent;
+}
+.p-autocomplete-input{
+  width: 100%;
+}
+.btn-annuler{
+  background: #E5E5E5;
+  color: #858585;
+  border-color:#E5E5E5 ;
+  border-radius: 13px;
+  border: 1px solid #E5E5E5;
+}
+.btn-terminer{
+  border-radius: 13px;
+  background: #1AA5C0;
+}

@@ -1,0 +1,9 @@
+
+<div class="col-12 sm:col-12 md:col-12 lg:col-12 p-fluid mt-3">
+    <label for="non" class="ml-2">Substance</label>
+    <p-chips [(ngModel)]="allergy" separator=","></p-chips>
+</div>
+<div class="flex justify-content-between md:mt-6">
+    <button   pRipple type="button"  label="Annuler"  class="text-white surface-500 surface-border px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:surface-500 hover:surface-border active:surface-500 active:surface-border">Annuler</button>
+    <button  (click)="save()" pRipple pButton type="button" label="Valider" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer"></button>
+</div>

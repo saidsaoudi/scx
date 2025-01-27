@@ -1,0 +1,60 @@
+<!-- <tr> -->
+    <td>
+        <p-avatar shape="circle" [image]="storage_path+''+collaborateur.photo" size="large"></p-avatar>
+    </td>
+    <td>
+        <p>
+            <i class="pi pi-hashtag mr-1 text-primary"></i>
+            {{collaborateur.nom}} {{collaborateur.prenom}}
+        </p>
+        <small class="ml-4 text-primary font-semibold">{{collaborateur.fonction}}</small>
+    </td>
+    <td><i class="pi pi-id-card mr-1 text-primary"></i>{{collaborateur.matricule}}</td>
+    <td class="text-center">
+        <p-avatar
+        class="block"
+        [pTooltip]="collaborateur.groupe.nom"
+        tooltipPosition="top" 
+        shape="circle" 
+        [image]="storage_path+''+collaborateur.groupe.logo" 
+        size="small">
+        </p-avatar>
+    </td>
+    <td><i class="pi pi-building mr-1 text-primary"></i>{{collaborateur.departement.nom}}</td>
+    <td><i class="pi pi-at mr-2 text-primary"></i>{{collaborateur.email}}</td>
+    <td><i class="pi pi-phone mr-2 text-primary"></i>{{collaborateur.telephone}}</td>
+    <td class="text-center">
+        <p-avatar class="block" *ngIf="collaborateur.superviseur" 
+        shape="circle" 
+        [image]="storage_path+''+collaborateur.superviseur.photo" 
+        size="medium" 
+        [pTooltip]="collaborateur.superviseur.nom"
+        ></p-avatar>
+    </td>
+    <td>
+        <p-avatarGroup *ngIf="collaborateur.subordonnes" class="flex justify-content-start">
+            <p-avatar 
+            shape="circle" 
+            *ngFor="let subordonne of collaborateur.subordonnes.slice(0, 4)" 
+            [image]="storage_path+''+subordonne.photo" 
+            [pTooltip]="subordonne.nom"
+            tooltipPosition="top"
+            size="small"
+            ></p-avatar>
+            <p-avatar *ngIf="countOfSubordonnes() > 0" shape="circle" [label]="'+'+countOfSubordonnes().toString()" size="xsmall"></p-avatar>
+        </p-avatarGroup>
+    </td>
+    <td><boolean-tag [status]="collaborateur.statut"></boolean-tag></td>
+    <td><i class="pi pi-trash cursor-pointer text-red-500" pTooltip="Supprimer" tooltipPosition="top" pRipple></i></td>
+    <td><i class="pi pi-pencil cursor-pointer text-green-500" pTooltip="Modifier" tooltipPosition="top" pRipple></i></td>
+    <td>
+        <i class="pi pi-ellipsis-v cursor-pointer text-black-alpha-20" (click)="op.toggle($event)" pRipple></i>
+        <p-overlayPanel #op>
+            <ng-template pTemplate>
+                <ul class="actions">
+                    <li pRipple [routerLink]="['detail', collaborateur.uuid]"><i class="pi pi-search mr-2 text-sm"></i>Détail</li>
+                </ul>
+            </ng-template>
+        </p-overlayPanel>
+    </td>
+<!-- </tr> -->

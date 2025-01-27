@@ -1,0 +1,24 @@
+.info-content{
+    padding: 1rem 1.5rem;
+}
+.nationalite {
+    display: grid;
+    margin-right: 20px;
+}
+::ng-deep .p-chips{
+    display: block !important;
+    margin-right: 20px;
+}
+
+::ng-deep .p-chips .p-chips-multiple-container {
+    padding: 0.1rem 0.5rem;
+}
+::ng-deep .p-chips .p-chips-multiple-container .p-chips-token{
+    background-color: #2196f3 !important;
+    color: #fff;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+::ng-deep .dropdown-superieur .p-dropdown{
+    width: calc(100% - 20px);
+}

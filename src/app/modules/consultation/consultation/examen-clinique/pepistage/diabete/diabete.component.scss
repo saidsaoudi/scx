@@ -1,0 +1,27 @@
+.diabete{
+    .d{
+        border-right: 2px solid rgba(80, 121, 158, 0.15);
+    }
+    h4{
+        color: #838696;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    label{
+        color: #5E5E5E;
+    }
+}
+.bg-voir{
+    border-radius: 70px;
+    background: #F8809D;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    border-color: #F8809D;
+}
+.bg-voir:hover, .bg-voir:active{
+    border-radius: 70px;
+    background: #F8809D;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    border-color: #F8809D;
+}

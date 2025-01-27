@@ -1,0 +1,11 @@
+::ng-deep .serach .p-dropdown,
+::ng-deep .serach .p-autocomplete,
+::ng-deep .serach .p-calendar {
+width: 100% !important;
+}
+.serach label{
+    color: #838696;
+}
+.d{
+    border-right: 2px solid rgba(80, 121, 158, 0.15);
+}
