@@ -1,10 +1,12 @@
 .menu-details{
-    width: 350px;
+    width: 340px;
+    background-color: #0A536F;
+    padding-top: 20px;
     .name{
         color: rgb(80, 121, 158);
         font-feature-settings: "clig" 0, "liga" 0;
         font-family: Ubuntu;
-        font-size: 18.052px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 12.703px;
@@ -24,32 +26,28 @@
     }
 }
 .top{
+    background-color: #0A536F;
     img{
         width: 12%;
     }
-    .img-visio{
-        width: 13%;
-    }
     .pi{
-        color: #20a8d3;
+        color: #fff;
     }
     h4, h5{
         color: #20a8d3;
     }
-    
-    .menu{
-        // background-color: #20a8d333;
-        // padding: 8px;
-        // border-radius: 8px;
-    }
-    .pi-upload{
-        rotate: 90deg;
-        color: #ec9090;
-        // background-color: #f4eded;
-        // padding: 8px;
-        // border-radius: 8px;
-    }
+
 }
 ::ng-deep .p-overlaypanel{
     z-index: 9999 !important;
+    left: 1px !important;
+    top: 60px !important;
+}
+::ng-deep .img-visio{
+    width: 25px;
+}
+.bg-menu{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 7px 16px #0000005E;
+    border-radius: 11px;
 }

@@ -1,76 +1,27 @@
 .container{
     // background: url('../../../../assets/img/bg.png') no-repeat;
-    .top{
-        img{
-            width: 5%;
-        }
-        .img-visio{
-            width: 13%;
-        }
+    i{
+        top: 30%;
+        font-size: 20px;
+        color: #0A536F;
     }
-    h2{
-        font-family: Ubuntu;
-        font-style: normal;
-        font-weight: 400 !important;
-        font-size: 27.0939px;
-        line-height: 32px;
-        color: rgb(32, 168, 211);
+    p{
+        color: #828081;
     }
-    input,.selectlogin{
+    input{
         background: rgb(255, 255, 255);
         border: 0.619965px solid rgb(173, 191, 207);
-        border-radius: 7.43958px;
+        border-radius: 8px;
+        height: 50px;
+        color: #000B33;
     }
     .login-btn{
-        background: linear-gradient(108.18deg, rgb(26, 165, 192) 4.63%, rgb(14, 161, 170) 122.22%);
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 3.35869px 3.35869px;
-        border-radius: 5.87771px;
-    }
-    .selectlogin{
-        font-size: 1.25rem;
-        padding: 0.625rem 0.625rem;
-        color: #495057;
+        background: transparent linear-gradient(180deg, #0A536F 0%, #000B33 100%) 0% 0% no-repeat padding-box;        box-shadow: rgba(0, 0, 0, 0.25) 0px 3.35869px 3.35869px;
+        border-radius: 8px;
+        height: 55px;
     }
 }
-.e-btn-group {
-    margin: 25px 0px 20px 0px;
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 0px 4.57143px 11px 0px rgba(170, 232, 243, 0.58);
-}
-  *.e-btn-group input, *.e-css.e-btn-group input {
-    height: 1px;
-    margin: 0 0 0 -1px;
-    opacity: 0;
-    position: absolute;
-    width: 1px;
-}
-.e-btn-group .e-btn:active, .e-btn-group input:active + label.e-btn, .e-btn-group input:checked + label.e-btn, .e-css.e-btn-group .e-btn:active, .e-css.e-btn-group input:active + label.e-btn, .e-css.e-btn-group input:checked + label.e-btn {
-    background: linear-gradient(91deg, #2786DD 2.37%, #19C8D3 101.75%);
-    border-color: transparent;
-    color: #fff;
-    outline: #fafafa 0 solid;
-    outline-offset: 0;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-.e-btn{
-    height: 66px;
-    line-height: 4;
-    width: 100%;
-}
-.infirmiere{
-    color: #FE4986;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-}
-.specialiste{
-    color: #32B4D4;
-}
-.generaliste{
-    color: #2699DA;
-}
-.hotesse{
-    color: #335D84;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+.bg-form{
+    background: transparent linear-gradient(180deg, #0a536f6b 0%, #000b3369 100%) 0% 0% no-repeat padding-box;    border: 1px solid #707070;
+    height: 100vh;
 }

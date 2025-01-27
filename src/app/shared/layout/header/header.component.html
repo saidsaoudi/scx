@@ -1,134 +1,119 @@
 <div>
-    <div class="top grid bg-white w-auto mb-3 mt-3 mx-4 py-1 px-3 border-round-lg">
-      <div class="col-12 sm:col-4 md:col-2 lg:col-1">
-        <i class="menu pi pi-align-justify text-3xl mt-1 cursor-pointer" pRipple (click)="op.toggle($event)"></i>
+    <div class="top grid w-auto  py-2 px-3 mb-5">
+      <div class="pr-3 mt-3">
+        <img src="../../../../assets/img/icon-menu.png" alt="" class="mt-1 w-full cursor-pointer "  pRipple (click)="op.toggle($event)">
       </div>
         <p-overlayPanel #op>
             <ng-template pTemplate>
                 <ul class="menu-details">
-                    <li pRipple class="p-2" style="background-color: #eeeeee80;">
-                      <div class="grid">
-                        <div class="col-2">
-                          <p-avatar
-                          class="block"
-                          shape="circle" 
-                          [image]="'https://dev.far-demo.telemedecine.mediot.io/static/media/anonymous.31c7e07df0ed88b59e526cf2e0474923.svg'" 
-                          size="large">
-                          </p-avatar>
-                        </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Anas SENHAJI</p>
-                          <p class="role">Doctor</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="separate">Navigation Rapide </li>
-                    <li pRipple class="p-2 cursor-pointer" (click)="goToTeleexpertise()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon1.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Prise de mesures</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Tour de control</p>
                         </div>
                       </div>
                     </li>
-                    <li pRipple class="p-2 cursor-pointer" (click)="goToTeleconsultation()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon1.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Télé-expertise</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Alerts Management</p>
                         </div>
                       </div>
                     </li>
-                    <li pRipple class="p-2 cursor-pointer" (click)="goToPatientsList()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon2.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Dossier patient</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">TMS</p>
                         </div>
                       </div>
                     </li>
-                    <li pRipple class="p-2 cursor-pointer" (click)="goToRendezVous()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid  bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Rendez-vous</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Approvisionnement</p>
                         </div>
                       </div>
                     </li>
-                    <!-- Start Specialiste -->
-                    <li pRipple class="p-2 cursor-pointer" (click)="goToSpecialiste()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid  bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Planning</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Planification (APS)</p>
                         </div>
                       </div>
                     </li>
-                    <li pRipple class="p-2 cursor-pointer" (click)="goToDisponibilite()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Disponibilités</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Inventaire</p>
                         </div>
                       </div>
                     </li>
-                    <!-- <li pRipple class="p-2 cursor-pointer" (click)="goToDisponibilitev2()">
-                      <div class="grid">
-                        <div class="col-2">
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
                           <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
                         </div>
-                        <div class="col-6">
-                          <p class="name mt-2">Disponibilités v2</p>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Mouvement</p>
                         </div>
                       </div>
-                    </li> -->
-                    <!-- End Specialiste -->
+                    </li>
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
+                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
+                        </div>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Veille</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
+                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
+                        </div>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Paramètre</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-4">
+                      <div class="grid bg-menu">
+                        <div class="col-1">
+                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
+                        </div>
+                        <div class="col-8">
+                          <p class="name mt-1 pl-2">Déconnexion</p>
+                        </div>
+                      </div>
+                    </li>
                 </ul>
-                <div class="ml-2 mb-3 pt-3 border-top-1 border-primary-500">
-                  <p  (click)="logout()" class="flex justify-content-center ml-2 text-lg align-items-center cursor-pointer text-red-600 font-medium"><i pRipple class="pi pi-power-off text-3xl mt-1"></i><span class="ml-3">Déconnexion</span> </p>
-                </div>
             </ng-template>
         </p-overlayPanel>
-        <div class="col-12 sm:col-4 md:col-5 lg:col-4">
-          <img src="../../../../assets/img/visio.svg" alt="" class="w-7">
+        <div class="col-12 sm:col-4 md:col-5 lg:col-9">
+          <img src="../../../../assets/img/logo.png" alt="" class="w-2 mt-3">
         </div>
-        <div class="col-12 sm:col-4 md:col-4 lg:col-3">
-          <span class="flex mt-2">
-            <i class="pi pi-calendar text-2xl"></i>
-            <h4 class="mt-1 ml-2">{{getFormattedDate() }}</h4>
-          </span>
-        </div>
-        <div class="col-12 sm:col-4 md:col-3 lg:col-2">
-          <span class="flex mt-2">
-            <i class="pi pi-clock text-2xl"></i>
-            <h4 class="mt-1 ml-2">{{currentTime }}</h4>
-          </span>
-        </div>
-        <!-- <div class="col-12 sm:col-6 md:col-4 lg:col-2">
-          <span class="flex mt-2">
-            <i class="pi pi-sync text-2xl"></i>
-            <h5 class="mt-1 ml-2">Dernière sync. 07:30:05</h5>
-          </span>
-        </div> -->
-        <p-overlayPanel #opp>
-          <ng-template pTemplate="content">
-              <h4>Aucune Notification</h4>
-          </ng-template>
-      </p-overlayPanel>
         <div class="col-12 sm:col-12 md:col-3 lg:col-2 lg:text-right mt-2">
-          <img src="../../../../assets/img/Group.svg" alt="" class="cursor-pointer" (click)="opp.toggle($event)">
+          <img src="../../../../assets/img/dawla.png" alt="" class="w-full">
         </div>
       </div>
 </div>

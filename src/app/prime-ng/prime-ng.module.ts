@@ -19,6 +19,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ChipModule } from 'primeng/chip';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 const MODULES = [
     SkeletonModule,
@@ -39,7 +42,10 @@ const MODULES = [
     KeyFilterModule,
     ChipModule,
     PaginatorModule,
-    RippleModule
+    RippleModule,
+    FloatLabelModule,
+    IconFieldModule,
+    InputIconModule
 ]
 
 @NgModule({
