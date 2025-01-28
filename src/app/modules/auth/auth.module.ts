@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthErrorInterceptor } from 'src/app/core/interceptors/auth/auth-error.interceptor';
-import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -19,8 +18,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     AuthRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    PrimeNGModule,
-    SelectButtonModule
+    PrimeNGModule  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},

@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   logout(){
      window.location.href = '/login'
   }
-  goToPatientsList(){
+  goToTourcontrole(){
     window.location.href = '/dashbord'
   }
 }
