@@ -30,10 +30,20 @@
         height: 100%;
     }
 }
-
-
 /* styles.css */
 .overlay-active {
     background-color: rgba(0, 0, 0, 0.5);
   }
   
+.card-left{
+    margin-left: 210px;
+    padding-top: 5%;
+}
+.new-tolpabr{
+    margin-left: 74px;
+}
+::ng-deep .b-body .p-card-body{
+    background: #f6f9fa;
+    padding: 25px;
+    height: 100vh;
+}

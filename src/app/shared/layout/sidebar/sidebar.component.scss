@@ -2,9 +2,9 @@
     transition: all 0.3s ease;
     height: 100%;
     background-color: #fff;
-    box-shadow: 6px 0px 9px #0000003d;
+    border-right: 1px solid #eae7e7;
     position: fixed;
-    width: 180px;
+    width: 210px;
     left: 0;
     top: 0px;
     z-index: 1;
@@ -12,17 +12,15 @@
     .sidebar-logo{
         border-color: #e2e2e2;
         .pi-angle-left{
-            background-color: black;
-            color: white;
-            width: 15px;
-            height: 15px;
+            width: 25px;
+            height: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
             position: absolute;
-            right: -10px;
-            top: 10px;
+            right: -14px;
+            top: 30px;
             box-shadow: 0 0 2px black;
             font-size: 12px;
             cursor: pointer;
@@ -34,9 +32,10 @@
         height: 100%;
         .list-items{
             list-style: none;
+            background-color: #fff;
             .item{
                 cursor: pointer;
-                padding: 10px 20px;
+                padding: 10px 14px;
                 margin: 10px 0;
                 i{
                     margin-right: 10px;
@@ -44,7 +43,7 @@
                 .pi-angle-right{
                     position: absolute;
                     right: 0;
-                    top: 15px;
+                    top: 11px;
                 }
                 .child-items{
                     position: absolute;
@@ -60,9 +59,6 @@
                     padding: 10px 10px;
                     border-radius: 0px 3px 3px 0;
                 }
-            }
-            .item:hover{
-                background-color: #edeaea;
             }
             span{
                 transition: all 0.3s ease;

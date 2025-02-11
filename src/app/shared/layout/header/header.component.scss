@@ -1,28 +1,9 @@
 .menu-details{
-    width: 340px;
-    background-color: #0A536F;
+    width: 200px;
+    background-color: #fff;
     padding-top: 20px;
-    .name{
-        color: rgb(80, 121, 158);
-        font-feature-settings: "clig" 0, "liga" 0;
-        font-family: Ubuntu;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 12.703px;
-    }
     .role{
         color: rgb(26 165 192/var(--tw-text-opacity));
-    }
-    .separate{
-        padding: 17px 0;
-        color: rgba(80, 121, 158, 0.61);
-        font-feature-settings: "clig" 0, "liga" 0;
-        font-family: Ubuntu;
-        font-size: 16.68px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 12.703px;
     }
 }
 .top{
@@ -30,18 +11,10 @@
     img{
         width: 12%;
     }
-    .pi{
-        color: #fff;
-    }
     h4, h5{
         color: #20a8d3;
     }
 
-}
-::ng-deep .p-overlaypanel{
-    z-index: 9999 !important;
-    left: 1px !important;
-    top: 60px !important;
 }
 ::ng-deep .img-visio{
     width: 25px;
@@ -50,4 +23,39 @@
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 7px 16px #0000005E;
     border-radius: 11px;
+}
+.tolbar{
+    margin-left: 210px;
+    height: 85.83px;
+    border-bottom: 1px solid #eae7e7;
+    .separate{
+        white-space: nowrap;
+        padding-left: 15px;
+        border-left: 1px solid #eae7e7;
+    }
+    i{
+        font-size: 40px ;
+        color: #626878;
+    }
+    ::ng-deep .p-badge {
+        background: #20a8d3;
+        font-size: 0.5rem;
+        min-width: 1rem;
+        height: 1rem;
+        line-height: 1rem;
+    }
+   
+}
+.new-tolpabr{
+    margin-left: 74px;
+    ul{
+        padding-left: 0px !important;
+    }
+}
+.label-autto{
+    line-height: 0
+}
+::ng-deep .search-autocmpt .p-autocomplete-input{
+    height: 40px;
+    width: 300px;
 }

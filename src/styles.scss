@@ -50,9 +50,7 @@
 .p-button{
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
-.p-autocomplete .p-autocomplete-panel{
-  width: 100% !important;
-}
+
 h2{
   font-family: Ubuntu;
   font-style: normal;
@@ -73,7 +71,6 @@ p{
 }
 label{
   font-family: Ubuntu;
-  color: rgb(32, 168, 211);
 }
 .text-primary{
   color: #335D84 !important;
@@ -191,9 +188,7 @@ label{
   backdrop-filter: blur(3.9600000381469727px) ;
   background: transparent;
 }
-.p-autocomplete-input{
-  width: 100%;
-}
+
 .btn-annuler{
   background: #E5E5E5;
   color: #858585;

@@ -1,16 +1,10 @@
 <div class="flex flex-column align-items-center" [ngClass]="opened ?'sidebar': 'sidebar-closed'">
-    <div class="sidebar-logo relative border-bottom-1 flex justify-content-center w-full">
-        <h1 class="text-primary">{{ opened ? 'IMANAC' : 'IM'}}</h1>
+    
+    <div class="sidebar-logo relative border-bottom-1 flex justify-content-center w-full pb-4 pt-4">
+        <img class="w-7" [src]="opened ? '../../../../assets/img/logo.png' : '../../../../assets/img/favicon.png'" />
         <i class="pi pi-angle-left bg-primary" (click)="toggleSideBar()"></i>
     </div>
-    <div class="sidebar-items">
-        
-            <app-content-sidebar [menu]="menu"></app-content-sidebar>
-            <li class="item absolute bottom-0 w-full" (click)="logout()">
-                <a class="flex align-items-center no-underline text-color">
-                    <i class="pi pi-power-off text-primary"></i>
-                    <span>Déconnexion</span>
-                </a>
-            </li>
+    <div class="sidebar-items overflow-auto">
+        <app-content-sidebar [menu]="menu"></app-content-sidebar>
     </div>
 </div>

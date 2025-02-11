@@ -1,13 +1,13 @@
 <div class="container">
   <div class="grid mt-0">
-    <div class="col-12 sm:col-12 md:col-12 lg:col-6 bg-form">
+    <div class="col-12 sm:col-12 md:col-12 lg:col-6 bg-form hidden lg:block">
       <!-- <img src="../../../../assets/img/logo-login.png" class="w-7 img-login"> -->
     </div>
     <div class="col-12 sm:col-12 md:col-12 lg:col-6">
       <div class="col flex justify-content-center align-items-center bg-white border-round-xl">
         <div class="w-7 mt-8">
           <div class="mb-6 mt-8 text-center">
-            <img src="../../../../assets/img/pharma.png" />
+            <img src="../../../../assets/img/logo.png" class="w-7"/>
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-4 w-full">
           <div class="w-full">
@@ -44,3 +44,4 @@
   </div>
 
 </div>
+

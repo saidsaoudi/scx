@@ -22,6 +22,14 @@ import { ChipModule } from 'primeng/chip';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenuModule } from 'primeng/menu';
+import { DividerModule } from 'primeng/divider';
+import { BadgeModule } from 'primeng/badge';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ProgressBarModule } from 'primeng/progressbar';
+
+
 
 const MODULES = [
     SkeletonModule,
@@ -45,7 +53,13 @@ const MODULES = [
     RippleModule,
     FloatLabelModule,
     IconFieldModule,
-    InputIconModule
+    InputIconModule,
+    SidebarModule,
+    MenuModule,
+    DividerModule,
+    BadgeModule,
+    AutoCompleteModule,
+    ProgressBarModule,
 ]
 
 @NgModule({

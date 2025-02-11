@@ -1,9 +1,7 @@
-
-
-<div id="layout" *ngIf="loggedIn()" class="overflow-hidden">
-    <app-header></app-header>
-    <div class="w-auto mx-4">
-        <p-card styleClass="h-full border-round-lg">
+<div id="layout" *ngIf="loggedIn()">
+    <app-header (changeStyle)="cardleft($event)"></app-header>
+    <div class="w-auto card-left" #cardleftElement>
+        <p-card styleClass="h-full" class="b-body">
             <router-outlet></router-outlet>
         </p-card>
     </div>

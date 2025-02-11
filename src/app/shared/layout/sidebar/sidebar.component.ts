@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
   menu = MENU;
   opened = true;
   @Output() toggle = new EventEmitter<any>();
+  @Output() changeStyle = new EventEmitter<{exist:boolean,className:string}>();
   constructor() { }
 
   ngOnInit(): void {
@@ -23,6 +24,12 @@ export class SidebarComponent implements OnInit {
   toggleSideBar(){
     this.opened = !this.opened
     this.toggle.emit(this.opened)
+    if(this.opened){
+      this.changeStyle.emit({exist:true,className:'new-tolpabr'})
+    }else{
+      this.changeStyle.emit({exist:false,className:'new-tolpabr'})
+    }
   }
+
 
 }
