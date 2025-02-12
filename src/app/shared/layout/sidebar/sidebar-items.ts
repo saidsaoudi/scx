@@ -1,10 +1,12 @@
 export const MENU = [
     {
+        
         'icon': 'pi pi-users',
         'label': 'Rapports Globaux',
         'showSubMenu': false,
         'children': [
-            {
+            {   
+                'routerLink': 'stockimages',
                 'icon': 'pi pi-file-export',
                 'label': 'Archive des images de stock',
                 'showSubMenu': false,

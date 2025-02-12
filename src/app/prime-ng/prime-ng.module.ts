@@ -28,7 +28,9 @@ import { DividerModule } from 'primeng/divider';
 import { BadgeModule } from 'primeng/badge';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ProgressBarModule } from 'primeng/progressbar';
-
+import { PanelModule } from 'primeng/panel';
+import { TabViewModule } from 'primeng/tabview';
+import { InputOtpModule } from 'primeng/inputotp';
 
 
 const MODULES = [
@@ -60,6 +62,9 @@ const MODULES = [
     BadgeModule,
     AutoCompleteModule,
     ProgressBarModule,
+    PanelModule,
+    TabViewModule,
+    InputOtpModule
 ]
 
 @NgModule({

@@ -18,6 +18,11 @@
 // ::-ms-input-placeholder { /* Microsoft Edge */
 //     color: #DBDBDB;
 // }
+
+*{
+  margin: 0;
+  padding: 0;
+}
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import '../node_modules/@syncfusion/ej2-base/styles/material.css';
@@ -37,10 +42,7 @@
 //     background-repeat: no-repeat;
 //     background-size: cover;
 // }
-*{
-    margin: 0;
-    padding: 0;
-}
+
 .uppercase-text {
   text-transform: uppercase;
 }
@@ -57,7 +59,6 @@ h2{
   font-weight: 400 !important;
   font-size: 27.0939px;
   line-height: 32px;
-  color: rgb(32, 168, 211);
 }
 h4,
 h5,
@@ -67,7 +68,6 @@ button{
 }
 p{
   font-family: Ubuntu;
-  color: rgb(32, 168, 211);
 }
 label{
   font-family: Ubuntu;

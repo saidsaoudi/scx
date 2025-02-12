@@ -1,0 +1,18 @@
+.card-panel{
+    padding: 1rem 2rem 2rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    
+}
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #ffffff;
+    border-color: #20a8d3;
+    color: #121212;
+}
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link,
+::ng-deep .p-tabview-panel{
+    padding: 20px;
+}
+::ng-deep .chiffre .p-inputtext{
+    padding: 10px;
+}

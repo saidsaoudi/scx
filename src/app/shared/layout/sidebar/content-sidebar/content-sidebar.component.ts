@@ -24,7 +24,6 @@ export class ContentSidebarComponent implements OnInit {
       console.log(item)
     }
   }
-
   hideSubMenus(item: any){
     item.children.forEach((elm: any) => {
       elm.showSubMenu = false;

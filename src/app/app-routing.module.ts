@@ -10,6 +10,7 @@ const routes: Routes = [
     { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)},
     { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
     { path: 'user', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
+    { path: 'stockimages', loadChildren: () => import('./modules/images-stock/images-stock.module').then(m => m.ImagesStockModule) },
 
 
 ];
