@@ -1,64 +1,50 @@
-
-.card-body{
-    .spearator0 {
-        width: 100%;
-        height: 4px;
-        background-color: #24d2b5;
-    }
-    .spearator1 {
-        width: 100%;
-        height: 4px;
-        background-color: #20aee3;
-    }
-    .spearator2 {
-        width: 100%;
-        height: 4px;
-        background-color: #ff9041;
-    }
-    .spearator3 {
-        width: 100%;
-        height: 4px;
-        background-color: #ff5c6c;
-    }
-    .card{
-        background-color: #fbfcfd;
-        color: #5b676d;
-        border: 0px;
-        border-radius: 0px;
-        -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-        .pi-chart-line{
-            color:#24d2b5;
+.tableau-bord{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #CCCCCC;
+    border-radius: 16px;
+    padding: 20px;
+        h3{
+            color: #25265E;
         }
-        .pi-ban{
-            color: #20aee3;
-        }
-        .pi-hourglass{
-            color: #ff9041;
-        }
-        .pi-exclamation-triangle{
-            color: #ff5c6c;
-        }
-    }
 }
-.card-body-btm{
-    background-color: #fbfcfd;
-    color: #5b676d;
-    border: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-    p{
-        color: #5b676d;
-        span{
-            color: black;
-        }
+::ng-deep .chartline{
+    display: flex;
+    height: 100px !important;
+    width: 100% !important;
+}
+.bg-chart{
+    background: linear-gradient(180deg, #FFFFFF 0%, #B7D6FE 100%);
+    box-shadow: inset 0px 3px 6px #00000029;
+    border: 2px solid #CCD6EE94;
+    border-radius: 12px;
+    padding: 10px;
+    h3{
+        color: #25265E;
+        font-size: 14px;
+        padding-bottom: 10px;
     }
-    .badge-span{
-        border-radius: 10px;
-        background-color: #20a8d3;
-        color: #fff;
-        padding: 8px;
-        font-size: 10px;
+    .btm-chart{
+        .btnplus{
+            line-height: 2;
+        }
+        h2{
+            color: #25265E;
+            font-weight: bold;
+        }
+        ::ng-deep .p-button{
+            padding: 5px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px #0000003C;
+            border-radius: 7px;
+            color: #25265E;
+        }
+        ::ng-deep .p-button-label {
+            padding-left: 10px;
+            font-size: 13px;
+        }
+        ::ng-deep .p-button-icon{
+            font-size: 10px;
+        }
     }
 }

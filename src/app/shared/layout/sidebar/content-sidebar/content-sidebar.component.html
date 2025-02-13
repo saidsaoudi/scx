@@ -12,7 +12,6 @@
             <span>{{item.label}}</span>
         </a>
         <i class="pi pi-angle-right absolute"></i>
-        <!-- <i class="pi absolute" [ngClass]="showSubMenu ? 'pi-angle-down': 'pi-angle-right'"></i> -->
         <app-content-sidebar #child [menu]="item.children" *ngIf="item.showSubMenu"></app-content-sidebar>
     </li>
 </ng-container>

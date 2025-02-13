@@ -1,7 +1,7 @@
 <div id="layout" *ngIf="loggedIn()">
-    <app-header (changeStyle)="cardleft($event)"></app-header>
-    <div class="w-auto card-left" #cardleftElement>
-        <p-card styleClass="h-full" class="b-body">
+    <app-header></app-header>
+    <div class="w-auto">
+        <p-card styleClass="h-full" class="home-card">
             <router-outlet></router-outlet>
         </p-card>
     </div>

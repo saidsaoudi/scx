@@ -31,9 +31,10 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
 import { InputOtpModule } from 'primeng/inputotp';
-
+import { ChartModule } from 'primeng/chart';
 
 const MODULES = [
+    ChartModule,
     SkeletonModule,
     BreadcrumbModule,
     InputTextModule,
@@ -64,7 +65,8 @@ const MODULES = [
     ProgressBarModule,
     PanelModule,
     TabViewModule,
-    InputOtpModule
+    InputOtpModule,
+    
 ]
 
 @NgModule({

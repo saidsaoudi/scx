@@ -1,189 +1,89 @@
-<!-- <div>
-    <div class="top grid w-auto  py-2 px-3 mb-5">
-      <div class="pr-3 mt-3">
-        <img src="../../../../assets/img/icon-menu.png" alt="" class="mt-1 w-full cursor-pointer "  pRipple (click)="op.toggle($event)">
-      </div>
-        <p-overlayPanel #op>
-            <ng-template pTemplate>
-                <ul class="menu-details">
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3" (click)="goToTourcontrole()">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon1.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Tour de control</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon1.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Alerts Management</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon2.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">TMS</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid  bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Approvisionnement</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid  bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Planification (APS)</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Inventaire</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Mouvement</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Veille</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3">
-                      <div class="grid bg-menu">
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Paramètre</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-4" (click)="logout()">
-                      <div class="grid bg-menu" >
-                        <div class="col-1">
-                          <img src="../../../../assets/img/icons/icon3.svg" alt="" class="img-visio">
-                        </div>
-                        <div class="col-8">
-                          <p class="name mt-1 pl-2">Déconnexion</p>
-                        </div>
-                      </div>
-                    </li>
-                </ul>
-            </ng-template>
-        </p-overlayPanel>
-        <div class="col-12 sm:col-4 md:col-5 lg:col-9">
-          <img src="../../../../assets/img/logo.png" alt="" class="w-2 mt-3">
-        </div>
-        <div class="col-12 sm:col-12 md:col-3 lg:col-2 lg:text-right mt-2 hidden lg:block">
-          <img src="../../../../assets/img/dawla.png" alt="" class="w-full">
-        </div>
-      </div>
-</div> -->
-<div class="fixed w-full z-1">
-  <div class="grid tolbar bg-white"  #toolbar>
-    <div class="col-12 sm:col-12 md:col-12 lg:col-6 flex align-items-center">
-      <ul class="list-none flex  align-items-center pl-5 pt-3">
-        <li class="pr-4 cursor-pointer" (click)="goToHome()">
-          <i class="pi pi-home text-xl "></i>
-        </li>
-        <li class="search-autocmpt">
-          <p-floatLabel>
-            <p-autoComplete 
-                [(ngModel)]="selectedItem" 
-                [suggestions]="suggestions" 
-                (completeMethod)="search($event)" 
-                inputId="float-label"/>
-            <label for="float-label" class="label-autto">Changer de dépôt</label>
-        </p-floatLabel>
-        </li>
-      </ul>
+<div>
+  <div class="top grid  w-auto mb-3  mx-0 p-0">
+    <div class="col-12 sm:col-4 md:col-2 lg:col-1">
+      <img src="../../../../assets/img/icon-menu.png" class="menu cursor-pointer lg:w-4 pt-3  ml-3" pRipple (click)="op.toggle($event)">
     </div>
-    <div class="col-12 sm:col-12 md:col-12 lg:col-6 flex align-items-center justify-content-end pr-4">
-      <ul class="list-none flex  align-items-center pt-3">
-        <li class="pr-4 cursor-pointer"><i class="pi pi-comments text-xl "></i></li>
-        <li class="pr-4 cursor-pointer"><i class="pi pi-microsoft text-xl "></i></li>
-        <li class="pr-5">
-          <i class="pi pi-bell text-xl cursor-pointer" pBadge value="1" (click)="ntf.toggle($event)"></i>
-          <p-overlayPanel #ntf>
-            <ng-template pTemplate>
-              <div class="pt-3 pb-3 text-center">
-                <div class="text-center open-notif"><i class="pi pi-folder-open text-4xl"></i></div>
-                <p class="text-center p-3">Vous n'avez aucune notification récente</p>
-            </div>
-            </ng-template>
-        </p-overlayPanel>
-        </li>
-        <li>
-          <div class="separate">
-            <div class="flex align-items-center gap-2 cursor-pointer"  pRipple (click)="op.toggle($event)">
-              <p-avatar 
-                  image="https://primefaces.org/cdn/primeng/images/demo/avatar/walter.jpg" 
-                  size="large" 
-                  shape="circle"/>
-              <span class="font-bold">
-                  Said Essaoudi
-              </span>
-            </div>
-          </div>
-            <p-overlayPanel #op>
-                <ng-template pTemplate>
-                  <ul class="menu-details">
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3" (click)="goTouser()">
-                      <a class="flex align-items-center no-underline text-color">
-                          <i class="pi pi-user text-primary"></i>
-                          <span class="pl-3">Mon compte</span>
-                      </a>
+      <p-overlayPanel #op>
+          <ng-template pTemplate>
+              <ul class="menu-details">
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Tour de control</p>
+                      </div>
+                    </div>
                   </li>
-                    <li pRipple class="p-2 cursor-pointer pl-3 pr-3 pb-3" (click)="logout()">
-                        <a class="flex align-items-center no-underline text-color">
-                            <i class="pi pi-power-off text-primary"></i>
-                            <span class="pl-3">Déconnexion</span>
-                        </a>
-                    </li>
-                  </ul>
-                </ng-template>
-            </p-overlayPanel>
-        </li>
-      </ul>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Alerts Management</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">TMS</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon3.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Approvisionnement</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon3.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Planification (APS)</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Inventaire</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer" (click)="logout()">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Déconnexion</p>
+                      </div>
+                    </div>
+                  </li>
+              </ul>
+          </ng-template>
+      </p-overlayPanel>
+      <div class="col-12 sm:col-4 md:col-5 lg:col-7 pl-0">
+        <img src="../../../../assets/img/logo.png" alt="" class="w-3 pt-3">
+      </div>
+      <div class="col-12 sm:col-12 md:col-3 lg:col-4 lg:text-right">
+        <img src="../../../../assets/img/dawla.png" alt="" class="cursor-pointer w-5 pt-3">
+      </div>
     </div>
-  </div>
 </div>
-<app-sidebar (changeStyle)="updateStyle($event)"></app-sidebar>

@@ -47,3 +47,6 @@
     padding: 25px;
     height: 100vh;
 }
+::ng-deep .home-card .p-card{
+    box-shadow: none;
+}
