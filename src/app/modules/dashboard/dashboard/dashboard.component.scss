@@ -3,7 +3,7 @@
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #CCCCCC;
     border-radius: 16px;
-    padding: 20px;
+    padding: 15px;
         h3{
             color: #25265E;
         }
@@ -13,7 +13,7 @@
     height: 100px !important;
     width: 100% !important;
 }
-.bg-chart{
+::ng-deep .bg-chart{
     background: linear-gradient(180deg, #FFFFFF 0%, #B7D6FE 100%);
     box-shadow: inset 0px 3px 6px #00000029;
     border: 2px solid #CCD6EE94;
@@ -32,19 +32,48 @@
             color: #25265E;
             font-weight: bold;
         }
-        ::ng-deep .p-button{
+        .p-button{
             padding: 5px;
             background: #FFFFFF 0% 0% no-repeat padding-box;
             box-shadow: 0px 3px 6px #0000003C;
             border-radius: 7px;
             color: #25265E;
         }
-        ::ng-deep .p-button-label {
+        .p-button-label {
             padding-left: 10px;
             font-size: 13px;
         }
-        ::ng-deep .p-button-icon{
+         .p-button-icon{
             font-size: 10px;
         }
     }
 }
+::ng-deep .map {
+    width: 100%;
+    height: 100vh;
+    }
+::ng-deep .filter {
+    .p-dropdown{
+        width: 14rem;
+    }
+    .w-hopital   .p-dropdown{
+        width: 19rem;
+    }
+    .p-inputtext,
+    .p-dropdown-item{
+        padding: 0.5rem 0.75rem;
+    }
+    .search-filter .p-button{
+        width: 2.5rem;
+        padding: 0.5rem 0;
+        background-color: #0A536F;
+        border-color: #0A536F;
+    }
+    .download-filter .p-button{
+        width: 2.5rem;
+        padding: 0.5rem 0;
+        background-color: #2A72B9;
+        border-color: #2A72B9;
+    }
+ }
+  

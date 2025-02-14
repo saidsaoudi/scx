@@ -1,3 +1,41 @@
+<div class="filter p-2 mb-3 ml-2 flex gap-3">
+    <div>
+        <p-dropdown 
+            [options]="regions" 
+            [(ngModel)]="selectedRegion" 
+            optionLabel="name" 
+            placeholder="Région : Tous" />
+    </div>
+    <div>
+        <p-dropdown 
+            [options]="province" 
+            [(ngModel)]="selectedProvince" 
+            optionLabel="name" 
+            placeholder="Province : Tous" />
+    </div>
+    <div>
+        <p-dropdown 
+            [options]="hopital"
+            class="w-hopital"
+            [(ngModel)]="selectedHopital" 
+            optionLabel="name" 
+            placeholder="Centre de santé + Hopital : Tous" />
+    </div>
+    <div>
+        <p-calendar 
+        [(ngModel)]="rangeDates" 
+        selectionMode="range" 
+        [readonlyInput]="true"
+        [showIcon]="true"  
+        placeholder="Du 20/09/25 au 27/09/25" />
+    </div>
+    <div>
+        <p-button icon="pi pi-search" class="search-filter"/>
+    </div>
+    <div>
+        <p-button icon="pi pi-download" class="download-filter"/>
+    </div>
+</div>
 <div class="grid ml-2 mr-2">
     <div class="col-12 sm:col-12 md:col-12 lg:col-8">
         <div class="tableau-bord">
@@ -101,6 +139,8 @@
         </div>
     </div>
     <div class="col-12 sm:col-12 md:col-12 lg:col-4">
-        Maps
+        <div class="map">
+            <div id="map" style="width:100%;height:100%"></div>
+            </div>
     </div>
 </div>

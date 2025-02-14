@@ -1,5 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import * as L from 'leaflet';
+import { map } from 'leaflet';
+interface Region {
+  name: string;
+  code: string;
+}
+interface Province {
+  name: string;
+  code: string;
+}
+interface Hopital {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,9 +20,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  regions: Region[] | undefined;
+  selectedRegion: Region | undefined;
 
+  province : Province[] | undefined;
+  selectedProvince: Province | undefined;
+
+  hopital : Hopital[] | undefined;
+  selectedHopital: Hopital | undefined;
+
+  rangeDates: Date[] | undefined;
+  
+  @ViewChild('map')
+  private mapContainer: ElementRef<HTMLElement>;
   constructor() { }
+  map: any;
 
+  
+  markerLocations = [
+    {
+      lng:-7.09262,
+      lat:  31.791702,
+      zoom: 10,
+    },
+  ];
   data: any;
   databar : any;
   databardouble : any;
@@ -18,7 +52,53 @@ export class DashboardComponent implements OnInit {
   optionsdata: any;
   optionsdatadouble : any;
 
+  ngAfterViewInit() {
+    this.map = map('map').setView([33.589886,-7.603869 ], 6);
+    
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(this.map);
+
+    this.addMarkers();
+  }
+
+  addMarkers() {
+    const icon = L.icon({
+      iconUrl:
+        '../../../../assets/img/icons/marker.png',
+      iconSize: [41, 41], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    });
+
+    this.markerLocations.forEach((t) => {
+      L.marker([t.lat, t.lng], { icon }).addTo(this.map).bindPopup('Hi!!');
+    });
+  }
   ngOnInit() {
+    this.regions = [
+      { name: 'Grand Casablanca', code: 'GC' },
+      { name: 'Chaouia-Ouardigha', code: 'CO' },
+      { name: 'Fès-Boulemane', code: 'FB' },
+      { name: 'Guelmim-Es Semara', code: 'GS' },
+      { name: 'Meknès-Tafilalet', code: 'MT' }
+  ];
+  this.province = [
+    { name: 'Casablanca', code: 'CO' },
+    { name: 'Mohammédia', code: 'FB' },
+    { name: 'Nouaceur', code: 'GC' },
+    { name: 'Médiouna', code: 'GS' },
+  ];
+  this.hopital = [
+    { name: 'Casablanca', code: 'CO' },
+    { name: 'Mohammédia', code: 'FB' },
+    { name: 'Nouaceur', code: 'GC' },
+    { name: 'Médiouna', code: 'GS' },
+  ];
    const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -121,7 +201,7 @@ export class DashboardComponent implements OnInit {
               data: [21, 84, 24, 75, 37, 65, 34,50, 25, 12, 48, 90, 76, 42,5, 34,60, 50, 40, 30, 20, 10]
           }
       ]
-  };
+  }; 
 
   this.optionsdatadouble = {
       maintainAspectRatio: false,

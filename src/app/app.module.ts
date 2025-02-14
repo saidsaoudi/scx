@@ -19,7 +19,7 @@ import { StarComponent } from './shared/components/star/star.component';
 import { GoBackComponent } from './shared/components/go-back/go-back.component';
 import { ImageWithPreviewComponent } from './shared/components/image-with-preview/image-with-preview.component';
 import { BooleanTagComponent } from './shared/components/boolean-tag/boolean-tag.component';
-
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({
@@ -43,6 +43,7 @@ import { BooleanTagComponent } from './shared/components/boolean-tag/boolean-tag
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
+    LeafletModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
