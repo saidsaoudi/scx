@@ -32,6 +32,8 @@ import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
 import { InputOtpModule } from 'primeng/inputotp';
 import { ChartModule } from 'primeng/chart';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
 const MODULES = [
     ChartModule,
@@ -66,6 +68,8 @@ const MODULES = [
     PanelModule,
     TabViewModule,
     InputOtpModule,
+    TableModule,
+    DialogModule
     
 ]
 

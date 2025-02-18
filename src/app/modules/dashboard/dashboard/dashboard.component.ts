@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { map } from 'leaflet';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogTablbordComponent } from '../dialog-tablbord/dialog-tablbord.component';
+
 interface Region {
   name: string;
   code: string;
@@ -17,7 +20,8 @@ interface Hopital {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: false,
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [DialogService]
 })
 export class DashboardComponent implements OnInit {
   regions: Region[] | undefined;
@@ -28,12 +32,13 @@ export class DashboardComponent implements OnInit {
 
   hopital : Hopital[] | undefined;
   selectedHopital: Hopital | undefined;
-
   rangeDates: Date[] | undefined;
   
   @ViewChild('map')
   private mapContainer: ElementRef<HTMLElement>;
-  constructor() { }
+  constructor(
+    private dialogService: DialogService,
+  ) { }
   map: any;
 
   
@@ -55,7 +60,6 @@ export class DashboardComponent implements OnInit {
   ngAfterViewInit() {
     this.map = map('map').setView([33.589886,-7.603869 ], 6);
     
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -242,4 +246,15 @@ export class DashboardComponent implements OnInit {
   };
   }
 
+  DetailTablBoard() {
+    const ref = this.dialogService.open(DialogTablbordComponent, {
+      header: 'TAUX DE PÉREMPTION',
+      width: '50%',
+      data: {}
+    });
+
+    ref.onClose.subscribe((data) => {
+      console.log('Dialog closed with data:', data);
+    });
+  }
 }

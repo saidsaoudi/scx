@@ -1,0 +1,58 @@
+::ng-deep .dialog-chart{
+    background: linear-gradient(180deg, #FFFFFF 0%, #B7D6FE 100%);
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+    border: 2px solid rgba(204, 214, 238, 0.5803921569);
+    border-radius: 12px;
+    padding: 10px;
+    h2{
+        color: #25265E;
+        font-weight: bold;
+    }
+    .dialogchartline{
+        display: flex;
+        height: 100px;
+        div{
+            width: 100% ;
+        }
+    }
+}
+::ng-deep .p-dialog-header{
+    padding: 10px;
+}
+.chartbartabl{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 6px #00000029;
+    border: 2px solid #CCD6EE94;
+    border-radius: 12px;
+    padding: 10px
+}
+::ng-deep .btndialog{
+    .p-button{
+        padding: 10px;
+    }
+    .p-button-label{
+        padding-left: 10px;
+    }
+     .btn-detail .p-button{
+        background-color: #72C1C6;
+        border-color:#72C1C6 ;
+    }
+    .btn-fermer .p-button{
+        background-color:transparent;
+        color: #4F4F50;
+        border-color:#4F4F50 ;
+    }
+}
+tr:nth-child(even) {
+    background-color: #F2FCF1;
+}
+table {
+    border-spacing: 0;
+    border-collapse: initial;
+}
+table th, table td {
+    border: 1px solid #cbc9c9;
+}
+table th:first-child {
+    border-radius: 5px 0px 0px 0px;
+}
