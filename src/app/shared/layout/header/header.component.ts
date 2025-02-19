@@ -45,8 +45,8 @@ export class HeaderComponent implements OnInit {
   goToHome(){
     window.location.href = '/dashboard'
   }
-  goTouser(){
-    window.location.href = '/user'
+  goTms(){
+    window.location.href = '/tms'
   }
   updateStyle(event: {exist:boolean,className:string}) {
     console.log("Received style event:", event);

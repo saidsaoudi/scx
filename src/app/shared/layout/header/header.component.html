@@ -6,7 +6,7 @@
       <p-overlayPanel #op>
           <ng-template pTemplate>
               <ul class="menu-details">
-                  <li pRipple class="cursor-pointer">
+                  <li pRipple class="cursor-pointer" (click)="goToHome()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
                         <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
@@ -26,7 +26,7 @@
                       </div>
                     </div>
                   </li>
-                  <li pRipple class="cursor-pointer">
+                  <li pRipple class="cursor-pointer" (click)="goTms()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
                         <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-7">
@@ -79,10 +79,10 @@
               </ul>
           </ng-template>
       </p-overlayPanel>
-      <div class="col-12 sm:col-4 md:col-5 lg:col-7 pl-0 mt-1">
+      <div class="col-12 sm:col-4 md:col-5 lg:col-7 pl-0 mt-1 md:block hidden">
         <img src="../../../../assets/img/logo.png" alt="" class="w-3 pt-3">
       </div>
-      <div class="col-12 sm:col-12 md:col-3 lg:col-4 lg:text-right">
+      <div class="col-12 sm:col-4 md:col-3 lg:col-4 lg:text-right md:block hidden">
         <img src="../../../../assets/img/dawla.png" alt="" class="cursor-pointer w-5 pt-3">
       </div>
     </div>
