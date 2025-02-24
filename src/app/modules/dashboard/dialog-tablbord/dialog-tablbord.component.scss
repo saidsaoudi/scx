@@ -56,3 +56,9 @@ table th, table td {
 table th:first-child {
     border-radius: 5px 0px 0px 0px;
 }
+::ng-deep .dialog-input .p-inputtext{
+    padding: 0.5rem 0.75rem;
+}
+.justify-end{
+    justify-content: end;
+}

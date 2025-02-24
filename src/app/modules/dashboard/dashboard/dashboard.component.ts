@@ -143,50 +143,190 @@ export class DashboardComponent implements OnInit {
     //data bar
 
     this.databar = {
-      labels: ['ELOXATINE', 'VIVALAN', 'MYNAZOL', 'NOCAND', 'GASTROLIBER', 'ZELDOX', 'AVT','HYDROXO','MUSARIL','CLAFORAN','RIFASONE','AMOXIL','AMOXIL','UNASYN','DILATOR','FORMOFTIL','UMILINE','GLEMA','XANTHIUM','GYNOMYK','FLUMAX','TRIFAX'],
-      datasets: [
-          {
-              label: 'My First dataset',
-              backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-              borderColor: documentStyle.getPropertyValue('--blue-500'),
-              data: [100, 95, 90, 85, 80, 75, 70,65,60,55,50,45,40,35,30,25,20,15,10,5,2,1]
-          }
-      ]
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: documentStyle.getPropertyValue('--blue-500'),
+                    tension: 0.4
+                },
+                {
+                    label: 'Second Dataset',
+                    data: [28, 48, 40, 19, 86, 27, 90],
+                    fill: false,
+                    borderColor: documentStyle.getPropertyValue('--pink-500'),
+                    tension: 0.4
+                },
+                {
+                    label: 'Trow Dataset',
+                    data: [15, 20, 60, 17, 90, 30, 93],
+                    fill: false,
+                    borderColor: documentStyle.getPropertyValue('--yellow-500'),
+                    tension: 0.4
+                },
+                {
+                  label: 'four Dataset',
+                  data: [62, 51, 33, 65, 80, 40, 12],
+                  fill: false,
+                  borderColor: documentStyle.getPropertyValue('--purple-500'),
+                  tension: 0.4
+              },
+              {
+                label: 'five Dataset',
+                data: [100, 30, 50, 70, 55, 33, 81],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--rose-500'),
+                tension: 0.4
+              },
+              {
+                label: '6 Dataset',
+                data: [120, 90, 70, 33, 15, 17, 25],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--stone-500'),
+                tension: 0.4
+              },
+              {
+                label: '7 Dataset',
+                data: [58, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '8 Dataset',
+                data: [58, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '9 Dataset',
+                data: [120, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '10 Dataset',
+                data: [26, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '11 Dataset',
+                data: [69, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '12 Dataset',
+                data: [23, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '12 Dataset',
+                data: [23, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '13 Dataset',
+                data: [96, 35, 132, 65, 53, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '14 Dataset',
+                data: [120, 99, 85, 65, 32, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '15 Dataset',
+                data: [20, 15, 150, 88, 15, 23, 123],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '16 Dataset',
+                data: [56, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '17 Dataset',
+                data: [88, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '18 Dataset',
+                data: [192, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '19 Dataset',
+                data: [165, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              },
+              {
+                label: '20 Dataset',
+                data: [215, 35, 120, 65, 15, 23, 77],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--cyan-500'),
+                tension: 0.4
+              }
+            ]
   };
 
   this.optionsdata = {
-      maintainAspectRatio: false,
-      aspectRatio: 0.8,
-      plugins: {
-          legend: {
-            display: false
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: textColorSecondary,
-                  font: {
-                      weight: 500
-                  }
-              },
-              grid: {
-                  color: surfaceBorder,
-                  drawBorder: false
-              }
-          },
-          y: {
-              ticks: {
-                  color: textColorSecondary
-              },
-              grid: {
-                  color: surfaceBorder,
-                  drawBorder: false
-              }
-          }
+    maintainAspectRatio: false,
+    aspectRatio: 0.6,
+    plugins: {
+        legend: {
+            labels: {
+                color: textColor
+            }
+        }
+    },
+    scales: {
+        x: {
+            ticks: {
+                color: textColorSecondary
+            },
+            grid: {
+                color: surfaceBorder,
+                drawBorder: false
+            }
+        },
+        y: {
+            ticks: {
+                color: textColorSecondary
+            },
+            grid: {
+                color: surfaceBorder,
+                drawBorder: false
+            }
+        }
+    }
 
-      }
-    };
+};
 
     //chart bar double 
     this.databardouble = {

@@ -34,6 +34,7 @@ import { InputOtpModule } from 'primeng/inputotp';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 const MODULES = [
     ChartModule,
@@ -69,7 +70,8 @@ const MODULES = [
     TabViewModule,
     InputOtpModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    RadioButtonModule
     
 ]
 

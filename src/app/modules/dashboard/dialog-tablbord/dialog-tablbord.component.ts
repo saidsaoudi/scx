@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './dialog-tablbord.component.scss'
 })
 export class DialogTablbordComponent implements OnInit {
-
-
- 
+  ingredient!: string;
+  date: Date[] | undefined;
+  rangeDates: Date[] | undefined;
   headerColumuns = [
     'Produit',
     'Qté périmée',

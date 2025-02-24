@@ -1,3 +1,37 @@
+<div class="flex flex-wrap gap-3 justify-end p-2">
+  <div class="flex align-items-center">
+    <p-radioButton 
+      name="pizza" 
+      value="Cheese" 
+      [(ngModel)]="ingredient" 
+      inputId="ingredient1" />
+    <label for="ingredient1" class="ml-2">
+      <p-calendar 
+        [(ngModel)]="date" 
+        view="month" 
+        dateFormat="mm/yy" 
+        [readonlyInput]="true"
+        class="dialog-input"
+        placeholder="Mois" />
+    </label>
+  </div>
+  <div class="flex align-items-center">
+    <p-radioButton 
+      name="range1" 
+      value="range" 
+      [(ngModel)]="ingredient" 
+      inputId="ingredient2" />
+    <label for="ingredient2" class="ml-2">
+      <p-calendar 
+        [(ngModel)]="rangeDates" 
+        selectionMode="range" 
+        [readonlyInput]="true"
+        [showIcon]="true"
+        class="dialog-input"  
+        placeholder="From 20/09/25 To 27/09/25" />
+    </label>
+  </div>
+</div>
 <div class="col-12 sm:col-12 md:col-12 lg:col-12 p-2">
     <div class="dialog-chart">
         <h3 class="pb-2">Taux de péremption</h3>
