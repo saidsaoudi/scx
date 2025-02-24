@@ -1,1 +1,111 @@
-<p>tms works!</p>
+<div class="tms">
+    <div class="flex justify-end gap-3 filter">
+        <div>
+            <p-button label="Éxpédition" icon="pi pi-list" class="btn-expedition"/>
+        </div>
+        <div class="mr-3">
+            <label class="pr-2">Filtrer par :</label>
+            <p-calendar 
+            [(ngModel)]="date" 
+            view="month" 
+            dateFormat="mm/yy" 
+            [readonlyInput]="true"
+            [showIcon]="true"  
+            placeholder="Mois"/>
+        </div>
+    </div>
+    <div class="lg:flex md:block justify-between gap-5 ml-5 mr-5 mt-5 mb-4 list-items">
+        <div class="grid  items pt-4">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-10 pl-2">
+                <h2>Nbr de camions</h2>
+                <h3>132</h3>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-2 text-right pr-3">
+                <i class="pi pi-truck"></i>
+            </div>
+        </div>
+        <div class="grid  items pt-4">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-8 pl-2">
+                <h2>Nbr des camions affectés</h2>
+                <h3>45</h3>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-4 text-right pr-3">
+                <i class="pi pi-thumbs-up"></i>
+            </div>
+        </div>
+        <div class="grid  items pt-4">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-8 pl-3">
+                <h2>Taux de chargement</h2>
+                <h3>87</h3>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-4 text-right pr-3">
+                <i class="pi pi-percentage"></i>
+            </div>
+        </div>
+        <div class="grid items pt-4">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-8 pl-3">
+                <h2>Taux de livraison à temps</h2>
+                <h3>60%</h3>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-4 text-right pr-3">
+                <i class="pi pi-clock"></i>
+            </div>
+        </div>
+        <div class="grid  items pt-4">
+            <div class="col-12 sm:col-12 md:col-12 lg:col-8 pl-3">
+                <h2>Taux de retour</h2>
+                <h3>60%</h3>
+            </div>
+            <div class="col-12 sm:col-12 md:col-12 lg:col-4 text-right pr-3">
+                <i class="pi pi-replay"></i>
+            </div>
+        </div>
+    </div>
+    <div class="grid ml-3 mr-3 mt-4">
+        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+            <h3>Taux de livraison par entrepôt</h3>
+            <div class="mt-4 mb-4">
+                <p-chart type="bar" [data]="data" [options]="options" />
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+            <h3>Nombre d’alertes TMS par Camion</h3>
+            <div class="mt-4 mb-4">
+                <p-chart type="bar" [data]="datatms" [options]="optionstms" />
+            </div>
+        </div>
+    </div>
+    <div class="grid ml-3 mr-3 mt-4 mb-4">
+        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+            <h3>Liste des anomalies remontées lièes à la chaine de froid des camions</h3>
+            <div class="overflow-auto">
+                <table class="w-full text-left text-gray-500 mt-4">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let header of headerColumuns" scope="col"
+                        class="p-3 font-bold whitespace-nowrap text-black">
+                        {{ header }}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-row  whitespace-nowrap border-b border-gray-800"
+                      *ngFor="let produit of [0,1,2,3]">
+                      <td class="p-3 font-medium">03/11/2024</td>
+                      <td class="p-3 font-medium">1234-A-32</td>
+                      <td class="p-3 font-medium">Non-respect des plages de température</td>
+                      <td class="p-3 font-medium">Température trop basse ou trop élevée par rapport aux seuils définis pour la marchandise transportée</td>
+                      <td class="p-3 font-medium">Altération ou détérioration des produits</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+            <h3>Graphe de température par camion</h3>
+            <div class="mt-4">
+                <p-chart type="line" [data]="dataline" [options]="optionsline" />
+            </div>
+        </div>
+    </div>
+</div>

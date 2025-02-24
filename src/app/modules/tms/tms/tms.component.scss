@@ -1,0 +1,87 @@
+::ng-deep .tms{
+    h3{
+        color: #1B5D75;
+    }
+  .btn-expedition .p-button{
+    background: #000000;
+    border-radius: 10px;
+    padding: 10px;
+    border-color: #000000;
+  }
+  .p-button-label{
+    padding-left: 10px;
+  }
+  .p-inputtext{
+    padding: 10px;
+  }
+  label{
+    color: #526581;
+  }
+  .justify-between{
+    justify-content: space-between;
+  }
+  .list-items .items{
+    position: relative;
+    background: #E7F7F7 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    width: 20%;
+  }
+  .list-items .items:after {
+    content: " ";
+    position: absolute;
+    border-left: 3px #58ADC9 solid;
+    top: 10%;
+    left: 0px;
+    height: 80%;
+  }
+  .items{
+    height: 111px;
+    h2{
+        font-size: 13px;
+        color: #000000;
+    }
+    h3{
+        color: #58ADC9;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    i{
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 16px;
+        padding: 10px;
+    }
+  }
+  @media only screen and (max-width: 780px) {
+    .items {
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .list-items .items{
+        width: 100%;
+    }
+    .filter{
+        margin-top: 15%;
+    }
+  }
+  
+}
+.justify-end{
+    justify-content: end;
+}
+tr:nth-child(even) {
+    background-color: #F9FAFB;
+}
+table {
+    border-spacing: 0;
+    border-collapse: initial;
+}
+table th{
+    color: #25265E;
+}
+table th, table td {
+    border: 1px solid #cbc9c9;
+    font-size: 15px;
+}
+table th:first-child {
+    border-radius: 5px 0px 0px 0px;
+}

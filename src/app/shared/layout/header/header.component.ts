@@ -10,6 +10,8 @@ interface AutoCompleteCompleteEvent {
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  
   @ViewChild('toolbar') toolbar!: ElementRef; // Get the div reference
   items: any[] | undefined;
 
@@ -47,6 +49,9 @@ export class HeaderComponent implements OnInit {
   }
   goTms(){
     window.location.href = '/tms'
+  }
+  goAlertManagement(){
+    window.location.href = '/alerts-management'
   }
   updateStyle(event: {exist:boolean,className:string}) {
     console.log("Received style event:", event);

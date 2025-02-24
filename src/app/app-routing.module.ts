@@ -10,6 +10,8 @@ const routes: Routes = [
     { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)},
     { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
     { path: 'tms', loadChildren: () => import('./modules/tms/tms.module').then(m => m.TmsModule) },
+    { path: 'alerts-management', loadChildren: () => import('./modules/alerts-management/alerts-management.module').then(m => m.AlertsManagementModule) },
+
 
 
 ];
