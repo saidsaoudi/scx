@@ -35,6 +35,9 @@ import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+
 
 const MODULES = [
     ChartModule,
@@ -71,8 +74,9 @@ const MODULES = [
     InputOtpModule,
     TableModule,
     DialogModule,
-    RadioButtonModule
-    
+    RadioButtonModule,
+    FileUploadModule,
+    ToastModule
 ]
 
 @NgModule({
