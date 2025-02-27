@@ -20,6 +20,12 @@ import { GoBackComponent } from './shared/components/go-back/go-back.component';
 import { ImageWithPreviewComponent } from './shared/components/image-with-preview/image-with-preview.component';
 import { BooleanTagComponent } from './shared/components/boolean-tag/boolean-tag.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './core/store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './core/store/effects';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -36,6 +42,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
    ],
   imports: [
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects), // Ensure effects are included
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

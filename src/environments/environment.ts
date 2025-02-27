@@ -4,10 +4,8 @@
 
 export const environment = {
   production: false,
-  // URL: 'http://localhost:8001/api/',
-  // STORAGE: 'http://localhost:8001/storage/',
-  URL: 'https://stag.api.visiostation.com/v1/',
-  STORAGE: 'http://localhost:8001/storage/',
+  URL: 'http://localhost:8000/api/',
+  STORAGE: 'http://localhost:8000/storage/',
 };
 
 /*

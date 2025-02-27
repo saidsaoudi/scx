@@ -3,6 +3,16 @@ import * as L from 'leaflet';
 import { map } from 'leaflet';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogTablbordComponent } from '../dialog-tablbord/dialog-tablbord.component';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/store/app.states';
+import { ULC } from 'src/app/core/models/ulc';
+import { fetchUlcs } from 'src/app/core/store/ulc/ulc.action';
+import { selectLoadingUlcs, selectUlcPayload } from 'src/app/core/store/ulc/ulc.selector';
+import { selectLoadingStatistics, selectStatisticPayload } from 'src/app/core/store/statistic/statistic.selector';
+import { Statistic } from 'src/app/core/models/statistic';
+import { fetchStatistics } from 'src/app/core/store/statistic/statistic.action';
+import { selectLoadingStatisticYear, selectStatisticYearPayload } from 'src/app/core/store/statistic/statisticYear/statistic-year.selector';
+import { fetchStatisticYear } from 'src/app/core/store/statistic/statisticYear/statistic-year.action';
 
 interface Region {
   name: string;
@@ -33,11 +43,29 @@ export class DashboardComponent implements OnInit {
   hopital : Hopital[] | undefined;
   selectedHopital: Hopital | undefined;
   rangeDates: Date[] | undefined;
+  tauxForDropDown: [] = []
+  selectedTaux: any
   
   @ViewChild('map')
   private mapContainer: ElementRef<HTMLElement>;
+
+
+
+  isULCsLoading$ = this.store.select(selectLoadingUlcs)
+  isUlcStatisticLoading$ = this.store.select(selectLoadingStatistics)
+  isUlcStatisticYearLoading$ = this.store.select(selectLoadingStatisticYear)
+  ulcs: ULC[] = []
+  statistic: Statistic[] = []
+  markers = [];
+  initialMarkers = [];
+  showInitialMarkers = false;
+  currentUlc : ULC;
+  filterYearPerTaux = ['taux_peremption']
+
+
   constructor(
     private dialogService: DialogService,
+    private store: Store<AppState>,
   ) { }
   map: any;
 
@@ -49,7 +77,17 @@ export class DashboardComponent implements OnInit {
       zoom: 10,
     },
   ];
-  data: any;
+  taux_peremption: any;
+  taux_occupation: any;
+  taux_proche_perime: any;
+  taux_rupture: any;
+  taux_disponibilite_a: any;
+  taux_disponibilite_b: any;
+  taux_disponibilite_c: any;
+  taux_proche_penuerie: any;
+  taux_prescription: any;
+  taux_couverture: any;
+  taux_adoption: any;
   databar : any;
   databardouble : any;
 
@@ -61,11 +99,9 @@ export class DashboardComponent implements OnInit {
     this.map = map('map').setView([33.589886,-7.603869 ], 6);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
 
-    this.addMarkers();
+    
   }
 
   addMarkers() {
@@ -74,53 +110,233 @@ export class DashboardComponent implements OnInit {
         '../../../../assets/img/icons/marker.png',
       iconSize: [41, 41], // size of the icon
       shadowSize: [41, 41], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    });
+    const iconUmmc = L.icon({
+      iconUrl:
+        '../../../../assets/img/icons/markerUmmc.png',
+      iconSize: [41, 41], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62], // the same for the shadow
       popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
     });
 
-    this.markerLocations.forEach((t) => {
-      L.marker([t.lat, t.lng], { icon }).addTo(this.map).bindPopup('Hi!!');
+
+
+   // Initialize an array to keep track of markers
+    this.markers = [];
+
+    // Store the initial state of markers
+    this.initialMarkers = []; 
+
+// Loop through ULCs and create markers
+    this.ulcs.forEach((ulc) => {
+
+      const marker = L.marker([ulc.position_x, ulc.position_y], { icon })
+        .addTo(this.map)
+        .bindPopup('Hi!!');
+
+      // Store the marker in the array
+      //@ts-ignore
+      this.markers.push(marker);
+      //@ts-ignore
+      this.initialMarkers.push(marker); // Save initial markers
+
+      // Add click event to the marker
+      marker.on('click', () => {
+        this.showInitialMarkers = true
+        // Zoom and center the map on the clicked marker
+        this.map.setView([ulc.position_x, ulc.position_y], 7);
+        // Remove all markers from the map
+        this.markers.forEach((m) => this.map.removeLayer(m));
+        this.markers = [];
+
+        // Add only the clicked marker
+        const clickedMarker = L.marker([ulc.position_x, ulc.position_y], { icon })
+          .addTo(this.map)
+          .bindPopup('You clicked here!')
+          .openPopup();
+
+        // Loop through related ummcs and add markers
+        ulc.ummcs.forEach((ummc) => {
+          const ummcMarker = L.marker([ummc.position_x, ummc.position_y], { icon: iconUmmc })
+            .addTo(this.map)
+            .bindPopup('Hi!!');
+
+          // Store the ummc markers to be removed later
+          //@ts-ignore
+          this.markers.push(ummcMarker);
+        });
+        console.log('Clicked ULC:', ulc);
+        this.currentUlc = ulc
+        //@ts-ignore
+        this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: ulc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+
+        // Store the clicked marker in the array
+        //@ts-ignore
+        this.markers.push(clickedMarker);
+      });
+    });
+
+
+  }
+
+  showInitial(){
+    this.map.setView([33.589886,-7.603869], 6);
+    this.showInitialMarkers = false;
+    this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+    // Remove all markers from the map
+    this.markers.forEach((m) => this.map.removeLayer(m));
+    this.markers = [];
+
+    // Restore the initial markers
+    this.initialMarkers.forEach((marker) => {
+      //@ts-ignore
+      marker.addTo(this.map);
+      //@ts-ignore
+      this.markers.push(marker);
     });
   }
+
+  initialDatesFilter(){
+    const today = new Date();
+
+    // Get first date of the current month
+    const firstDateOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    // Get last date of the current month
+    const lastDateOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    console.log(firstDateOfMonth); // Output: First date of this month
+    console.log(lastDateOfMonth);  // Output: Last date of this month
+
+    const formatDate = (date: Date): string => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    
+    const firstDateFormatted = formatDate(firstDateOfMonth);
+    const lastDateFormatted = formatDate(lastDateOfMonth);
+    
+    this.rangeDates = [firstDateOfMonth, lastDateOfMonth]
+  }
+
+  onTauxChange(event: any){
+    this.filterYearPerTaux = [event.value.value]
+    console.log(this.filterYearPerTaux)
+    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux}}));
+  }
+
   ngOnInit() {
+    
+    this.initialDatesFilter()
+    this.store.dispatch(fetchUlcs());
+    //@ts-ignore
+    this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux}}));
+    this.store.select(selectUlcPayload).subscribe(ulcs => {
+      this.ulcs = ulcs
+      this.addMarkers();
+    });
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+    const chartColors = {
+      textColor: documentStyle.getPropertyValue('--text-color'),
+      textColorSecondary: documentStyle.getPropertyValue('--text-color-secondary'),
+      surfaceBorder: documentStyle.getPropertyValue('--surface-border'),
+      borderColor: documentStyle.getPropertyValue('--blue-500'),
+      backgroundColor: '#d3e6ff',
+    };
+
+    const createChartConfig = () => ({
+      labels: [],
+      datasets: [{
+        label: '',
+        data: [],
+        fill: true,
+        borderColor: chartColors.borderColor,
+        tension: 0.4,
+        backgroundColor: chartColors.backgroundColor,
+      }],
+    });
+
+    const chartKeys = [
+      'taux_peremption', 
+      'taux_occupation', 
+      'taux_proche_perime', 
+      'taux_rupture', 
+      'taux_disponibilite_a', 
+      'taux_disponibilite_b', 
+      'taux_disponibilite_c',
+      'taux_adoption',
+      'taux_couverture',
+      'taux_prescription',
+      'taux_proche_penuerie'
+    ];
+
+    // Initialize charts
+    
+
+    this.store.select(selectStatisticPayload).subscribe(statistic => {
+      //@ts-ignore
+      chartKeys.forEach(key => this[key] = createChartConfig());
+      this.statistic = statistic;
+
+      statistic.forEach(data => {
+        chartKeys.forEach(key => {
+          //@ts-ignore
+          this[key].labels.push(data.date);
+          //@ts-ignore
+          this[key].datasets[0].data.push(data[key] == null ? 0 : data[key]);
+        });
+      });
+
+      // Trigger change detection once for all charts
+      //@ts-ignore
+      chartKeys.forEach(key => this[key] = { ...this[key] });
+    });
+
+
+
+
+
     this.regions = [
       { name: 'Grand Casablanca', code: 'GC' },
       { name: 'Chaouia-Ouardigha', code: 'CO' },
       { name: 'Fès-Boulemane', code: 'FB' },
       { name: 'Guelmim-Es Semara', code: 'GS' },
       { name: 'Meknès-Tafilalet', code: 'MT' }
-  ];
-  this.province = [
-    { name: 'Casablanca', code: 'CO' },
-    { name: 'Mohammédia', code: 'FB' },
-    { name: 'Nouaceur', code: 'GC' },
-    { name: 'Médiouna', code: 'GS' },
-  ];
-  this.hopital = [
-    { name: 'Casablanca', code: 'CO' },
-    { name: 'Mohammédia', code: 'FB' },
-    { name: 'Nouaceur', code: 'GC' },
-    { name: 'Médiouna', code: 'GS' },
-  ];
-   const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: '',
-          data: [50, 47, 45, 39, 40, 46, 48],
-          fill: true,
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          tension: 0.4,
-          backgroundColor: '#d3e6ff',
-        },
-      ],
-    };
+    ];
+    this.province = [
+      { name: 'Casablanca', code: 'CO' },
+      { name: 'Mohammédia', code: 'FB' },
+      { name: 'Nouaceur', code: 'GC' },
+      { name: 'Médiouna', code: 'GS' },
+    ];
+    this.hopital = [
+      { name: 'Casablanca', code: 'CO' },
+      { name: 'Mohammédia', code: 'FB' },
+      { name: 'Nouaceur', code: 'GC' },
+      { name: 'Médiouna', code: 'GS' },
+    ];
+    //@ts-ignore
+    this.tauxForDropDown = [
+      { name: "Taux de péremption", value: "taux_peremption" },
+      { name: "Taux d'occupation", value: "taux_occupation" },
+      { name: "Taux de proche périmé", value: "taux_proche_perime" },
+      { name: "Taux de rupture", value: "taux_rupture" },
+      { name: "Taux de disponibilité A", value: "taux_disponibilite_a" },
+      { name: "Taux de disponibilité B", value: "taux_disponibilite_b" },
+      { name: "Taux de disponibilité C", value: "taux_disponibilite_c" },
+    ];
+    
 
     this.options = {
       maintainAspectRatio: false,
@@ -139,161 +355,216 @@ export class DashboardComponent implements OnInit {
         },
       },
     };
-
     //data bar
+    const moisFrancais = {
+      1: "Janvier",
+      2: "Février",
+      3: "Mars",
+      4: "Avril",
+      5: "Mai",
+      6: "Juin",
+      7: "Juillet",
+      8: "Août",
+      9: "Septembre",
+      10: "Octobre",
+      11: "Novembre",
+      12: "Décembre"
+    };
 
-    this.databar = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    borderColor: documentStyle.getPropertyValue('--blue-500'),
-                    tension: 0.4
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    borderColor: documentStyle.getPropertyValue('--pink-500'),
-                    tension: 0.4
-                },
-                {
-                    label: 'Trow Dataset',
-                    data: [15, 20, 60, 17, 90, 30, 93],
-                    fill: false,
-                    borderColor: documentStyle.getPropertyValue('--yellow-500'),
-                    tension: 0.4
-                },
-                {
-                  label: 'four Dataset',
-                  data: [62, 51, 33, 65, 80, 40, 12],
-                  fill: false,
-                  borderColor: documentStyle.getPropertyValue('--purple-500'),
-                  tension: 0.4
-              },
-              {
-                label: 'five Dataset',
-                data: [100, 30, 50, 70, 55, 33, 81],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--rose-500'),
-                tension: 0.4
-              },
-              {
-                label: '6 Dataset',
-                data: [120, 90, 70, 33, 15, 17, 25],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--stone-500'),
-                tension: 0.4
-              },
-              {
-                label: '7 Dataset',
-                data: [58, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '8 Dataset',
-                data: [58, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '9 Dataset',
-                data: [120, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '10 Dataset',
-                data: [26, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '11 Dataset',
-                data: [69, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '12 Dataset',
-                data: [23, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '12 Dataset',
-                data: [23, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '13 Dataset',
-                data: [96, 35, 132, 65, 53, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '14 Dataset',
-                data: [120, 99, 85, 65, 32, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '15 Dataset',
-                data: [20, 15, 150, 88, 15, 23, 123],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '16 Dataset',
-                data: [56, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '17 Dataset',
-                data: [88, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '18 Dataset',
-                data: [192, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '19 Dataset',
-                data: [165, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              },
-              {
-                label: '20 Dataset',
-                data: [215, 35, 120, 65, 15, 23, 77],
-                fill: false,
-                borderColor: documentStyle.getPropertyValue('--cyan-500'),
-                tension: 0.4
-              }
-            ]
-  };
+    this.store.select(selectStatisticYearPayload).subscribe(statistic => {
+      // Extract labels for months
+      //@ts-ignore
+      const labels = statistic.map(item => moisFrancais[item.month]);
+
+      // Prepare datasets for each ULC
+      const datasets:[] = [];
+
+      statistic.forEach((item: any) => {
+        item.ulc.forEach((ulc: any) => {
+          // Check if dataset already exists for this ULC
+          //@ts-ignore
+          let dataset = datasets.find(ds => ds.label === ulc.ulc_name);
+
+          // If not, create a new one
+          if (!dataset) {
+            //@ts-ignore
+            dataset = {
+              label: ulc.ulc_name,
+              data: Array(statistic.length).fill(0), // Initialize with zeros
+              fill: false,
+              borderColor: ulc.ulc_color, // Random color
+              tension: 0.4
+            };
+            //@ts-ignore
+            datasets.push(dataset);
+          }
+
+          // Set the taux_peremption for the corresponding month
+          const monthIndex = item.month - 1;
+          //@ts-ignore
+          dataset.data[monthIndex] = parseFloat(ulc[this.filterYearPerTaux]);
+        });
+      });
+
+      this.databar = {
+        labels: labels,
+        datasets: datasets
+      };
+    });
+
+
+  //   this.databar = {
+  //     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  //           datasets: [
+  //               {
+  //                   label: 'First Dataset',
+  //                   data: [65, 59, 80, 81, 56, 55, 40],
+  //                   fill: false,
+  //                   borderColor: '#3357FF',
+  //                   tension: 0.4
+  //               },
+  //             //   {
+  //             //       label: 'Second Dataset',
+  //             //       data: [28, 48, 40, 19, 86, 27, 90],
+  //             //       fill: false,
+  //             //       borderColor: documentStyle.getPropertyValue('--pink-500'),
+  //             //       tension: 0.4
+  //             //   },
+  //             //   {
+  //             //       label: 'Trow Dataset',
+  //             //       data: [15, 20, 60, 17, 90, 30, 93],
+  //             //       fill: false,
+  //             //       borderColor: documentStyle.getPropertyValue('--yellow-500'),
+  //             //       tension: 0.4
+  //             //   },
+  //             //   {
+  //             //     label: 'four Dataset',
+  //             //     data: [62, 51, 33, 65, 80, 40, 12],
+  //             //     fill: false,
+  //             //     borderColor: documentStyle.getPropertyValue('--purple-500'),
+  //             //     tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: 'five Dataset',
+  //             //   data: [100, 30, 50, 70, 55, 33, 81],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--rose-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '6 Dataset',
+  //             //   data: [120, 90, 70, 33, 15, 17, 25],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--stone-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '7 Dataset',
+  //             //   data: [58, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '8 Dataset',
+  //             //   data: [58, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '9 Dataset',
+  //             //   data: [120, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '10 Dataset',
+  //             //   data: [26, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '11 Dataset',
+  //             //   data: [69, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '12 Dataset',
+  //             //   data: [23, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '12 Dataset',
+  //             //   data: [23, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '13 Dataset',
+  //             //   data: [96, 35, 132, 65, 53, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '14 Dataset',
+  //             //   data: [120, 99, 85, 65, 32, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '15 Dataset',
+  //             //   data: [20, 15, 150, 88, 15, 23, 123],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '16 Dataset',
+  //             //   data: [56, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '17 Dataset',
+  //             //   data: [88, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '18 Dataset',
+  //             //   data: [192, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '19 Dataset',
+  //             //   data: [165, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // },
+  //             // {
+  //             //   label: '20 Dataset',
+  //             //   data: [215, 35, 120, 65, 15, 23, 77],
+  //             //   fill: false,
+  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
+  //             //   tension: 0.4
+  //             // }
+  //           ]
+  // };
 
   this.optionsdata = {
     maintainAspectRatio: false,
@@ -324,9 +595,9 @@ export class DashboardComponent implements OnInit {
                 drawBorder: false
             }
         }
-    }
+      }
 
-};
+    };
 
     //chart bar double 
     this.databardouble = {
@@ -384,6 +655,34 @@ export class DashboardComponent implements OnInit {
           }
       }
   };
+  }
+
+  formateDates(){
+    //@ts-ignore
+    const formattedDates = this.rangeDates.map(date => {
+      // Get the local date parts
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+      const day = String(date.getDate()).padStart(2, '0');
+      
+      // Format as YYYY-MM-DD
+      return `${year}-${month}-${day}`;
+   });
+
+   return formattedDates
+  }
+
+  filterByDates(){
+    //@ts-ignore
+    if(this.rangeDates){
+      
+     if(!this.showInitialMarkers){
+      this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
+     }else{
+      //@ts-ignore
+      this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: this.currentUlc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
+     }
+    }
   }
 
   DetailTablBoard() {

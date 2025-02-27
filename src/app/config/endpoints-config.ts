@@ -17,7 +17,61 @@ export class EndpointsConfig {
                     endPoint: this.url+'auth/logout',
                     method: 'post'
                 },
-            }
+            },
+            ulc:{
+                create: {
+                    endPoint: this.url+'ucls/create',
+                    method: 'post'
+                },
+                update: {
+                    endPoint: this.url+'ulcs/{ulc}/update',
+                    method: 'post'
+                },
+                list: {
+                    endPoint: this.url+'ulcs',
+                    method: 'get'
+                },
+                one: {
+                    endPoint: this.url+'ulc/{ulc}',
+                    method: 'get'
+                }
+            },
+            statistic:{
+                create: {
+                    endPoint: this.url+'statistics/create',
+                    method: 'post'
+                },
+                update: {
+                    endPoint: this.url+'statistics/{statistic}/update',
+                    method: 'post'
+                },
+                list: {
+                    endPoint: this.url+'statistic/fetch',
+                    method: 'post'
+                },
+                one: {
+                    endPoint: this.url+'statistic/{statistic}',
+                    method: 'get'
+                }
+            },
+            statisticYear:{
+                create: {
+                    endPoint: this.url+'statistics/create',
+                    method: 'post'
+                },
+                update: {
+                    endPoint: this.url+'statistics/{statistic}/update',
+                    method: 'post'
+                },
+                list: {
+                    endPoint: this.url+'statistic/fetch/year',
+                    method: 'post'
+                },
+                one: {
+                    endPoint: this.url+'statistic/{statistic}',
+                    method: 'get'
+                }
+            },
         }
     }
 }
