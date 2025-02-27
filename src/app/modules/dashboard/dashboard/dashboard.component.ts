@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   selectedHopital: Hopital | undefined;
   rangeDates: Date[] | undefined;
   tauxForDropDown: [] = []
-  selectedTaux: any
+  selectedTaux: any = { name: "Taux de péremption", value: "taux_peremption" }
   
   @ViewChild('map')
   private mapContainer: ElementRef<HTMLElement>;
@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit {
   ngAfterViewInit() {
     this.map = map('map').setView([33.589886,-7.603869 ], 6);
     
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://mt.google.com/vt/lyrs=m&gl=ma&x={x}&y={y}&z={z}', {
     }).addTo(this.map);
 
     
@@ -230,6 +230,16 @@ export class DashboardComponent implements OnInit {
     this.filterYearPerTaux = [event.value.value]
     console.log(this.filterYearPerTaux)
     this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux}}));
+  }
+
+  calculateMoyenGlobalTaux(data: any){
+    let result = 0
+    data.datasets[0].data?.forEach((value: any) => {
+      //@ts-ignore
+      result += parseFloat(value)
+      
+    });
+    return parseFloat((result / data.datasets[0].data?.length).toString()).toFixed(3) == 'NaN' ? 0 : parseFloat((result / data.datasets[0].data?.length).toString()).toFixed(3)
   }
 
   ngOnInit() {

@@ -1,45 +1,49 @@
-<div class="filter p-2 mb-3 ml-2 flex gap-3">
-    <div>
-        <p-dropdown 
-            [options]="regions" 
-            [(ngModel)]="selectedRegion" 
-            optionLabel="name" 
-            placeholder="Région : Tous" />
-    </div>
-    <div>
-        <p-dropdown 
-            [options]="province" 
-            [(ngModel)]="selectedProvince" 
-            optionLabel="name" 
-            placeholder="Province : Tous" />
-    </div>
-    <div>
-        <p-dropdown 
-            [options]="hopital"
-            class="w-hopital"
-            [(ngModel)]="selectedHopital" 
-            optionLabel="name" 
-            placeholder="Centre de santé + Hopital : Tous" />
-    </div>
-    <div>
-        <p-calendar 
-        [(ngModel)]="rangeDates" 
-        selectionMode="range" 
-        [readonlyInput]="true"
-        [showIcon]="true"  
-        placeholder="Du 20/09/25 au 27/09/25" />
-    </div>
-    <div>
-        <p-button icon="pi pi-search" (click)="filterByDates()" class="search-filter"/>
-    </div>
-    <div>
-        <p-button icon="pi pi-download" class="download-filter"/>
-    </div>
-</div>
+
 <div class="grid ml-2 mr-2">
     <div class="col-12 sm:col-12 md:col-12 lg:col-8">
         <div class="tableau-bord">
-            <h3 class="mb-5">TABLEAU DE BORD GÉNÉRAL</h3>
+            
+            <div class="filter p-2 mb-3 ml-2 flex justify-content-between">
+                <h3 class="mb-5">TABLEAU DE BORD GÉNÉRAL</h3>
+                <!-- <div>
+                    <p-dropdown 
+                        [options]="regions" 
+                        [(ngModel)]="selectedRegion" 
+                        optionLabel="name" 
+                        placeholder="Région : Tous" />
+                </div> -->
+                <!-- <div>
+                    <p-dropdown 
+                        [options]="province" 
+                        [(ngModel)]="selectedProvince" 
+                        optionLabel="name" 
+                        placeholder="Province : Tous" />
+                </div> -->
+                <!-- <div>
+                    <p-dropdown 
+                        [options]="hopital"
+                        class="w-hopital"
+                        [(ngModel)]="selectedHopital" 
+                        optionLabel="name" 
+                        placeholder="Centre de santé + Hopital : Tous" />
+                </div> -->
+                <div>
+                    <div>
+                        <p-calendar 
+                        [(ngModel)]="rangeDates" 
+                        selectionMode="range" 
+                        [readonlyInput]="true"
+                        [showIcon]="true"  
+                        placeholder="Du 20/09/25 au 27/09/25" />
+                        <p-button icon="pi pi-search" (click)="filterByDates()" class="ml-2 search-filter"/>
+                    </div>
+                </div>
+                
+                <!-- <div>
+                    <p-button icon="pi pi-download" class="download-filter"/>
+                </div> -->
+            </div>
+            
             <div class="grid">
                 <div class="col-12 sm:col-12 md:col-12 lg:col-4">
                     <div class="bg-chart">
@@ -47,7 +51,7 @@
                         <p-chart type="line" [data]="taux_peremption" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>0.7%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_peremption)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -61,7 +65,7 @@
                         <p-chart type="line" [data]="taux_occupation" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>95%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_occupation)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -75,7 +79,7 @@
                         <p-chart type="line" [data]="taux_proche_perime" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>85%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_proche_perime)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -91,7 +95,7 @@
                         <p-chart type="line" [data]="taux_rupture" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>5%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_rupture)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -105,7 +109,7 @@
                         <p-chart type="line" [data]="taux_disponibilite_a" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>92%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_disponibilite_a)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -119,7 +123,7 @@
                         <p-chart type="line" [data]="taux_disponibilite_b" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>93%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_disponibilite_b)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -133,7 +137,7 @@
                         <p-chart type="line" [data]="taux_disponibilite_c" [options]="options" class="chartline"/>
                         <div class="grid btm-chart">
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                <h2>93%</h2>
+                                <h2>{{calculateMoyenGlobalTaux(taux_disponibilite_c)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                 <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -148,7 +152,7 @@
                             <p-chart type="line" [data]="taux_adoption" [options]="options" class="chartline"/>
                             <div class="grid btm-chart">
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                    <h2>85%</h2>
+                                    <h2>{{calculateMoyenGlobalTaux(taux_adoption)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                     <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -162,7 +166,7 @@
                             <p-chart type="line" [data]="taux_couverture" [options]="options" class="chartline"/>
                             <div class="grid btm-chart">
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                    <h2>85%</h2>
+                                    <h2>{{calculateMoyenGlobalTaux(taux_couverture)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                     <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -176,7 +180,7 @@
                             <p-chart type="line" [data]="taux_prescription" [options]="options" class="chartline"/>
                             <div class="grid btm-chart">
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                    <h2>85%</h2>
+                                    <h2>{{calculateMoyenGlobalTaux(taux_prescription)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                     <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -190,7 +194,7 @@
                             <p-chart type="line" [data]="taux_proche_penuerie" [options]="options" class="chartline"/>
                             <div class="grid btm-chart">
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                    <h2>85%</h2>
+                                    <h2>{{calculateMoyenGlobalTaux(taux_proche_penuerie)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
                                     <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
@@ -201,16 +205,19 @@
                 </ng-container>
             </div>
             <div class="chartdci mt-4 mb-4">
-                <h3 class="mb-4">ANALYSE PARETO DE LA CONSOMMATION PAR DCI</h3>
-                <div>
-                    <p-dropdown 
-                        [options]="tauxForDropDown"
-                        class="w-hopital"
-                        [(ngModel)]="selectedTaux" 
-                        (onChange)="onTauxChange($event)"
-                        optionLabel="name" 
-                        placeholder="Centre de santé + Hopital : Tous" />
+                <div class="filter p-2 mb-3 ml-2 flex justify-content-between">
+                    <h3 class="mb-4">ANALYSE PARETO DE LA CONSOMMATION PAR DCI</h3>
+                    <div>
+                        <p-dropdown 
+                            [options]="tauxForDropDown"
+                            class="w-hopital"
+                            [(ngModel)]="selectedTaux" 
+                            (onChange)="onTauxChange($event)"
+                            optionLabel="name" 
+                            placeholder="Centre de santé + Hopital : Tous" />
+                    </div>
                 </div>
+                
                 <!-- <p-chart type="bar" [data]="databar" [options]="optionsdata" /> -->
                 <p-chart type="line" [data]="databar" [options]="optionsdata" />
             </div>
