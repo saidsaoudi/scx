@@ -1,4 +1,21 @@
-.tableau-bord{
+::ng-deep .uplaodfile{
+    .btn-upload .p-button{
+        padding: 0.75rem 1.25rem;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        border-radius: 6px;
+    }
+    .p-button .p-button-label {
+        padding-left: 10px !important;
+    }
+    .download-filter .p-button{
+        width: 3rem;
+        padding: 0.7rem 0;
+        background-color: #2A72B9;
+        border-color: #2A72B9;
+        margin-left: 15px;
+    }
+}
+::ng-deep .tableau-bord{
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #CCCCCC;
@@ -7,6 +24,7 @@
         h3{
             color: #25265E;
         }
+        
 }
 ::ng-deep .chartline{
     display: flex;
@@ -68,11 +86,5 @@
         padding: 0.5rem 0;
         background-color: #0A536F;
         border-color: #0A536F;
-    }
-    .download-filter .p-button{
-        width: 2.5rem;
-        padding: 0.5rem 0;
-        background-color: #2A72B9;
-        border-color: #2A72B9;
     }
  }

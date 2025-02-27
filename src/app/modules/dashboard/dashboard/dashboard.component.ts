@@ -13,6 +13,7 @@ import { Statistic } from 'src/app/core/models/statistic';
 import { fetchStatistics } from 'src/app/core/store/statistic/statistic.action';
 import { selectLoadingStatisticYear, selectStatisticYearPayload } from 'src/app/core/store/statistic/statisticYear/statistic-year.selector';
 import { fetchStatisticYear } from 'src/app/core/store/statistic/statisticYear/statistic-year.action';
+import { MessageService } from 'primeng/api';
 
 interface Region {
   name: string;
@@ -26,12 +27,16 @@ interface Hopital {
   name: string;
   code: string;
 }
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: false,
   styleUrls: ['./dashboard.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService,MessageService]
 })
 export class DashboardComponent implements OnInit {
   regions: Region[] | undefined;
@@ -50,7 +55,7 @@ export class DashboardComponent implements OnInit {
   private mapContainer: ElementRef<HTMLElement>;
 
 
-
+ 
   isULCsLoading$ = this.store.select(selectLoadingUlcs)
   isUlcStatisticLoading$ = this.store.select(selectLoadingStatistics)
   isUlcStatisticYearLoading$ = this.store.select(selectLoadingStatisticYear)
@@ -66,10 +71,13 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dialogService: DialogService,
     private store: Store<AppState>,
+    private messageService: MessageService
   ) { }
   map: any;
 
-  
+  onUpload(event: any) {
+    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Fichier téléchargé avec le mode de base' });
+}
   markerLocations = [
     {
       lng:-7.09262,

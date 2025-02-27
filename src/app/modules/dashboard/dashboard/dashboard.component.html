@@ -1,8 +1,24 @@
 
 <div class="grid ml-2 mr-2">
     <div class="col-12 sm:col-12 md:col-12 lg:col-8">
+        <p-toast />
+            <div class="mb-5 ml-2 uplaodfile flex">
+                <div>
+                    <p-fileUpload 
+                    mode="basic" 
+                    chooseLabel="Upload File" 
+                    chooseIcon="pi pi-upload"
+                    name="demo[]" 
+                    url="https://www.primefaces.org/cdn/api/upload.php" 
+                    accept="image/*" 
+                    maxFileSize="1000000" 
+                    class="btn-upload"/>
+                </div>
+                <div>
+                    <p-button (click)="onUpload($event)" icon="pi pi-cloud-download" class="download-filter"/>
+                </div>
+            </div>
         <div class="tableau-bord">
-            
             <div class="filter p-2 mb-3 ml-2 flex justify-content-between">
                 <h3 class="mb-5">TABLEAU DE BORD GÉNÉRAL</h3>
                 <!-- <div>
@@ -228,11 +244,9 @@
         </div>
     </div>
     <div class="col-12 sm:col-12 md:col-12 lg:col-4">
-        <div *ngIf="showInitialMarkers">
-            <span> <i class="pi pi-arrow-left"></i> ULC: <strong>{{currentUlc.name}}</strong> </span>
-            <button (click)="showInitial()">showInitial</button>
+        <div *ngIf="showInitialMarkers" class="showInitial mb-4 mt-2">
+            <span> <i class="pi pi-arrow-left cursor-pointer" (click)="showInitial()"></i>  ULC: <strong>{{currentUlc.name}}</strong> </span>
         </div>
-        
         <div class="map">
             <div id="map" style="width:100%;height:100%"></div>
             </div>
