@@ -76,8 +76,8 @@ export class UlcsEffects {
   getListUlcs$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(fetchUlcs),
-      mergeMap(({}) => {
-        return this.ulcService.getAllULCs().pipe(
+      mergeMap(({payload}) => {
+        return this.ulcService.getAllULCs(payload).pipe(
           map((res: any) => {
             if (res.success) {
                 let payload = res.payload

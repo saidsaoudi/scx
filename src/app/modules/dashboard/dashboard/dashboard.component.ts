@@ -245,7 +245,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     
     this.initialDatesFilter()
-    this.store.dispatch(fetchUlcs());
+    this.store.dispatch(fetchUlcs({payload: {start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     //@ts-ignore
     this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux}}));
@@ -683,6 +683,8 @@ export class DashboardComponent implements OnInit {
   }
 
   filterByDates(){
+    this.store.dispatch(fetchUlcs({payload: {start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+
     //@ts-ignore
     if(this.rangeDates){
       

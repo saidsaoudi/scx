@@ -21,9 +21,10 @@ export class UlcService {
     //@ts-ignore
     return this.http.sendRequest(this.ULC.update, data, {groupe: data.get('uuid')});
   }
-  getAllULCs(){
+  getAllULCs(data: any){
+    console.log(data)
     //@ts-ignore
-    return this.http.sendRequest(this.ULC.list);
+    return this.http.sendRequest(this.ULC.list, data);
   }
   getOneULC(uuid: string){
     //@ts-ignore

@@ -29,7 +29,7 @@ export class EndpointsConfig {
                 },
                 list: {
                     endPoint: this.url+'ulcs',
-                    method: 'get'
+                    method: 'post'
                 },
                 one: {
                     endPoint: this.url+'ulc/{ulc}',

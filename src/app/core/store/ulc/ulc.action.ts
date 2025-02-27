@@ -19,7 +19,8 @@ export const updateUlc = createAction(
 );
 
 export const fetchUlcs = createAction(
-    '[ulcs] Fetch List Ulcs'
+    '[ulcs] Fetch List Ulcs',
+    props<{ payload: any }>()
 
 );
 export const fetchOneUlc = createAction(
