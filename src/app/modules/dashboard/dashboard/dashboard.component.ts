@@ -61,7 +61,8 @@ export class DashboardComponent implements OnInit {
   hopital : Hopital[] | undefined;
   selectedHopital: Hopital | undefined;
   rangeDates: Date[] | undefined;
-  tauxForDropDown: [] = []
+  tauxForDropDownUlc: [] = []
+  tauxForDropDownUmmc: [] = []
   selectedTaux: any = { name: "Taux de péremption", value: "taux_peremption" }
   REGIONS = {
         bk_indices, cs, daraa_tafilalt, eod, fes_meknes, go, lsa, ms, orientl, rabat_sal_kenit, sm, tta
@@ -81,6 +82,7 @@ export class DashboardComponent implements OnInit {
   initialMarkers = [];
   showInitialMarkers = false;
   currentUlc : ULC;
+  currentUmmc : any;
   filterYearPerTaux = ['taux_peremption']
   geoJsonLayer: any
 
@@ -275,12 +277,17 @@ export class DashboardComponent implements OnInit {
           // Store the ummc markers to be removed later
           //@ts-ignore
           this.markers.push(ummcMarker);
+          ummcMarker.on('click', ()=> {
+            this.currentUmmc = ummc;
+            this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ummc_id: ummc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+          })
         });
         console.log('Clicked ULC:', ulc);
         this.currentUlc = ulc
         //@ts-ignore
         this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: ulc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
-
+        let payload = {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1], ulc_id: this.currentUlc?.id}
+        this.store.dispatch(fetchStatisticYear({payload}));
         // Store the clicked marker in the array
         //@ts-ignore
         // this.markers.push(clickedMarker);
@@ -300,6 +307,13 @@ export class DashboardComponent implements OnInit {
   }
 
   showInitial(){
+    //@ts-ignore
+    this.currentUlc = null;
+    this.currentUmmc = null;
+    this.filterYearPerTaux = ['taux_peremption']
+    this.selectedTaux = { name: "Taux de péremption", value: "taux_peremption" }
+    let payload = {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1], ulc_id: this.currentUlc?.id}
+    this.store.dispatch(fetchStatisticYear({payload}));
     this.map.setView([33.589886,-7.603869], 6);
     this.showInitialMarkers = false;
     this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
@@ -319,14 +333,14 @@ export class DashboardComponent implements OnInit {
   initialDatesFilter(){
     const today = new Date();
 
-    // Get first date of the current month
-    const firstDateOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    // Get first date of the previous month
+    const firstDateOfPreviousMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
 
-    // Get last date of the current month
-    const lastDateOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    // Get last date of the previous month
+    const lastDateOfPreviousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
 
-    console.log(firstDateOfMonth); // Output: First date of this month
-    console.log(lastDateOfMonth);  // Output: Last date of this month
+    console.log(firstDateOfPreviousMonth); // Output: First date of the previous month
+    console.log(lastDateOfPreviousMonth);  // Output: Last date of the previous month
 
     const formatDate = (date: Date): string => {
       const year = date.getFullYear();
@@ -335,16 +349,19 @@ export class DashboardComponent implements OnInit {
       return `${year}-${month}-${day}`;
     };
     
-    const firstDateFormatted = formatDate(firstDateOfMonth);
-    const lastDateFormatted = formatDate(lastDateOfMonth);
+    const firstDateFormatted = formatDate(firstDateOfPreviousMonth);
+    const lastDateFormatted = formatDate(lastDateOfPreviousMonth);
     
-    this.rangeDates = [firstDateOfMonth, lastDateOfMonth]
-  }
+    this.rangeDates = [firstDateOfPreviousMonth, lastDateOfPreviousMonth]
+}
+
 
   onTauxChange(event: any){
     this.filterYearPerTaux = [event.value.value]
-    console.log(this.filterYearPerTaux)
-    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+    
+    let payload = {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1], ulc_id: this.currentUlc?.id}
+  
+    this.store.dispatch(fetchStatisticYear({payload}));
   }
 
   calculateMoyenGlobalTaux(data: any){
@@ -452,11 +469,26 @@ export class DashboardComponent implements OnInit {
       { name: 'Médiouna', code: 'GS' },
     ];
     //@ts-ignore
-    this.tauxForDropDown = [
+    this.tauxForDropDownUlc = [
       { name: "Taux de péremption", value: "taux_peremption" },
       { name: "Taux d'occupation", value: "taux_occupation" },
       { name: "Taux de proche périmé", value: "taux_proche_perime" },
       { name: "Taux de rupture", value: "taux_rupture" },
+      { name: "Taux de disponibilité A", value: "taux_disponibilite_a" },
+      { name: "Taux de disponibilité B", value: "taux_disponibilite_b" },
+      { name: "Taux de disponibilité C", value: "taux_disponibilite_c" },
+    ];
+
+    //@ts-ignore
+    this.tauxForDropDownUmmc = [
+      { name: "Taux de péremption", value: "taux_peremption" },
+      { name: "Taux d'occupation", value: "taux_occupation" },
+      { name: "Taux de proche périmé", value: "taux_proche_perime" },
+      { name: "Taux de rupture", value: "taux_rupture" },
+      { name: "Taux d'adoption", value: "taux_adoption" },
+      { name: "Taux couverture", value: "taux_couverture" },
+      { name: "Taux prescription", value: "taux_prescription" },
+      { name: "Taux de pneurie", value: "taux_proche_penuerie" },
       { name: "Taux de disponibilité A", value: "taux_disponibilite_a" },
       { name: "Taux de disponibilité B", value: "taux_disponibilite_b" },
       { name: "Taux de disponibilité C", value: "taux_disponibilite_c" },
@@ -491,19 +523,19 @@ export class DashboardComponent implements OnInit {
       const datasets: any[] = [];
     
       statistic.forEach((item: any, index: number) => {
-        item.ulc.forEach((ulc: any) => {
+        item.entity.forEach((entity: any) => {
           // Check if dataset already exists for this ULC
           //@ts-ignore
-          let dataset = datasets.find(ds => ds.label === ulc.ulc_name);
+          let dataset = datasets.find(ds => ds.label === entity.entity_name);
     
           // If not, create a new one
           if (!dataset) {
             //@ts-ignore
             dataset = {
-              label: ulc.ulc_name,
+              label: entity.entity_name,
               data: Array(statistic.length).fill(0), // Initialize with zeros
               fill: false,
-              borderColor: ulc.ulc_color, 
+              borderColor: entity.entity_color, 
               tension: 0.4,
               hidden: false,
             };
@@ -513,7 +545,7 @@ export class DashboardComponent implements OnInit {
     
           // Set the taux_peremption for the corresponding date index
           //@ts-ignore
-          dataset.data[index] = parseFloat(ulc[this.filterYearPerTaux]);
+          dataset.data[index] = parseFloat(entity[this.filterYearPerTaux]);
         });
       });
     
@@ -786,6 +818,9 @@ export class DashboardComponent implements OnInit {
 
   filterByDates(){
     this.showInitialMarkers = false;
+    //@ts-ignore
+    this.currentUlc = null;
+    this.currentUmmc = null;
     this.map.setView([33.589886,-7.603869 ], 6);
     this.store.dispatch(fetchUlcs({payload: {start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));

@@ -20,7 +20,7 @@
             </div> -->
         <div class="tableau-bord">
             <div class="filter p-2 mb-3 ml-2 flex justify-content-between">
-                <h3 class="mb-5">TABLEAU DE BORD GÉNÉRAL</h3>
+                <h3 class="mb-5">TABLEAU DE BORD GÉNÉRAL  <span style="color: #1e9f08">{{currentUmmc?.name}}</span></h3>
                 <!-- <div>
                     <p-dropdown 
                         [options]="regions" 
@@ -70,7 +70,7 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_peremption)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
-                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/>
+                                <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
                     </div>
@@ -223,9 +223,18 @@
             <div class="chartdci mt-4 mb-4">
                 <div class="filter p-2 mb-3 ml-2 flex justify-content-between">
                     <h3 class="mb-4">KPI PAR ULC</h3>
-                    <div>
-                        <p-dropdown 
-                            [options]="tauxForDropDown"
+                    <div *ngIf="!currentUlc">
+                        <p-dropdown
+                            [options]="tauxForDropDownUlc"
+                            class="w-hopital"
+                            [(ngModel)]="selectedTaux" 
+                            (onChange)="onTauxChange($event)"
+                            optionLabel="name" 
+                            placeholder="Centre de santé + Hopital : Tous" />
+                    </div>
+                    <div *ngIf="currentUlc">
+                        <p-dropdown
+                            [options]="tauxForDropDownUmmc"
                             class="w-hopital"
                             [(ngModel)]="selectedTaux" 
                             (onChange)="onTauxChange($event)"
