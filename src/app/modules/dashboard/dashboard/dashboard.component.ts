@@ -14,6 +14,19 @@ import { fetchStatistics } from 'src/app/core/store/statistic/statistic.action';
 import { selectLoadingStatisticYear, selectStatisticYearPayload } from 'src/app/core/store/statistic/statisticYear/statistic-year.selector';
 import { fetchStatisticYear } from 'src/app/core/store/statistic/statisticYear/statistic-year.action';
 import { MessageService } from 'primeng/api';
+//@ts-ignore
+import * as bk_indices from '../../../../assets/regions/bk_indices.json';
+import * as cs from '../../../../assets/regions/cs.json';
+import * as daraa_tafilalt from '../../../../assets/regions/daraa_tafilalt.json';
+import * as eod from '../../../../assets/regions/eod.json';
+import * as fes_meknes from '../../../../assets/regions/fes_meknes.json';
+import * as go from '../../../../assets/regions/go.json';
+import * as lsa from '../../../../assets/regions/lsa.json';
+import * as ms from '../../../../assets/regions/ms.json';
+import * as orientl from '../../../../assets/regions/orientl.json';
+import * as rabat_sal_kenit from '../../../../assets/regions/rabat_sal_kenit.json';
+import * as sm from '../../../../assets/regions/sm.json';
+import * as tta from '../../../../assets/regions/tta.json';
 
 interface Region {
   name: string;
@@ -50,6 +63,9 @@ export class DashboardComponent implements OnInit {
   rangeDates: Date[] | undefined;
   tauxForDropDown: [] = []
   selectedTaux: any = { name: "Taux de péremption", value: "taux_peremption" }
+  REGIONS = {
+        bk_indices, cs, daraa_tafilalt, eod, fes_meknes, go, lsa, ms, orientl, rabat_sal_kenit, sm, tta
+    }
   
   @ViewChild('map')
   private mapContainer: ElementRef<HTMLElement>;
@@ -66,6 +82,65 @@ export class DashboardComponent implements OnInit {
   showInitialMarkers = false;
   currentUlc : ULC;
   filterYearPerTaux = ['taux_peremption']
+  geoJsonLayer: any
+
+  icons = {
+    uclGreen: L.icon({
+      iconUrl:
+        '../../../../assets/markers/ulcGreen.png',
+      iconSize: [55, 55], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    }),
+    ulcYellow: L.icon({
+      iconUrl:
+        '../../../../assets/markers/ulcYellow.png',
+      iconSize: [55, 55], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    }),
+    ulcRed: L.icon({
+      iconUrl:
+        '../../../../assets/markers/ulcRed.png',
+      iconSize: [55, 55], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    }),
+    ummcRed: L.icon({
+      iconUrl:
+        '../../../../assets/markers/ummcRed.png',
+      iconSize: [55, 55], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    }),
+    ummcGreen: L.icon({
+      iconUrl:
+        '../../../../assets/markers/ummcGreen.png',
+      iconSize: [55, 55], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    }),
+    ummcYellow: L.icon({
+      iconUrl:
+        '../../../../assets/markers/ummcYellow.png',
+      iconSize: [55, 55], // size of the icon
+      shadowSize: [41, 41], // size of the shadow
+      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62], // the same for the shadow
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    }),
+  }
+
 
 
   constructor(
@@ -109,31 +184,27 @@ export class DashboardComponent implements OnInit {
     L.tileLayer('https://mt.google.com/vt/lyrs=m&gl=ma&x={x}&y={y}&z={z}', {
     }).addTo(this.map);
 
+    Object.keys(this.REGIONS).forEach(regionKey => {
+      console.log(regionKey); // Key (e.g., 'bk_indices')
+      //@ts-ignore
+      console.log(this.REGIONS[regionKey]); // Value (e.g., JSON data for bk_indices)
+      //@ts-ignore
+      this.geoJsonLayer = L.geoJSON((this.REGIONS[regionKey] as any).default, {
+        style: {
+          color: 'blue',  // Border color
+          weight: 2,
+          fillColor: 'lightblue',  // Fill color
+          fillOpacity: 0.5
+        }
+      }).addTo(this.map);
+    });
+    
     
   }
 
   addMarkers() {
-    const icon = L.icon({
-      iconUrl:
-        '../../../../assets/img/icons/marker.png',
-      iconSize: [41, 41], // size of the icon
-      shadowSize: [41, 41], // size of the shadow
-      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62], // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-    });
-    const iconUmmc = L.icon({
-      iconUrl:
-        '../../../../assets/img/icons/markerUmmc.png',
-      iconSize: [41, 41], // size of the icon
-      shadowSize: [41, 41], // size of the shadow
-      // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62], // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-    });
-
-
-
+    this.markers.forEach((m) => this.map.removeLayer(m));
+    this.markers = [];
    // Initialize an array to keep track of markers
     this.markers = [];
 
@@ -142,10 +213,23 @@ export class DashboardComponent implements OnInit {
 
 // Loop through ULCs and create markers
     this.ulcs.forEach((ulc) => {
-
-      const marker = L.marker([ulc.position_x, ulc.position_y], { icon })
+      //@ts-ignore
+      let AVG = this.getAvgDisponibiliteA(ulc.statistics)
+      let ULCICON = (AVG >= 0 && AVG < 34) ? this.icons.ulcRed : ((AVG >= 34 && AVG <= 66) ? this.icons.ulcYellow : this.icons.uclGreen)
+      const marker = L.marker([ulc.position_x, ulc.position_y], { icon: ULCICON })
         .addTo(this.map)
-        .bindPopup('Hi!!');
+        .bindTooltip(
+          `<div>
+              <h4>ULC: <span style="color: #25265E" >${ulc.name}</span></h4>
+              <h4>Nbr UMMC: <span style="color: #25265E" >${ulc.ummcs.length}</span></h4>
+              <h4>Taux de disponibilité A: <span style="color: #25265E" >${AVG.toFixed(2)}%</span></h4>
+           </div>`,
+          { 
+              permanent: false, 
+              direction: "top", 
+              className: "custom-tooltip"
+          }
+      );
 
       // Store the marker in the array
       //@ts-ignore
@@ -163,16 +247,30 @@ export class DashboardComponent implements OnInit {
         this.markers = [];
 
         // Add only the clicked marker
-        const clickedMarker = L.marker([ulc.position_x, ulc.position_y], { icon })
-          .addTo(this.map)
-          .bindPopup('You clicked here!')
-          .openPopup();
+        //@ts-ignore
+        // let AVG = this.getAvgDisponibiliteA(ulc.statistics)
+        // let ULCICON = (AVG >= 0 && AVG <= 33) ? this.icons.ulcRed : ((AVG >= 34 && AVG <= 66) ? this.icons.ulcYellow : this.icons.uclGreen)
+        // const clickedMarker = L.marker([ulc.position_x, ulc.position_y], { icon:  ULCICON})
+        //   .addTo(this.map)
 
         // Loop through related ummcs and add markers
         ulc.ummcs.forEach((ummc) => {
-          const ummcMarker = L.marker([ummc.position_x, ummc.position_y], { icon: iconUmmc })
+          //@ts-ignore
+          let AVG = this.getAvgDisponibiliteA(ummc.statistics)
+          let UMMCICON = (AVG >= 0 && AVG < 34) ? this.icons.ummcRed : ((AVG >= 34 && AVG <= 66) ? this.icons.ummcYellow : this.icons.ummcGreen)
+          const ummcMarker = L.marker([ummc.position_x, ummc.position_y], { icon:  UMMCICON})
             .addTo(this.map)
-            .bindPopup('Hi!!');
+            .bindTooltip(
+              `<div>
+                  <h4><span style="color: #25265E" >${ummc.name}</span></h4>
+                  <h4>Taux de disponibilité A: <span style="color: #25265E" >${AVG.toFixed(2)}%</span></h4>
+               </div>`,
+              { 
+                  permanent: false, 
+                  direction: "top", 
+                  className: "custom-tooltip"
+              }
+          );
 
           // Store the ummc markers to be removed later
           //@ts-ignore
@@ -185,11 +283,20 @@ export class DashboardComponent implements OnInit {
 
         // Store the clicked marker in the array
         //@ts-ignore
-        this.markers.push(clickedMarker);
+        // this.markers.push(clickedMarker);
       });
     });
 
 
+  }
+
+  getAvgDisponibiliteA(stats: any){
+    let result = 0;
+    stats.forEach((s:any) => {
+      result += parseFloat(s.taux_disponibilite_a)
+    })
+    console.log('AVG: ',result / stats.length)
+    return result / stats.length
   }
 
   showInitial(){
@@ -237,7 +344,7 @@ export class DashboardComponent implements OnInit {
   onTauxChange(event: any){
     this.filterYearPerTaux = [event.value.value]
     console.log(this.filterYearPerTaux)
-    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux}}));
+    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
   }
 
   calculateMoyenGlobalTaux(data: any){
@@ -247,7 +354,7 @@ export class DashboardComponent implements OnInit {
       result += parseFloat(value)
       
     });
-    return parseFloat((result / data.datasets[0].data?.length).toString()).toFixed(3) == 'NaN' ? 0 : parseFloat((result / data.datasets[0].data?.length).toString()).toFixed(3)
+    return parseFloat((result / data.datasets[0].data?.length).toString()).toFixed(2) == 'NaN' ? 0 : parseFloat((result / data.datasets[0].data?.length).toString()).toFixed(2)
   }
 
   ngOnInit() {
@@ -256,7 +363,7 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(fetchUlcs({payload: {start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     //@ts-ignore
     this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
-    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux}}));
+    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     this.store.select(selectUlcPayload).subscribe(ulcs => {
       this.ulcs = ulcs
       this.addMarkers();
@@ -374,35 +481,21 @@ export class DashboardComponent implements OnInit {
       },
     };
     //data bar
-    const moisFrancais = {
-      1: "Janvier",
-      2: "Février",
-      3: "Mars",
-      4: "Avril",
-      5: "Mai",
-      6: "Juin",
-      7: "Juillet",
-      8: "Août",
-      9: "Septembre",
-      10: "Octobre",
-      11: "Novembre",
-      12: "Décembre"
-    };
 
     this.store.select(selectStatisticYearPayload).subscribe(statistic => {
-      // Extract labels for months
+      // Extract labels for dates
       //@ts-ignore
-      const labels = statistic.map(item => moisFrancais[item.month]);
-
+      const labels = statistic.map(item => item.date);
+    
       // Prepare datasets for each ULC
-      const datasets:[] = [];
-
-      statistic.forEach((item: any) => {
+      const datasets: any[] = [];
+    
+      statistic.forEach((item: any, index: number) => {
         item.ulc.forEach((ulc: any) => {
           // Check if dataset already exists for this ULC
           //@ts-ignore
           let dataset = datasets.find(ds => ds.label === ulc.ulc_name);
-
+    
           // If not, create a new one
           if (!dataset) {
             //@ts-ignore
@@ -410,25 +503,26 @@ export class DashboardComponent implements OnInit {
               label: ulc.ulc_name,
               data: Array(statistic.length).fill(0), // Initialize with zeros
               fill: false,
-              borderColor: ulc.ulc_color, // Random color
-              tension: 0.4
+              borderColor: ulc.ulc_color, 
+              tension: 0.4,
+              hidden: false,
             };
             //@ts-ignore
             datasets.push(dataset);
           }
-
-          // Set the taux_peremption for the corresponding month
-          const monthIndex = item.month - 1;
+    
+          // Set the taux_peremption for the corresponding date index
           //@ts-ignore
-          dataset.data[monthIndex] = parseFloat(ulc[this.filterYearPerTaux]);
+          dataset.data[index] = parseFloat(ulc[this.filterYearPerTaux]);
         });
       });
-
+    
       this.databar = {
         labels: labels,
         datasets: datasets
       };
     });
+    
 
 
   //   this.databar = {
@@ -691,17 +785,21 @@ export class DashboardComponent implements OnInit {
   }
 
   filterByDates(){
+    this.showInitialMarkers = false;
+    this.map.setView([33.589886,-7.603869 ], 6);
     this.store.dispatch(fetchUlcs({payload: {start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+    this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+
 
     //@ts-ignore
     if(this.rangeDates){
       
-     if(!this.showInitialMarkers){
+    //  if(!this.showInitialMarkers){
       this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
-     }else{
-      //@ts-ignore
-      this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: this.currentUlc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
-     }
+    //  }else{
+    //   //@ts-ignore
+    //   this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: this.currentUlc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
+    //  }
     }
   }
 
