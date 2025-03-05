@@ -194,7 +194,7 @@ export class DashboardComponent implements OnInit {
       this.geoJsonLayer = L.geoJSON((this.REGIONS[regionKey] as any).default, {
         style: {
           color: 'blue',  // Border color
-          weight: 2,
+          weight: 1,
           fillColor: 'lightblue',  // Fill color
           fillOpacity: 0.5
         }

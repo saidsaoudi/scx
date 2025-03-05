@@ -27,9 +27,12 @@
         
 }
 ::ng-deep .chartline{
-    display: block;
+    display: flex;
     height: 100px !important;
     width: 100% !important;
+    div{
+        width: 100%;
+    }
 }
 ::ng-deep .bg-chart{
     background: linear-gradient(180deg, #FFFFFF 0%, #B7D6FE 100%);
