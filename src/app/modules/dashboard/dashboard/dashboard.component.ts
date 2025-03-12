@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { map } from 'leaflet';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -8,9 +8,9 @@ import { AppState } from 'src/app/core/store/app.states';
 import { ULC } from 'src/app/core/models/ulc';
 import { fetchUlcs } from 'src/app/core/store/ulc/ulc.action';
 import { selectLoadingUlcs, selectUlcPayload } from 'src/app/core/store/ulc/ulc.selector';
-import { selectLoadingStatistics, selectStatisticPayload } from 'src/app/core/store/statistic/statistic.selector';
+import { selectLoadingMinMaxStatistics, selectLoadingStatistics, selectMinMaxStatistic, selectStatisticPayload } from 'src/app/core/store/statistic/statistic.selector';
 import { Statistic } from 'src/app/core/models/statistic';
-import { fetchStatistics } from 'src/app/core/store/statistic/statistic.action';
+import { fetchMinMaxStatistics, fetchStatistics } from 'src/app/core/store/statistic/statistic.action';
 import { selectLoadingStatisticYear, selectStatisticYearPayload } from 'src/app/core/store/statistic/statisticYear/statistic-year.selector';
 import { fetchStatisticYear } from 'src/app/core/store/statistic/statisticYear/statistic-year.action';
 import { MessageService } from 'primeng/api';
@@ -52,6 +52,7 @@ interface UploadEvent {
   providers: [DialogService,MessageService]
 })
 export class DashboardComponent implements OnInit {
+  
   regions: Region[] | undefined;
   selectedRegion: Region | undefined;
 
@@ -64,6 +65,7 @@ export class DashboardComponent implements OnInit {
   tauxForDropDownUlc: [] = []
   tauxForDropDownUmmc: [] = []
   selectedTaux: any = { name: "Taux de péremption", value: "taux_peremption" }
+  selectedEntity: any
   REGIONS = {
         bk_indices, cs, daraa_tafilalt, eod, fes_meknes, go, lsa, ms, orientl, rabat_sal_kenit, sm, tta
     }
@@ -75,8 +77,12 @@ export class DashboardComponent implements OnInit {
  
   isULCsLoading$ = this.store.select(selectLoadingUlcs)
   isUlcStatisticLoading$ = this.store.select(selectLoadingStatistics)
+  isUlcMinMaxStatisticLoading$ = this.store.select(selectLoadingMinMaxStatistics)
   isUlcStatisticYearLoading$ = this.store.select(selectLoadingStatisticYear)
   ulcs: ULC[] = []
+  ulcForDropDown: [] = []
+  ummcForDropDown: [] = []
+  minMaxStatistics!: any
   statistic: Statistic[] = []
   markers = [];
   initialMarkers = [];
@@ -148,7 +154,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dialogService: DialogService,
     private store: Store<AppState>,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cdr: ChangeDetectorRef
   ) { }
   map: any;
 
@@ -171,8 +178,8 @@ export class DashboardComponent implements OnInit {
   taux_disponibilite_c: any;
   taux_proche_penuerie: any;
   taux_prescription: any;
-  taux_couverture: any;
-  taux_adoption: any;
+  taux_service_medicament: any;
+  taux_service_ordonnance: any;
   databar : any;
   databardouble : any;
 
@@ -187,9 +194,9 @@ export class DashboardComponent implements OnInit {
     }).addTo(this.map);
 
     Object.keys(this.REGIONS).forEach(regionKey => {
-      console.log(regionKey); // Key (e.g., 'bk_indices')
+      // console.log(regionKey); // Key (e.g., 'bk_indices')
       //@ts-ignore
-      console.log(this.REGIONS[regionKey]); // Value (e.g., JSON data for bk_indices)
+      // console.log(this.REGIONS[regionKey]); // Value (e.g., JSON data for bk_indices)
       //@ts-ignore
       this.geoJsonLayer = L.geoJSON((this.REGIONS[regionKey] as any).default, {
         style: {
@@ -241,6 +248,10 @@ export class DashboardComponent implements OnInit {
 
       // Add click event to the marker
       marker.on('click', () => {
+        this.selectedEntity = null
+        this.ummcForDropDown = []
+        //@ts-ignore
+        this.ummcForDropDown.push({ name: 'Toutes les UMMCs', value: 'ALL' })
         this.showInitialMarkers = true
         // Zoom and center the map on the clicked marker
         this.map.setView([ulc.position_x, ulc.position_y], 7);
@@ -257,6 +268,8 @@ export class DashboardComponent implements OnInit {
 
         // Loop through related ummcs and add markers
         ulc.ummcs.forEach((ummc) => {
+            //@ts-ignore
+            this.ummcForDropDown.push({ name: ummc.name, value: ummc.id})
           //@ts-ignore
           let AVG = this.getAvgDisponibiliteA(ummc.statistics)
           let UMMCICON = (AVG >= 0 && AVG < 34) ? this.icons.ummcRed : ((AVG >= 34 && AVG <= 66) ? this.icons.ummcYellow : this.icons.ummcGreen)
@@ -282,10 +295,11 @@ export class DashboardComponent implements OnInit {
             this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ummc_id: ummc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
           })
         });
-        console.log('Clicked ULC:', ulc);
+        // console.log('Clicked ULC:', ulc);
         this.currentUlc = ulc
         //@ts-ignore
         this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: ulc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+        this.store.dispatch(fetchMinMaxStatistics({payload: {type: 'ummc', ulc_id: ulc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
         let payload = {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1], ulc_id: this.currentUlc?.id}
         this.store.dispatch(fetchStatisticYear({payload}));
         // Store the clicked marker in the array
@@ -302,11 +316,12 @@ export class DashboardComponent implements OnInit {
     stats.forEach((s:any) => {
       result += parseFloat(s.taux_disponibilite_a)
     })
-    console.log('AVG: ',result / stats.length)
+    // console.log('AVG: ',result / stats.length)
     return result / stats.length
   }
 
   showInitial(){
+    this.selectedEntity = null
     //@ts-ignore
     this.currentUlc = null;
     this.currentUmmc = null;
@@ -317,6 +332,7 @@ export class DashboardComponent implements OnInit {
     this.map.setView([33.589886,-7.603869], 6);
     this.showInitialMarkers = false;
     this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+    this.store.dispatch(fetchMinMaxStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     // Remove all markers from the map
     this.markers.forEach((m) => this.map.removeLayer(m));
     this.markers = [];
@@ -339,8 +355,8 @@ export class DashboardComponent implements OnInit {
     // Get last date of the previous month
     const lastDateOfPreviousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
 
-    console.log(firstDateOfPreviousMonth); // Output: First date of the previous month
-    console.log(lastDateOfPreviousMonth);  // Output: Last date of the previous month
+    // console.log(firstDateOfPreviousMonth); // Output: First date of the previous month
+    // console.log(lastDateOfPreviousMonth);  // Output: Last date of the previous month
 
     const formatDate = (date: Date): string => {
       const year = date.getFullYear();
@@ -364,6 +380,60 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(fetchStatisticYear({payload}));
   }
 
+  onEntityChange(event: any) {
+    this.onDeleteDataByLabel(this.selectedTaux.name)
+    // Determine the value to check against
+    const isAll = event.value.value === 'ALL';
+    // console.log(isAll, 'hhh')
+  
+    // Create a new datasets array based on the current datasets
+    const updatedDatasets = this.databar.datasets.map((item: any) => {
+      // Log the item for debugging purposes
+      // console.log(item);
+  
+      // Set hidden based on whether the value is 'ALL' or matching the label
+      item.hidden = !isAll && item.label !== event.value.name;
+  
+      // Return the modified item
+      return item;
+    });
+
+  //@ts-ignore
+    let addedTaux = [
+      {
+        label: this.selectedTaux.name,
+        //@ts-ignore
+        data: this[this.selectedTaux.value].datasets[0].data,  // example data
+        borderColor: '#000000',
+        tension: 0.4,
+        borderWidth: 2,
+    },
+    ]
+    // Set the new array to 'datasets' to ensure Angular detects the change
+    this.databar = {
+      ...this.databar,  // Keep other properties like 'labels'
+      datasets: [
+        ...updatedDatasets, 
+        ...(isAll ? [] : addedTaux)  // Only add `addedTaux` if `isAll` is false
+      ],  // Set the new datasets array
+    };
+    
+  }
+
+  onDeleteDataByLabel(label: string) {
+    // Filter out the dataset that matches the given label
+    const updatedDatasets = this.databar.datasets.filter((item: any) => item.label !== label);
+
+    // Update the databar with the new datasets array
+    this.databar = {
+        ...this.databar,  // Keep other properties like 'labels'
+        datasets: updatedDatasets,  // Set the new datasets array without the item to delete
+    };
+}
+  
+  
+  
+
   calculateMoyenGlobalTaux(data: any){
     let result = 0
     data.datasets[0].data?.forEach((value: any) => {
@@ -375,14 +445,25 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.store.select(selectMinMaxStatistic).subscribe(minMax => {
+      //@ts-ignore
+      this.minMaxStatistics = minMax
+    });
+    //@ts-ignore
+    this.ulcForDropDown.push({ name: 'Toutes les ULCs', value: 'ALL' })
     this.initialDatesFilter()
     this.store.dispatch(fetchUlcs({payload: {start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     //@ts-ignore
+    this.store.dispatch(fetchMinMaxStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
     this.store.select(selectUlcPayload).subscribe(ulcs => {
       this.ulcs = ulcs
+      
+      ulcs.forEach((u: any) => {
+        //@ts-ignore
+        this.ulcForDropDown.push({ name: u.name, value: u.id})
+      })
       this.addMarkers();
     });
     const documentStyle = getComputedStyle(document.documentElement);
@@ -417,8 +498,8 @@ export class DashboardComponent implements OnInit {
       'taux_disponibilite_a', 
       'taux_disponibilite_b', 
       'taux_disponibilite_c',
-      'taux_adoption',
-      'taux_couverture',
+      'taux_service_ordonnance',
+      'taux_service_medicament',
       'taux_prescription',
       'taux_proche_penuerie'
     ];
@@ -434,7 +515,7 @@ export class DashboardComponent implements OnInit {
       statistic.forEach(data => {
         chartKeys.forEach(key => {
           //@ts-ignore
-          this[key].labels.push(data.date);
+          this[key].labels.push(data.formatted_date);
           //@ts-ignore
           this[key].datasets[0].data.push(data[key] == null ? 0 : data[key]);
         });
@@ -446,7 +527,7 @@ export class DashboardComponent implements OnInit {
     });
 
 
-
+    
 
 
     this.regions = [
@@ -485,8 +566,8 @@ export class DashboardComponent implements OnInit {
       { name: "Taux d'occupation", value: "taux_occupation" },
       { name: "Taux de proche périmé", value: "taux_proche_perime" },
       { name: "Taux de rupture", value: "taux_rupture" },
-      { name: "Taux d'adoption", value: "taux_adoption" },
-      { name: "Taux couverture", value: "taux_couverture" },
+      { name: "Taux de service ordonnance", value: "taux_service_ordonnance" },
+      { name: "Taux de service medicament", value: "taux_service_medicament" },
       { name: "Taux prescription", value: "taux_prescription" },
       { name: "Taux de pneurie", value: "taux_proche_penuerie" },
       { name: "Taux de disponibilité A", value: "taux_disponibilite_a" },
@@ -517,29 +598,27 @@ export class DashboardComponent implements OnInit {
     this.store.select(selectStatisticYearPayload).subscribe(statistic => {
       // Extract labels for dates
       //@ts-ignore
-      const labels = statistic.map(item => item.date);
-    
+      const labels = statistic.map(item => item.formatted_date);
+      
       // Prepare datasets for each ULC
       const datasets: any[] = [];
+      const isAll = !this.selectedEntity || this.selectedEntity?.value === 'ALL';
     
       statistic.forEach((item: any, index: number) => {
         item.entity.forEach((entity: any) => {
           // Check if dataset already exists for this ULC
-          //@ts-ignore
           let dataset = datasets.find(ds => ds.label === entity.entity_name);
     
-          // If not, create a new one
+          // If dataset doesn't exist, create a new one
           if (!dataset) {
-            //@ts-ignore
             dataset = {
               label: entity.entity_name,
               data: Array(statistic.length).fill(0), // Initialize with zeros
               fill: false,
-              borderColor: entity.entity_color, 
+              borderColor: entity.entity_color,
               tension: 0.4,
-              hidden: false,
+              hidden: !isAll && this.selectedEntity?.name !== entity.entity_name, // Set hidden based on selectedEntity
             };
-            //@ts-ignore
             datasets.push(dataset);
           }
     
@@ -549,166 +628,40 @@ export class DashboardComponent implements OnInit {
         });
       });
     
+      // Update the databar with new datasets
       this.databar = {
-        labels: labels,
-        datasets: datasets
+        labels,
+        datasets: datasets.map(item => ({
+          ...item,
+          hidden: !isAll && item.label !== this.selectedEntity?.name, // Adjust visibility based on selectedEntity
+        })),
       };
+
+      this.onDeleteDataByLabel(this.selectedTaux.name)
+
+      //@ts-ignore
+      let addedTaux = [
+        {
+          label: this.selectedTaux.name,
+          //@ts-ignore
+          data: this[this.selectedTaux.value].datasets[0].data,
+          borderColor: '#000000',
+          tension: 0.4,
+          borderWidth: 2,
+      },
+      ]
+      // Set the new array to 'datasets' to ensure Angular detects the change
+      this.databar = {
+        ...this.databar,  // Keep other properties like 'labels'
+        datasets: [
+          ...this.databar.datasets, 
+          ...(isAll ? [] : addedTaux)  // Only add `addedTaux` if `isAll` is false
+        ],  // Set the new datasets array
+      };
+
     });
     
 
-
-  //   this.databar = {
-  //     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  //           datasets: [
-  //               {
-  //                   label: 'First Dataset',
-  //                   data: [65, 59, 80, 81, 56, 55, 40],
-  //                   fill: false,
-  //                   borderColor: '#3357FF',
-  //                   tension: 0.4
-  //               },
-  //             //   {
-  //             //       label: 'Second Dataset',
-  //             //       data: [28, 48, 40, 19, 86, 27, 90],
-  //             //       fill: false,
-  //             //       borderColor: documentStyle.getPropertyValue('--pink-500'),
-  //             //       tension: 0.4
-  //             //   },
-  //             //   {
-  //             //       label: 'Trow Dataset',
-  //             //       data: [15, 20, 60, 17, 90, 30, 93],
-  //             //       fill: false,
-  //             //       borderColor: documentStyle.getPropertyValue('--yellow-500'),
-  //             //       tension: 0.4
-  //             //   },
-  //             //   {
-  //             //     label: 'four Dataset',
-  //             //     data: [62, 51, 33, 65, 80, 40, 12],
-  //             //     fill: false,
-  //             //     borderColor: documentStyle.getPropertyValue('--purple-500'),
-  //             //     tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: 'five Dataset',
-  //             //   data: [100, 30, 50, 70, 55, 33, 81],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--rose-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '6 Dataset',
-  //             //   data: [120, 90, 70, 33, 15, 17, 25],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--stone-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '7 Dataset',
-  //             //   data: [58, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '8 Dataset',
-  //             //   data: [58, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '9 Dataset',
-  //             //   data: [120, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '10 Dataset',
-  //             //   data: [26, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '11 Dataset',
-  //             //   data: [69, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '12 Dataset',
-  //             //   data: [23, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '12 Dataset',
-  //             //   data: [23, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '13 Dataset',
-  //             //   data: [96, 35, 132, 65, 53, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '14 Dataset',
-  //             //   data: [120, 99, 85, 65, 32, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '15 Dataset',
-  //             //   data: [20, 15, 150, 88, 15, 23, 123],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '16 Dataset',
-  //             //   data: [56, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '17 Dataset',
-  //             //   data: [88, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '18 Dataset',
-  //             //   data: [192, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '19 Dataset',
-  //             //   data: [165, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // },
-  //             // {
-  //             //   label: '20 Dataset',
-  //             //   data: [215, 35, 120, 65, 15, 23, 77],
-  //             //   fill: false,
-  //             //   borderColor: documentStyle.getPropertyValue('--cyan-500'),
-  //             //   tension: 0.4
-  //             // }
-  //           ]
-  // };
 
   this.optionsdata = {
     maintainAspectRatio: false,
@@ -818,6 +771,7 @@ export class DashboardComponent implements OnInit {
 
   filterByDates(){
     this.showInitialMarkers = false;
+    this.selectedEntity = null;
     //@ts-ignore
     this.currentUlc = null;
     this.currentUmmc = null;
@@ -831,6 +785,7 @@ export class DashboardComponent implements OnInit {
       
     //  if(!this.showInitialMarkers){
       this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
+      this.store.dispatch(fetchMinMaxStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
     //  }else{
     //   //@ts-ignore
     //   this.store.dispatch(fetchStatistics({payload: {type: 'ummc', ulc_id: this.currentUlc.id, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}))
@@ -849,4 +804,18 @@ export class DashboardComponent implements OnInit {
       console.log('Dialog closed with data:', data);
     });
   }
+
+  getMinMax(taux: any) {
+    return {
+      min: {
+        entity_name: this.minMaxStatistics?.[taux]?.min?.entity_name,
+        value: parseFloat(this.minMaxStatistics?.[taux]?.min?.value).toFixed(2)
+      },
+      max: {
+        entity_name: this.minMaxStatistics?.[taux]?.max?.entity_name,
+        value: parseFloat(this.minMaxStatistics?.[taux]?.max?.value).toFixed(2)
+      }
+    };
+  }
+  
 }

@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { StatisticService } from '../../services/statistic/statistic.service';
-import { createStatistic, createStatisticsSuccess, fetchOneStatistic, fetchOneStatisticsSuccess, fetchStatistics, fetchStatisticsSuccess, statisticActionFailure, updateStatistic, updateStatisticsSuccess } from './statistic.action';
+import { createStatistic, createStatisticsSuccess, fetchMinMaxStatistics, fetchMinMaxtatisticsSuccess, fetchOneStatistic, fetchOneStatisticsSuccess, fetchStatistics, fetchStatisticsSuccess, statisticActionFailure, updateStatistic, updateStatisticsSuccess } from './statistic.action';
 
 @Injectable()
 export class StatisticsEffects {
@@ -122,6 +122,34 @@ export class StatisticsEffects {
             console.error('Une Erreur est survenu ! 1');
             return of(
                 statisticActionFailure({ action: 'Fetching one statistics', error })
+            );
+          })
+        );
+      }),
+
+    );
+  });
+  getMinMaxStatistics$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fetchMinMaxStatistics),
+      mergeMap(({payload}) => {
+        return this.statisticService.fetchMinMaxStatistics(payload).pipe(
+          map((res: any) => {
+            if (res.success) {
+                let payload = res.payload
+              return fetchMinMaxtatisticsSuccess({ payload });
+            } else {
+              console.error('Une Erreur est survenu !');
+              return statisticActionFailure({
+                action: 'Fetching Min Max statistics',
+                error: res.message,
+              });
+            }
+          }),
+          catchError((error) => {
+            console.error('Une Erreur est survenu ! 1');
+            return of(
+                statisticActionFailure({ action: 'Fetching Min Max statistics', error })
             );
           })
         );

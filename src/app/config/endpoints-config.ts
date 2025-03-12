@@ -49,6 +49,10 @@ export class EndpointsConfig {
                     endPoint: this.url+'statistic/fetch',
                     method: 'post'
                 },
+                min_max: {
+                    endPoint: this.url+'statistic/fetch/minmax',
+                    method: 'post'
+                },
                 one: {
                     endPoint: this.url+'statistic/{statistic}',
                     method: 'get'

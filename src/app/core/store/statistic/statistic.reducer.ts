@@ -1,16 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import { Statistic } from '../../models/statistic';
-import { createStatistic, createStatisticsSuccess, fetchOneStatistic, fetchOneStatisticsSuccess, fetchStatistics, fetchStatisticsSuccess, statisticActionFailure, updateStatistic, updateStatisticsSuccess } from './statistic.action';
+import { createStatistic, createStatisticsSuccess, fetchMinMaxStatistics, fetchMinMaxtatisticsSuccess, fetchOneStatistic, fetchOneStatisticsSuccess, fetchStatistics, fetchStatisticsSuccess, statisticActionFailure, updateStatistic, updateStatisticsSuccess } from './statistic.action';
 
 export interface StatisticState {
     payload: Statistic[];
     detail: {
       payload: Statistic,
     };
+    min_max: any,
     loading: {
       create: boolean,
       update: boolean,
       list: boolean,
+      min_max: boolean,
       detail: boolean,
     },
     error: {
@@ -25,17 +27,19 @@ export const initialState: StatisticState = {
     detail: {
       payload: new Statistic,
     },
+    min_max: null,
     loading: {
       create: false,
       update: false,
       list: false,
+      min_max: false,
       detail: false,
     },
     error: null,
     status: 'INIT',
 };
 
-function updateLoadingState(actionType: string, loading: { create: boolean; update:boolean, list: boolean; detail: boolean }) {
+function updateLoadingState(actionType: string, loading: { create: boolean; update:boolean, list: boolean; min_max: boolean, detail: boolean }) {
   switch (actionType) {
       case 'Creating statistics':
           return { ...loading, create: false };
@@ -43,6 +47,8 @@ function updateLoadingState(actionType: string, loading: { create: boolean; upda
           return { ...loading, update: false };
       case 'Fetching statistics':
           return { ...loading, list: false };
+      case 'Fetching Min Max statistics':
+        return { ...loading, min_max: false };
       case 'Fetching one statistics':
           return { ...loading, detail: false };
       default:
@@ -165,6 +171,31 @@ export const statisticReducer = createReducer(
       detail: {
         payload: payload,
       },
+      //@ts-ignore
+      status: 'SUCCESS',
+      error: null,
+    })),
+    // RETRIEVE ALL GROUPES
+    //@ts-ignore
+    on(fetchMinMaxStatistics, (state) => {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          list: true,
+        },
+        status: 'LOADING',
+        error: null,
+      };
+    }),
+    // RETRIEVE ALL GROUPES (SUCCESS)
+    on(fetchMinMaxtatisticsSuccess, (state, { payload }) => ({
+      ...state,
+      loading: {
+        ...state.loading,
+        list: false,
+      },
+      min_max: payload,
       //@ts-ignore
       status: 'SUCCESS',
       error: null,

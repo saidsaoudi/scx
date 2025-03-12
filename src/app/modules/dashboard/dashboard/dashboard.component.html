@@ -70,6 +70,15 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_peremption)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                    
+                                    <p-overlayPanel #op_taux_peremption>
+                                        <div class="min-max-container">
+                                            <h4 class="mb-2">Minimum: {{getMinMax('taux_peremption').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_peremption').min.value}}%</span></h4>
+                                            <hr class="mb-2">
+                                            <h4>Maximum: {{getMinMax('taux_peremption').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_peremption').max.value}}%</span></h4>
+                                        </div>
+                                    </p-overlayPanel>
+                                    <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_peremption.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -84,6 +93,14 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_occupation)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                <p-overlayPanel #op_taux_occupation>
+                                    <div class="min-max-container">
+                                        <h4 class="mb-2">Minimum: {{getMinMax('taux_occupation').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_occupation').min.value}}%</span></h4>
+                                        <hr class="mb-2">
+                                        <h4>Maximum: {{getMinMax('taux_occupation').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_occupation').max.value}}%</span></h4>
+                                    </div>
+                                </p-overlayPanel>
+                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_occupation.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -98,6 +115,14 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_proche_perime)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                <p-overlayPanel #op_taux_proche_perime>
+                                    <div class="min-max-container">
+                                        <h4 class="mb-2">Minimum: {{getMinMax('taux_proche_perime').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_proche_perime').min.value}}%</span></h4>
+                                        <hr class="mb-2">
+                                        <h4>Maximum: {{getMinMax('taux_proche_perime').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_proche_perime').max.value}}%</span></h4>
+                                    </div>
+                                </p-overlayPanel>
+                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_proche_perime.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -114,6 +139,14 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_rupture)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                <p-overlayPanel #op_taux_rupture>
+                                    <div class="min-max-container">
+                                        <h4 class="mb-2">Minimum: {{getMinMax('taux_rupture').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_rupture').min.value}}%</span></h4>
+                                        <hr class="mb-2">
+                                        <h4>Maximum: {{getMinMax('taux_rupture').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_rupture').max.value}}%</span></h4>
+                                    </div>
+                                </p-overlayPanel>
+                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_rupture.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -128,6 +161,14 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_disponibilite_a)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                <p-overlayPanel #op_taux_disponibilite_a>
+                                    <div class="min-max-container">
+                                        <h4 class="mb-2">Minimum: {{getMinMax('taux_disponibilite_a').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_disponibilite_a').min.value}}%</span></h4>
+                                        <hr class="mb-2">
+                                        <h4>Maximum: {{getMinMax('taux_disponibilite_a').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_disponibilite_a').max.value}}%</span></h4>
+                                    </div>
+                                </p-overlayPanel>
+                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_disponibilite_a.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -142,6 +183,14 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_disponibilite_b)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                <p-overlayPanel #op_taux_disponibilite_b>
+                                    <div class="min-max-container">
+                                        <h4 class="mb-2">Minimum: {{getMinMax('taux_disponibilite_b').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_disponibilite_b').min.value}}%</span></h4>
+                                        <hr class="mb-2">
+                                        <h4>Maximum: {{getMinMax('taux_disponibilite_b').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_disponibilite_b').max.value}}%</span></h4>
+                                    </div>
+                                </p-overlayPanel>
+                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_disponibilite_b.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -156,6 +205,14 @@
                                 <h2>{{calculateMoyenGlobalTaux(taux_disponibilite_c)}}%</h2>
                             </div>
                             <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                <p-overlayPanel #op_taux_disponibilite_c>
+                                    <div class="min-max-container">
+                                        <h4 class="mb-2">Minimum: {{getMinMax('taux_disponibilite_c').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_disponibilite_c').min.value}}%</span></h4>
+                                        <hr class="mb-2">
+                                        <h4>Maximum: {{getMinMax('taux_disponibilite_c').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_disponibilite_c').max.value}}%</span></h4>
+                                    </div>
+                                </p-overlayPanel>
+                                <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_disponibilite_c.toggle($event)"/>
                                 <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                             </div> 
                         </div>
@@ -164,13 +221,21 @@
                 <ng-container *ngIf="showInitialMarkers">
                     <div class="col-12 sm:col-12 md:col-12 lg:col-4">
                         <div class="bg-chart">
-                            <h3>Taux d'adoption</h3>
-                            <p-chart type="line" [data]="taux_adoption" [options]="options" class="chartline"/>
+                            <h3>Taux de service ordonnance</h3>
+                            <p-chart type="line" [data]="taux_service_ordonnance" [options]="options" class="chartline"/>
                             <div class="grid btm-chart">
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                    <h2>{{calculateMoyenGlobalTaux(taux_adoption)}}%</h2>
+                                    <h2>{{calculateMoyenGlobalTaux(taux_service_ordonnance)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                    <p-overlayPanel #op_taux_service_ordonnance>
+                                        <div class="min-max-container">
+                                            <h4 class="mb-2">Minimum: {{getMinMax('taux_service_ordonnance').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_service_ordonnance').min.value}}%</span></h4>
+                                            <hr class="mb-2">
+                                            <h4>Maximum: {{getMinMax('taux_service_ordonnance').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_service_ordonnance').max.value}}%</span></h4>
+                                        </div>
+                                    </p-overlayPanel>
+                                    <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_service_ordonnance.toggle($event)"/>
                                     <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                                 </div> 
                             </div>
@@ -178,13 +243,21 @@
                     </div>
                     <div class="col-12 sm:col-12 md:col-12 lg:col-4">
                         <div class="bg-chart">
-                            <h3>Taux de couverture</h3>
-                            <p-chart type="line" [data]="taux_couverture" [options]="options" class="chartline"/>
+                            <h3>Taux de service medicament</h3>
+                            <p-chart type="line" [data]="taux_service_medicament" [options]="options" class="chartline"/>
                             <div class="grid btm-chart">
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6">
-                                    <h2>{{calculateMoyenGlobalTaux(taux_couverture)}}%</h2>
+                                    <h2>{{calculateMoyenGlobalTaux(taux_service_medicament)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                    <p-overlayPanel #op_taux_service_medicament>
+                                        <div class="min-max-container">
+                                            <h4 class="mb-2">Minimum: {{getMinMax('taux_service_medicament').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_service_medicament').min.value}}%</span></h4>
+                                            <hr class="mb-2">
+                                            <h4>Maximum: {{getMinMax('taux_service_medicament').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_service_medicament').max.value}}%</span></h4>
+                                        </div>
+                                    </p-overlayPanel>
+                                    <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_service_medicament.toggle($event)"/>
                                     <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                                 </div> 
                             </div>
@@ -199,6 +272,14 @@
                                     <h2>{{calculateMoyenGlobalTaux(taux_prescription)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                    <p-overlayPanel #op_taux_prescription>
+                                        <div class="min-max-container">
+                                            <h4 class="mb-2">Minimum: {{getMinMax('taux_prescription').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_prescription').min.value}}%</span></h4>
+                                            <hr class="mb-2">
+                                            <h4>Maximum: {{getMinMax('taux_prescription').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_prescription').max.value}}%</span></h4>
+                                        </div>
+                                    </p-overlayPanel>
+                                    <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_prescription.toggle($event)"/>
                                     <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                                 </div> 
                             </div>
@@ -213,6 +294,14 @@
                                     <h2>{{calculateMoyenGlobalTaux(taux_proche_penuerie)}}%</h2>
                                 </div>
                                 <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+                                    <p-overlayPanel #op_taux_proche_penuerie>
+                                        <div class="min-max-container">
+                                            <h4 class="mb-2">Minimum: {{getMinMax('taux_proche_penuerie').min.entity_name}} avec un taux de <span class="text-red-700">{{getMinMax('taux_proche_penuerie').min.value}}%</span></h4>
+                                            <hr class="mb-2">
+                                            <h4>Maximum: {{getMinMax('taux_proche_penuerie').max.entity_name}} avec un taux de <span class="text-green-700">{{getMinMax('taux_proche_penuerie').max.value}}%</span></h4>
+                                        </div>
+                                    </p-overlayPanel>
+                                    <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (click)="op_taux_proche_penuerie.toggle($event)"/>
                                     <!-- <p-button label="Voir plus" severity="secondary"icon="pi pi-align-justify"  class="btnplus p-2" (onClick)="DetailTablBoard()"/> -->
                                 </div> 
                             </div>
@@ -223,23 +312,43 @@
             <div class="chartdci mt-4 mb-4">
                 <div class="filter p-2 mb-3 ml-2 flex justify-content-between">
                     <h3 class="mb-4">KPI PAR ULC</h3>
-                    <div *ngIf="!currentUlc">
-                        <p-dropdown
-                            [options]="tauxForDropDownUlc"
-                            class="w-hopital"
-                            [(ngModel)]="selectedTaux" 
-                            (onChange)="onTauxChange($event)"
-                            optionLabel="name" 
-                            placeholder="Centre de santé + Hopital : Tous" />
-                    </div>
-                    <div *ngIf="currentUlc">
-                        <p-dropdown
-                            [options]="tauxForDropDownUmmc"
-                            class="w-hopital"
-                            [(ngModel)]="selectedTaux" 
-                            (onChange)="onTauxChange($event)"
-                            optionLabel="name" 
-                            placeholder="Centre de santé + Hopital : Tous" />
+                    <div class="entity-filter flex">
+                        <div *ngIf="!currentUlc" class="mr-2">
+                            <p-dropdown
+                                [options]="ulcForDropDown"
+                                class="w-hopital"
+                                [(ngModel)]="selectedEntity" 
+                                (onChange)="onEntityChange($event)"
+                                optionLabel="name" 
+                                placeholder="Séléctionner ULC" />
+                        </div>
+                        <div *ngIf="!currentUlc">
+                            <p-dropdown
+                                [options]="tauxForDropDownUlc"
+                                class="w-hopital"
+                                [(ngModel)]="selectedTaux" 
+                                (onChange)="onTauxChange($event)"
+                                optionLabel="name" 
+                                placeholder="Centre de santé + Hopital : Tous" />
+                        </div>
+                        <div *ngIf="currentUlc" class="mr-2">
+                            <p-dropdown
+                                [options]="ummcForDropDown"
+                                class="w-hopital"
+                                [(ngModel)]="selectedEntity" 
+                                (onChange)="onEntityChange($event)"
+                                optionLabel="name" 
+                                placeholder="Séléctionner UMMC" />
+                        </div>
+                        <div *ngIf="currentUlc">
+                            <p-dropdown
+                                [options]="tauxForDropDownUmmc"
+                                class="w-hopital"
+                                [(ngModel)]="selectedTaux" 
+                                (onChange)="onTauxChange($event)"
+                                optionLabel="name" 
+                                placeholder="Centre de santé + Hopital : Tous" />
+                        </div>
                     </div>
                 </div>
                 

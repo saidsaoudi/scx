@@ -29,4 +29,8 @@ export class StatisticService {
     //@ts-ignore
     return this.http.sendRequest(this.STATISTIC.one, null, {statistic: uuid});
   }
+  fetchMinMaxStatistics(data: any){
+    //@ts-ignore
+    return this.http.sendRequest(this.STATISTIC.min_max, data);
+  }
 }

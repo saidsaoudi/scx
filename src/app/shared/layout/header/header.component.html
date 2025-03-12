@@ -3,7 +3,7 @@
     <div class="col-12 sm:col-4 md:col-2 lg:col-1 pr-0">
       <img src="../../../../assets/img/icon-menu.png" class="menu cursor-pointer lg:w-4 pt-3  ml-3" pRipple (click)="op.toggle($event)">
     </div>
-      <p-overlayPanel #op>
+      <p-overlayPanel #op class="header-overlay">
           <ng-template pTemplate>
               <ul class="menu-details">
                   <li pRipple class="cursor-pointer" (click)="goToHome()">

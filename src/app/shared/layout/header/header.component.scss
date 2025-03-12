@@ -33,7 +33,7 @@
         color: #20a8d3;
     }
 }
-::ng-deep .p-overlaypanel{
+::ng-deep .p-overlaypanel.header-overlay{
     z-index: 9999 !important;
     border-radius: 0px 0px 26px 0px;
     top: 64px !important;

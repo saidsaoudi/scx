@@ -29,6 +29,12 @@ export const fetchOneStatistic = createAction(
 
 );
 
+export const fetchMinMaxStatistics = createAction(
+    '[statistics] Fetch Min Max Statistics',
+    props<{ payload: any }>()
+
+);
+
 export const createStatisticsSuccess = createAction(
     '[Statistics] Create Statistic Success',
     props<{ payload: Statistic }>()
@@ -45,4 +51,8 @@ export const fetchStatisticsSuccess = createAction(
 export const fetchOneStatisticsSuccess = createAction(
     '[statistics] Fetch One statistics Success',
     props<{ payload: Statistic }>()
+);
+export const fetchMinMaxtatisticsSuccess = createAction(
+    '[statistics] Fetch Min Max statistics Success',
+    props<{ payload: Statistic[] }>()
 );

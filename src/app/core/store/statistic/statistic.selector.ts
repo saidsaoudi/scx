@@ -8,6 +8,11 @@ export const selectStatisticPayload = createSelector(
   (state: StatisticState) => state.payload
 );
 
+export const selectMinMaxStatistic = createSelector(
+  appSelectStatistic,
+(state: StatisticState) => state.min_max
+);
+
 export const selectLoadingCreateStatistic = createSelector(
     appSelectStatistic,
 (state: StatisticState) => state.loading.create
@@ -26,6 +31,11 @@ export const selectOneStatistic = createSelector(
 export const selectLoadingStatistics = createSelector(
     appSelectStatistic,
   (state: StatisticState) => state.loading.list
+);
+
+export const selectLoadingMinMaxStatistics = createSelector(
+  appSelectStatistic,
+(state: StatisticState) => state.loading.min_max
 );
 
 export const selectLoadingOneStatistic= createSelector(
