@@ -207,10 +207,12 @@ export class DashboardComponent implements OnInit {
         (response) => {
           this.currentUlc = null
           this.currentUmmc = null
-          this.showInitialMarkers = true
+          this.showInitialMarkers = false
           this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
           this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
           this.isUploading = false;
+          // Reset the FileUpload component
+          this.fileUpload.clear();  // This will reset the file input and clear the selected files
         },
         (error) => {
           console.error('Error uploading file', error);
