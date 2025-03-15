@@ -27,6 +27,8 @@ import * as orientl from '../../../../assets/regions/orientl.json';
 import * as rabat_sal_kenit from '../../../../assets/regions/rabat_sal_kenit.json';
 import * as sm from '../../../../assets/regions/sm.json';
 import * as tta from '../../../../assets/regions/tta.json';
+import { StatisticService } from 'src/app/core/services/statistic/statistic.service';
+import { FileUpload } from 'primeng/fileupload';
 
 interface Region {
   name: string;
@@ -40,6 +42,29 @@ interface Hopital {
   name: string;
   code: string;
 }
+const colors = [
+  "#FF5733", // Red-Orange
+  "#33FF57", // Green
+  "#3357FF", // Blue
+  "#FF33A1", // Pink
+  "#FF5733", // Orange
+  "#FFD700", // Gold
+  "#8A2BE2", // Blue-Violet
+  "#FF1493", // Deep Pink
+  "#20B2AA", // Light Sea Green
+  "#D2691E", // Chocolate
+  "#DC143C", // Crimson
+  "#F08080", // Light Coral
+  "#32CD32", // Lime Green
+  "#FFD700", // Gold
+  "#4682B4", // Steel Blue
+  "#800080", // Purple
+  "#00FA9A", // Medium Spring Green
+  "#2E8B57", // Sea Green
+  "#A52A2A", // Brown
+  "#98FB98", // Pale Green
+];
+
 interface UploadEvent {
   originalEvent: Event;
   files: File[];
@@ -52,6 +77,12 @@ interface UploadEvent {
   providers: [DialogService,MessageService]
 })
 export class DashboardComponent implements OnInit {
+
+   // File upload component reference
+   @ViewChild(FileUpload) fileUpload: FileUpload;
+
+  isEcraser = false
+  isUploading = false
   
   regions: Region[] | undefined;
   selectedRegion: Region | undefined;
@@ -87,7 +118,7 @@ export class DashboardComponent implements OnInit {
   markers = [];
   initialMarkers = [];
   showInitialMarkers = false;
-  currentUlc : ULC;
+  currentUlc : any;
   currentUmmc : any;
   filterYearPerTaux = ['taux_peremption']
   geoJsonLayer: any
@@ -155,13 +186,39 @@ export class DashboardComponent implements OnInit {
     private dialogService: DialogService,
     private store: Store<AppState>,
     private messageService: MessageService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private statisticService: StatisticService
   ) { }
   map: any;
 
-  onUpload(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Fichier téléchargé avec le mode de base' });
-}
+  onUpload(event: any): void {
+    this.isUploading = true;
+    const files = this.fileUpload.files;
+    const file = files[0]; // Get the selected file
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file, file.name);
+      //@ts-ignore
+      formData.append('isEcraser', this.isEcraser);
+
+      // Send the file to the server (replace the URL with your actual API endpoint)
+      this.statisticService.uploadFile(formData).subscribe(
+        (response) => {
+          this.currentUlc = null
+          this.currentUmmc = null
+          this.showInitialMarkers = true
+          this.store.dispatch(fetchStatistics({payload: {type: 'ulc', start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+          this.store.dispatch(fetchStatisticYear({payload: {taux: this.filterYearPerTaux, start_date: this.formateDates()[0], end_date: this.formateDates()[1]}}));
+          this.isUploading = false;
+        },
+        (error) => {
+          console.error('Error uploading file', error);
+        }
+      );
+    }
+  }
+  
   markerLocations = [
     {
       lng:-7.09262,
@@ -252,7 +309,7 @@ export class DashboardComponent implements OnInit {
         this.ummcForDropDown = []
         //@ts-ignore
         this.ummcForDropDown.push({ name: 'Toutes les UMMCs', value: 'ALL' })
-        this.showInitialMarkers = true
+        this.showInitialMarkers = false
         // Zoom and center the map on the clicked marker
         this.map.setView([ulc.position_x, ulc.position_y], 7);
         // Remove all markers from the map
@@ -615,7 +672,7 @@ export class DashboardComponent implements OnInit {
               label: entity.entity_name,
               data: Array(statistic.length).fill(0), // Initialize with zeros
               fill: false,
-              borderColor: entity.entity_color,
+              borderColor: this.getRandomUniqueColor(), //entity.entity_color,
               tension: 0.4,
               hidden: !isAll && this.selectedEntity?.name !== entity.entity_name, // Set hidden based on selectedEntity
             };
@@ -817,5 +874,16 @@ export class DashboardComponent implements OnInit {
       }
     };
   }
+  // Function to get random unique color
+  getRandomUniqueColor() {
+    // Shuffle the array and return the first color
+    const shuffledColors = [...colors]; // Copy the array to avoid mutating the original
+    for (let i = shuffledColors.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]]; // Swap elements
+    }
+    return shuffledColors[0]; // Return the first color from shuffled array
+  }
+
   
 }

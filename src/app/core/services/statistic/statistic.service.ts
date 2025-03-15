@@ -33,4 +33,10 @@ export class StatisticService {
     //@ts-ignore
     return this.http.sendRequest(this.STATISTIC.min_max, data);
   }
+
+  // Helper function to upload the file
+  uploadFile(formData: any) {
+    //@ts-ignore
+    return this.http.sendRequest(this.STATISTIC.upload, formData);
+  }
 }

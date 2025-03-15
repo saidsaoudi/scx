@@ -37,6 +37,7 @@ import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 const MODULES = [
@@ -76,7 +77,8 @@ const MODULES = [
     DialogModule,
     RadioButtonModule,
     FileUploadModule,
-    ToastModule
+    ToastModule,
+    CheckboxModule
 ]
 
 @NgModule({

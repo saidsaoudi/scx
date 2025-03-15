@@ -56,6 +56,10 @@ export class EndpointsConfig {
                 one: {
                     endPoint: this.url+'statistic/{statistic}',
                     method: 'get'
+                },
+                upload: {
+                    endPoint: this.url+'statistic/import',
+                    method: 'post'
                 }
             },
             statisticYear:{
