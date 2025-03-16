@@ -313,7 +313,7 @@ export class DashboardComponent implements OnInit {
         this.ummcForDropDown = []
         //@ts-ignore
         this.ummcForDropDown.push({ name: 'Toutes les UMMCs', value: 'ALL' })
-        this.showInitialMarkers = false
+        this.showInitialMarkers = true
         // Zoom and center the map on the clicked marker
         this.map.setView([ulc.position_x, ulc.position_y], 7);
         // Remove all markers from the map
