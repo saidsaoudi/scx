@@ -38,6 +38,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 const MODULES = [
@@ -78,7 +79,8 @@ const MODULES = [
     RadioButtonModule,
     FileUploadModule,
     ToastModule,
-    CheckboxModule
+    CheckboxModule,
+    ProgressSpinnerModule
 ]
 
 @NgModule({

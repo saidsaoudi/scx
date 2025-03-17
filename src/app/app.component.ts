@@ -9,6 +9,7 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  loading = true;
    @ViewChild('cardleftElement') cardleftElement!: ElementRef; // Get the div reference
    
     classData: {exist:boolean,className:string}; // Default class
@@ -18,6 +19,10 @@ export class AppComponent {
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
+  
 }
 
   loggedIn(): boolean {

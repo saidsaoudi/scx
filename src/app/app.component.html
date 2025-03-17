@@ -1,6 +1,7 @@
 <div id="layout" *ngIf="loggedIn()">
     <app-header class="fixed w-full zindex"></app-header>
-    <div class="w-auto contentbody">
+    <div class="w-auto contentbody ">
+        <p-progressSpinner class="overlay"  *ngIf="loading"></p-progressSpinner>
         <p-card styleClass="h-full" class="home-card">
             <router-outlet></router-outlet>
         </p-card>
