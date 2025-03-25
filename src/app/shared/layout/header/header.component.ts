@@ -53,6 +53,9 @@ export class HeaderComponent implements OnInit {
   goAlertManagement(){
     window.location.href = '/alerts-management'
   }
+  goApprovisionnement(){
+    window.location.href = '/approvisionnement'
+  }
   updateStyle(event: {exist:boolean,className:string}) {
     console.log("Received style event:", event);
     this.classData = event;

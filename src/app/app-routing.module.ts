@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
     { path: 'tms', loadChildren: () => import('./modules/tms/tms.module').then(m => m.TmsModule) },
     { path: 'alerts-management', loadChildren: () => import('./modules/alerts-management/alerts-management.module').then(m => m.AlertsManagementModule) },
+    { path: 'approvisionnement', loadChildren: () => import('./modules/approvisionnement/approvisionnement.module').then(m => m.ApprovisionnementModule) },
 
 
 

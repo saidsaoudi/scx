@@ -1,0 +1,96 @@
+<div class="ml-2 mr-3 ml-3 mt-3 listcommande">
+    <div class="grid ">
+        <div class="col-12 sm:col-12 md:col-12 lg:col-6">
+            <h3>LISTE DES COMMANDES</h3>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-6 text-right">
+            <p-button label="Ajouter une commande" icon="pi pi-plus-circle" class="btn-commande"/>
+        </div>
+    </div>
+    <div class="filter mb-3 mt-3 lg:flex justify-content-between">
+        <div class="mb-3">
+            <p-dropdown 
+                [options]="produits" 
+                [(ngModel)]="selectedProduits" 
+                optionLabel="name" 
+                placeholder="Produit : Tous" />
+        </div>
+        <div class="mb-3">
+            <p-calendar 
+                [(ngModel)]="rangeDates" 
+                selectionMode="range" 
+                [readonlyInput]="true"
+                [showIcon]="true"  
+                placeholder="Date de passation commande : Tous" />
+        </div>
+        <div class="mb-3">
+            <p-calendar 
+                [(ngModel)]="rangeDates" 
+                selectionMode="range" 
+                [readonlyInput]="true"
+                [showIcon]="true"  
+                placeholder="Date de livraison proposée : Tous" />
+        </div>
+        <div class="mb-3">
+            <p-dropdown 
+                [options]="fournisseur"
+                [(ngModel)]="selectedFournisseur" 
+                optionLabel="name" 
+                placeholder="Fournisseur : Tous" />
+        </div>
+        <div class="mb-3">
+            <p-dropdown 
+                [options]="destination" 
+                [(ngModel)]="selectedDestination" 
+                optionLabel="name" 
+                placeholder="Destination : Tous" />
+        </div>
+        <div class="mb-3">
+            <p-calendar 
+                [(ngModel)]="rangeDates" 
+                selectionMode="range" 
+                [readonlyInput]="true"
+                [showIcon]="true"  
+                placeholder="Date de livraison réelle : Tous" />
+        </div>
+        <div class="mb-3">
+            <p-dropdown 
+                [options]="destination" 
+                [(ngModel)]="selectedDestination" 
+                optionLabel="name" 
+                placeholder="Statut : Tous" />
+        </div>
+        <div class="flex">
+            <p-button icon="pi pi-search"  class="search-filter"/>
+            <p-button icon="pi pi-download" class="download-filter ml-2"/>
+        </div>
+    </div>
+    <div class="overflow-auto">
+        <table class="w-full text-left text-gray-500 mt-4">
+          <thead>
+            <tr>
+              <th *ngFor="let header of headerColumuns" scope="col"
+                class="p-3 font-bold whitespace-nowrap text-black">
+                {{ header }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row  whitespace-nowrap border-b border-gray-800"
+              *ngFor="let produit of [0,1,2,3,4]">
+              <td class="p-3 font-medium">126</td>
+              <td class="p-3 font-medium">26</td>
+              <td class="p-3 font-medium">1200</td>
+              <td class="p-3 font-medium">13/10/2024</td>
+              <td class="p-3 font-medium">13/10/2024</td>
+              <td class="p-3 font-medium">Entrepôt Casablanca</td>
+              <td class="p-3 font-medium">Entrepôt Settat</td>
+              <td class="p-3 font-medium">13/10/2024</td>
+              <td class="p-2"><p-button label="Partiel" [text]="true" class="btn-partiel"/></td>
+              <td class="cursor-pointer text-xs text-center"><i class="pi pi-eye
+                "></i><br>Voir détails</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
