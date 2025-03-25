@@ -1,0 +1,114 @@
+::ng-deep .filter {
+    .p-dropdown{
+        width: 10rem;
+    }
+    .w-hopital   .p-dropdown{
+        width: 16rem;
+    }
+    .p-inputtext,
+    .p-dropdown-item{
+        padding: 0.5rem 0.75rem;
+    }
+    .search-filter .p-button{
+        width: 2.5rem;
+        padding: 0.5rem 0;
+        background-color: #0A536F;
+        border-color: #0A536F;
+    }
+    .download-filter .p-button{
+        width: 3rem;
+        padding: 0.5rem 0.5rem;
+        background-color: #2A72B9;
+        border-color: #2A72B9;
+    }
+    .btn-reporting .p-button{
+        padding: 0.5rem 0.5rem;
+        background-color: #063355;
+        border-color: #063355; 
+    }
+    .btn-alert .p-button{
+        padding: 0.5rem 0.5rem;
+        color: #063355;
+        background-color: #FFDEDE;
+        border-color: #FFDEDE;
+    }
+    .p-button-label{
+        padding-left: 5px;
+    }
+ }
+ .table-alert {
+    border-spacing: 0px 0.9rem;
+ }
+.table-alert .table-list{
+    background: transparent linear-gradient(272deg, #FFFFFF 0%, #FFE5E5 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+}
+ .items{
+    position: relative;
+  }
+   .items:after {
+    content: " ";
+    position: absolute;
+    border-left: 2px #D2D2D2 solid;
+    top: 20%;
+    left: 0px;
+    height: 60%;
+  }
+::ng-deep .filter-list{
+    background-color: #E9F4FE;
+    border-radius: 10px;
+    .p-inputtext{
+        padding: 0.5rem 0.75rem;
+        font-size: 13px;
+        width: 100%;
+        background-color: transparent;
+        border-color: #9A9A9A;
+    }
+    .pi.pi-search{
+        line-height: 0;
+    }
+    .p-accordion-toggle-icon {
+        position: absolute;
+        right: 10px;
+    }
+    .p-accordion-header-link {
+        background-color: transparent;
+        border: none;
+        padding-left: 0 !important;
+    }
+    .p-accordion p-accordiontab .p-accordion-content {
+        background-color: transparent;
+        border: none;
+        
+    }
+    .p-checkbox-label {
+        padding-left: 10px !important;
+    }
+    .p-checkbox .p-checkbox-box.p-highlight {
+        border-color: #0A536F;
+        background: #0A536F;
+    }
+    .p-checkbox .p-checkbox-box{
+        width: 20px;
+        height: 20px;
+    }
+    .p-input-icon-right > .p-icon-wrapper {
+        top: 25%;
+        cursor: pointer;
+    }
+    .btn-reinitialiser .p-button{
+        padding: 0.5rem 0.5rem;
+        background-color: transparent;
+        color: red;
+    }
+    .btn-filter{
+        justify-content: space-between;
+    }
+    .btn-valider .p-button{
+        padding: 0.5rem 0.5rem;
+    }
+    p-calendar{
+        width: 100%;
+        display: grid;
+    }
+}
