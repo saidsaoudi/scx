@@ -12,6 +12,8 @@ const routes: Routes = [
     { path: 'tms', loadChildren: () => import('./modules/tms/tms.module').then(m => m.TmsModule) },
     { path: 'alerts-management', loadChildren: () => import('./modules/alerts-management/alerts-management.module').then(m => m.AlertsManagementModule) },
     { path: 'approvisionnement', loadChildren: () => import('./modules/approvisionnement/approvisionnement.module').then(m => m.ApprovisionnementModule) },
+    { path: 'planification-aps', loadChildren: () => import('./modules/planification-aps/planification-aps.module').then(m => m.PlanificationApsModule) },
+
 
 
 
