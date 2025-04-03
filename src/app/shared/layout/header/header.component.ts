@@ -59,6 +59,9 @@ export class HeaderComponent implements OnInit {
   goPlanification(){
     window.location.href = '/planification-aps'
   }
+  goInventaire(){
+    window.location.href = '/inventaire'
+  }
   updateStyle(event: {exist:boolean,className:string}) {
     console.log("Received style event:", event);
     this.classData = event;

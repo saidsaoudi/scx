@@ -1,0 +1,40 @@
+::ng-deep .inventaire{
+    h3{
+        color: #CCE3FD;
+    }
+    h2{
+        font-size:28px;
+    }
+    h4{
+        font-size: 22px;
+        font-weight: 500;
+    }
+    h5{
+        color: #0000005E;
+        font-size: 16px;
+    }
+    .ajouter-inventaire .p-button{
+        padding: 0.5rem 0.3rem;
+        background-color: #0A536F;
+        border-color: #0A536F;
+    }
+    .p-button-label{
+        padding-left: 5px;
+    }
+    .click-detail{
+        border: 1px solid #D8D8D8;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    p{
+        color: #D8D8D8;
+    }
+    .click-detail i{
+        font-size:22px
+    }
+}
