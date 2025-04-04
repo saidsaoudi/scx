@@ -1,7 +1,7 @@
 <div>
   <div class="top grid  w-auto mb-3  mx-0 p-0">
     <div class="col-12 sm:col-4 md:col-2 lg:col-1 pr-0">
-      <img src="../../../../assets/img/icon-menu.png" class="menu cursor-pointer lg:w-4 pt-3  ml-3" pRipple (click)="op.toggle($event)">
+      <img src="../../../../assets/img/icon-menu.png" class="menu cursor-pointer lg:w-5 pt-3  ml-3" pRipple (click)="op.toggle($event)">
     </div>
       <p-overlayPanel #op class="header-overlay">
           <ng-template pTemplate>
@@ -9,7 +9,7 @@
                   <li pRipple class="cursor-pointer" (click)="goToHome()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon7.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">Tour de control</p>
@@ -19,7 +19,7 @@
                   <li pRipple class="cursor-pointer" (click)="goAlertManagement()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon9.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">Alerts Management</p>
@@ -29,7 +29,7 @@
                   <li pRipple class="cursor-pointer" (click)="goTms()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon3.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">TMS</p>
@@ -39,7 +39,7 @@
                   <li pRipple class="cursor-pointer" (click)="goApprovisionnement()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon6.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">Approvisionnement</p>
@@ -49,7 +49,7 @@
                   <li pRipple class="cursor-pointer" (click)="goPlanification()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">Planification (APS)</p>
@@ -59,17 +59,50 @@
                   <li pRipple class="cursor-pointer" (click)="goInventaire()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon5.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">Inventaire</p>
                       </div>
                     </div>
                   </li>
+                  <li  class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon4.svg" alt="" class="w-5">
+                      </div>
+                      <div class="col-8 p-0">
+                        <p class="name mt-2">Mouvement</p>
+                      </div>
+                      <div  class="col-2 text-right iconmenu">
+                        <i pRipple class="pi pi-angle-right" (click)="op_submenu.toggle($event)"></i>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon2.svg" alt="" class="w-5">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Veille</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li pRipple class="cursor-pointer">
+                    <div class="grid mt-1">
+                      <div class="col-2 text-center">
+                        <img src="../../../../assets/img/icons/icon8.svg" alt="" class="w-5">
+                      </div>
+                      <div class="col-6 p-0">
+                        <p class="name mt-2">Paramètre</p>
+                      </div>
+                    </div>
+                  </li>
                   <li pRipple class="cursor-pointer" (click)="logout()">
                     <div class="grid mt-1">
                       <div class="col-2 text-center">
-                        <img src="../../../../assets/img/icons/icon1.svg" alt="" class="w-7">
+                        <img src="../../../../assets/img/icons/icon10.svg" alt="" class="w-5">
                       </div>
                       <div class="col-6 p-0">
                         <p class="name mt-2">Déconnexion</p>
@@ -87,3 +120,21 @@
       </div>
     </div>
 </div>
+<p-overlayPanel #op_submenu class="header-submenu">
+  <ul class="submenu-details">
+    <li pRipple class="cursor-pointer" (click)="goReception()">
+      <div class="grid mt-1">
+        <div class="col-6">
+          <p class="name mt-2 pl-3">Réception</p>
+        </div>
+      </div>
+    </li>
+    <li pRipple class="cursor-pointer" (click)="goSortie()">
+      <div class="grid">
+        <div class="col-6">
+          <p class="name mt-2 pl-3">Sortie</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</p-overlayPanel>

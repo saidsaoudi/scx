@@ -14,6 +14,9 @@ const routes: Routes = [
     { path: 'approvisionnement', loadChildren: () => import('./modules/approvisionnement/approvisionnement.module').then(m => m.ApprovisionnementModule) },
     { path: 'planification-aps', loadChildren: () => import('./modules/planification-aps/planification-aps.module').then(m => m.PlanificationApsModule) },
     {path : 'inventaire', loadChildren: () => import('./modules/inventaire/inventaire.module').then(m => m.InventaireModule)},
+    {path : 'reception', loadChildren: () => import('./modules/mouvement/mouvement.module').then(m => m.MouvementModule)},
+    {path : 'sortie', loadChildren: () => import('./modules/mouvement/mouvement.module').then(m => m.MouvementModule)},
+
 
 ];
 

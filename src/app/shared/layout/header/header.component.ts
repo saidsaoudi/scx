@@ -62,6 +62,12 @@ export class HeaderComponent implements OnInit {
   goInventaire(){
     window.location.href = '/inventaire'
   }
+  goReception(){
+    window.location.href = '/reception' 
+  }
+  goSortie(){
+    window.location.href = '/sortie' 
+  }
   updateStyle(event: {exist:boolean,className:string}) {
     console.log("Received style event:", event);
     this.classData = event;
