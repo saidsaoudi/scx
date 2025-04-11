@@ -1,0 +1,72 @@
+::ng-deep .listreception{
+    .btn-commande .p-button{
+        padding: 0.5rem 0.5rem;
+        background-color: #72C1C6;
+        border-color: #72C1C6; 
+    }
+    .p-button-label{
+        padding-left: 5px;
+    }
+   .filter {
+        .p-dropdown{
+            width: 15rem;
+        }
+        .p-inputtext,
+        .p-dropdown-item{
+            padding: 0.5rem 0.75rem;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .search-filter .p-button{
+            width: 2.5rem;
+            padding: 0.5rem 0 0.3rem;
+            background-color: #0A536F;
+            border-color: #0A536F;
+        }
+        .download-filter .p-button{
+            width: 3rem;
+            padding: 0.5rem 0 0.3rem;
+            background-color: #2A72B9;
+            border-color: #2A72B9;
+        }
+        .ajouter-filter .p-button{
+            padding: 0.5rem 0.3rem;
+            background-color: #72C1C6;
+            border-color: #72C1C6;
+        }
+    }
+    tr:nth-child(even) {
+        background-color: #F9FAFB;
+    }
+    table {
+        border-spacing: 0;
+        border-collapse: initial;
+    }
+    table th{
+        color: #25265E;
+    }
+    table th, table td {
+        border: 1px solid #cbc9c9;
+        font-size: 15px;
+    }
+    table th:first-child {
+        border-radius: 5px 0px 0px 0px;
+    }
+    .btn-partiel .p-button{
+        padding: 0.5rem 0.5rem;
+        background-color: #E08D0922;
+        border-color: #E08D0922;
+        color: #E08D09; 
+    }
+    .ajouter-entre .p-button{
+        padding: 0.5rem 2.5rem;
+        background-color: #72C1C6;
+        border-color: #72C1C6;
+    }
+    .btn-pdf  .p-button{
+        padding: 0.5rem 2rem; 
+    }
+    .pi-file-pdf{
+        color: red;
+    }
+}

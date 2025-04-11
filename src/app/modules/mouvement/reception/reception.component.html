@@ -1,1 +1,74 @@
-<p>reception works!</p>
+<div class="ml-2 mr-3 ml-3 mt-3 listreception">
+    <div class="grid ">
+        <div class="col-12 sm:col-12 md:col-12 lg:col-3">
+            <h3>Réceptions . <span class="text-sm">Liste des réceptions</span></h3>
+        </div>
+        <div class="col-12 sm:col-12 md:col-12 lg:col-9">
+            <div class="filter mb-3 lg:flex justify-content-between">
+                <div class="mb-3">
+                    <p-dropdown 
+                        [options]="dci"
+                        [(ngModel)]="selectedDci" 
+                        optionLabel="name" 
+                        placeholder="DCI : Tous" />
+                </div>
+                <div class="mb-3">
+                    <p-dropdown 
+                        [options]="produits" 
+                        [(ngModel)]="selectedProduits" 
+                        optionLabel="name" 
+                        placeholder="Région : Casablanca" />
+                </div>
+                <div class="mb-3">
+                    <p-calendar 
+                        [(ngModel)]="rangeDates" 
+                        selectionMode="range" 
+                        [readonlyInput]="true"
+                        [showIcon]="true"  
+                        placeholder="Du 20/09/2024 au 27/09/2024" />
+                </div>
+                <div class="flex">
+                    <p-button icon="pi pi-plus-circle" label="Ajouter une réception" class="ajouter-filter"/>
+                    <p-button icon="pi pi-search"  class="search-filter ml-2"/>
+                    <p-button icon="pi pi-download" class="download-filter ml-2"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-auto">
+        <table class="w-full text-left text-gray-500 mt-2">
+          <thead>
+            <tr>
+                <th class="p-3 font-bold whitespace-nowrap text-black"><p-checkbox 
+                    [(ngModel)]="checked" 
+                    [binary]="true" 
+                    inputId="binary" /> <span class="pl-3">ID</span></th>
+              <th *ngFor="let header of headerColumuns" scope="col"
+                class="p-3 font-bold whitespace-nowrap text-black">
+                {{ header }}
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row  whitespace-nowrap border-b border-gray-800"
+              *ngFor="let produit of [0,1,2,3,4,5,6,7,8]">
+              <td class="p-3 font-medium"><p-checkbox 
+                [(ngModel)]="checked" 
+                [binary]="true" 
+                inputId="binary" /> <span class="pl-3">6638</span></td>
+              <td class="p-3 font-medium"><p-button label="Entrée" class="ajouter-entre"/></td>
+              <td class="p-3 font-medium">Berrechid</td>
+              <td class="p-3 font-medium">2650</td>
+              <td class="p-3 font-medium">Entrepot Settat</td>
+              <td class="p-3 font-medium">3265</td>
+              <td class="p-3 font-medium">9698</td>
+              <td class="p-3 font-medium"><p-button icon="pi pi-file-pdf" label="POD.pdf" class="btn-pdf" [outlined]="true" /></td>
+              <td class="p-3 font-medium">21/10/2024</td>
+              <td class="p-3 font-medium text-center"> <i class="pi pi-eye
+                 cursor-pointer"></i></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
